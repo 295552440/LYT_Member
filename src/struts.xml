@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<!-- 前台能够调用后台的公共静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+
+	<constant name="struts.ObjectFactory" value="spring" />
+
+
+
+	<package name="admin" namespace="/admin" extends="struts-default,json-default">
+
+		<!-- Manager -->
+
+		<action name="adminLogin" class="com.ablog.agrogen.action.ManagerAction">
+			<result name="error">/admin/login.jsp</result>
+			<result name="success">/admin/framework/main.jsp</result>
+		</action>
+
+
+	</package>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+</struts>

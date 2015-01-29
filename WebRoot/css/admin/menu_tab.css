@@ -1,0 +1,62 @@
+.bg {
+	background-image: url(../../images/admin/menu_tab/menu_tab_bg.gif);
+	background-repeat: repeat-x;
+	height: 30px;
+}
+.mywork {
+	font-size: 9pt;
+	color: #000000;
+}
+
+.text {
+	font-size: 12px;
+	color: #0054A6;
+}
+.tab-left-mouseout {
+	background-image: url(../../images/admin/menu_tab/menu_tab_left.gif);
+	height: 22px;
+	width: 4px;
+	background-repeat: no-repeat;
+}
+.tab-bg-mouseout {
+	background-image: url(../../images/admin/menu_tab/menu_tab_tabbg.gif);
+	background-repeat: repeat-x;
+	height: 22px;
+	font-size: 12px;
+	color: #000000;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+.tab-split-line {
+	background-image: url(../../images/admin/menu_tab/menu_tab_split_line.gif);
+	height: 22px;
+	width: 2px;
+}
+.tab-right-mouseout {
+	background-image: url(../../images/admin/menu_tab/menu_tab_right.gif);
+	background-repeat: no-repeat;
+	height: 22px;
+	width: 5px;
+}
+.tab-left-mouseover {
+	background-image: url(../../images/admin/menu_tab/menu_tab_left2.gif);
+	height: 22px;
+	width: 4px;
+	background-repeat: no-repeat;
+}
+.tab-bg-mouseover {
+	background-image: url(../../images/admin/menu_tab/menu_tab_tabbg2.gif);
+	background-repeat: repeat-x;
+	height: 22px;
+	font-size: 12px;
+	color: #0054A6;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+.tab-right-mouseover {
+
+	background-image: url(../../images/admin/menu_tab/menu_tab_right2.gif);
+	background-repeat: no-repeat;
+	height: 22px;
+	width: 5px;
+}

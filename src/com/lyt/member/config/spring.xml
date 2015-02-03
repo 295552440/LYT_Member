@@ -11,7 +11,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/ablog_agrogen" />
+		<property name="url" value="jdbc:mysql://localhost:3306/lyt" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -27,10 +27,10 @@
 			</props>
 		</property>
 		<property name="mappingResources">
-			<list>
-			
-			
-				<!-- <value>com/ablog/agrogen/eneity/Manager.hbm.xml</value> -->
+			<list>		
+				<value>com/ablog/agrogen/eneity/Admin.hbm.xml</value>
+				<value>com/ablog/agrogen/eneity/LytFanli.hbm.xml</value>
+				<value>com/ablog/agrogen/eneity/LytHuiyuan.hbm.xml</value>
 				
 			</list>
 		</property>

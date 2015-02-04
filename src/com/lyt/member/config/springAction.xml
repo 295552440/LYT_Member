@@ -11,10 +11,17 @@
 
 
 	<!-- Action -->
-	<!-- <bean id="managerAction" class="com.ablog.agrogen.action.ManagerAction"
+	
+	<bean id="adminAction" class="com.lyt.member.service.AdminAction"
 		scope="prototype">
-		<property name="managerService" ref="managerService" />
-	</bean> -->
+		<property name="adminService" ref="adminService" />
+	</bean>
+	<bean id="lytFanliAction" class="com.lyt.member.service.LytFanliAction" scope="prototype">
+		<property name="lytFanliService" ref="lytFanliService" />
+	</bean>
+	<bean id="lytHuiyuanAction" class="com.lyt.member.service.LytHuiyuanAction" scope="prototype">
+		<property name="lytHuiyuanService" ref="lytHuiyuanService" />
+	</bean>
 
 
 

@@ -11,10 +11,15 @@
 
 
 	<!-- Service -->
-<!-- 	<bean id="managerService" class="com.ablog.agrogen.service.ManagerService">
-		<property name="managerDao" ref="managerDao" />
-	</bean> -->
-	
+	<bean id="adminService" class="com.lyt.member.service.AdminService">
+		<property name="adminDao" ref="adminDao" />
+	</bean>
+	<bean id="lytFanliService" class="com.lyt.member.service.LytFanliService">
+		<property name="lytFanliDao" ref="lytFanliDao" />
+	</bean>
+	<bean id="lytHuiyuanService" class="com.lyt.member.service.LytHuiyuanService">
+		<property name="lytHuiyuanDao" ref="lytHuiyuanDao" />
+	</bean>
 
 
 

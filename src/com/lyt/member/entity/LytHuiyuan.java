@@ -27,6 +27,7 @@ public class LytHuiyuan implements java.io.Serializable {
 	private String shouhuoAddress;
 	private Integer hyState;
 	private Timestamp applyTime;
+	private String beizhu;
 	private Set lytFanlisForTjrId = new HashSet(0);
 	private Set lytFanlisForBtjrId = new HashSet(0);
 
@@ -180,6 +181,14 @@ public class LytHuiyuan implements java.io.Serializable {
 
 	public void setApplyTime(Timestamp applyTime) {
 		this.applyTime = applyTime;
+	}
+
+	public String getBeizhu() {
+		return beizhu;
+	}
+
+	public void setBeizhu(String beizhu) {
+		this.beizhu = beizhu;
 	}
 
 	public Set getLytFanlisForTjrId() {

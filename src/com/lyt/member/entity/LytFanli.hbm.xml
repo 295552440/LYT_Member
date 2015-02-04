@@ -30,6 +30,16 @@
                 <comment>返利状态，0未返利，1返利，默认0</comment>
             </column>
         </property>
+        <property name="fanliMoney" type="java.lang.Double">
+            <column name="fanliMoney" precision="10">
+                <comment>返利钱数</comment>
+            </column>
+        </property>
+        <property name="fanliType" type="java.lang.Integer">
+            <column name="fanliType">
+                <comment>返利类型</comment>
+            </column>
+        </property>
         <property name="fanliTime" type="java.sql.Timestamp">
             <column name="fanliTime" length="19">
                 <comment>返利时间，等于返利状态标识为返利时的时间</comment>

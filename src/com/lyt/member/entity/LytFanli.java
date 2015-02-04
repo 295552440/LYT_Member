@@ -15,6 +15,8 @@ public class LytFanli implements java.io.Serializable {
 	private LytHuiyuan lytHuiyuanByTjrId;
 	private Timestamp tjTime;
 	private Integer fanliState;
+	private Double fanliMoney;
+	private Integer fanliType;
 	private Timestamp fanliTime;
 
 	// Constructors
@@ -74,6 +76,22 @@ public class LytFanli implements java.io.Serializable {
 
 	public void setFanliState(Integer fanliState) {
 		this.fanliState = fanliState;
+	}
+
+	public Double getFanliMoney() {
+		return fanliMoney;
+	}
+
+	public void setFanliMoney(Double fanliMoney) {
+		this.fanliMoney = fanliMoney;
+	}
+
+	public Integer getFanliType() {
+		return fanliType;
+	}
+
+	public void setFanliType(Integer fanliType) {
+		this.fanliType = fanliType;
 	}
 
 	public Timestamp getFanliTime() {

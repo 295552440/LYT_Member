@@ -38,4 +38,7 @@ create table admin(
 	adminPassword varchar(30) comment'管理员用户密码'
 );
 
-alter table lyt_huiyuan add  beizhu varchar(500) comment'备注' after applyTime ;
+alter table lyt_huiyuan add  beizhu varchar(500) comment'备注' after applyTime;
+
+alter table lyt_fanli add  fanliMoney decimal(10,2) comment'返利钱数' after fanliState;
+alter table lyt_fanli add  fanliType int(1) comment'返利类型' after fanliMoney;

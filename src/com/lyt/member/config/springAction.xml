@@ -19,7 +19,7 @@
 	<bean id="lytFanliAction" class="com.lyt.member.service.LytFanliAction" scope="prototype">
 		<property name="lytFanliService" ref="lytFanliService" />
 	</bean>
-	<bean id="lytHuiyuanAction" class="com.lyt.member.service.LytHuiyuanAction" scope="prototype">
+	<bean id="lytHuiyuanAction" class="com.lyt.member.action.LytHuiyuanAction" scope="prototype">
 		<property name="lytHuiyuanService" ref="lytHuiyuanService" />
 	</bean>
 

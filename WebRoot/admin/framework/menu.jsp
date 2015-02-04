@@ -102,7 +102,7 @@ a:active {
 				<div class="sec_menu" style="WIDTH: 158px">
 					<table cellSpacing="3" cellPadding="0" width="130" align="center">
 						<tr>
-							<td><A href="<%=request.getContextPath()%>/admin/memberList.jsp"  target="main">显示所有会员</A>
+							<td><A href="<%=request.getContextPath()%>/admin/showMemberList"  target="main">显示所有会员</A>
 							</td>
 						</tr>
 						<tr>

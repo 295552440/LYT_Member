@@ -28,9 +28,9 @@
 		</property>
 		<property name="mappingResources">
 			<list>		
-				<value>com/ablog/agrogen/eneity/Admin.hbm.xml</value>
-				<value>com/ablog/agrogen/eneity/LytFanli.hbm.xml</value>
-				<value>com/ablog/agrogen/eneity/LytHuiyuan.hbm.xml</value>
+				<value>com/lyt/member/entity/Admin.hbm.xml</value>
+				<value>com/lyt/member/entity/LytFanli.hbm.xml</value>
+				<value>com/lyt/member/entity/LytHuiyuan.hbm.xml</value>
 				
 			</list>
 		</property>

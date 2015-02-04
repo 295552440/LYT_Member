@@ -10,12 +10,12 @@
             <column name="id" length="36" />
             <generator class="uuid.hex" />
         </id>
-        <many-to-one name="lytHuiyuanByBtjrId" class="entity.LytHuiyuan" fetch="select">
+        <many-to-one name="lytHuiyuanByBtjrId" class="com.lyt.member.entity.LytHuiyuan" fetch="select">
             <column name="btjrId" length="36">
                 <comment>被推荐人卡号</comment>
             </column>
         </many-to-one>
-        <many-to-one name="lytHuiyuanByTjrId" class="entity.LytHuiyuan" fetch="select">
+        <many-to-one name="lytHuiyuanByTjrId" class="com.lyt.member.entity.LytHuiyuan" fetch="select">
             <column name="tjrId" length="36">
                 <comment>推荐人卡号</comment>
             </column>

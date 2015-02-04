@@ -86,7 +86,7 @@
                     <comment>推荐人卡号</comment>
                 </column>
             </key>
-            <one-to-many class="entity.LytFanli" />
+            <one-to-many class="com.lyt.member.entity.LytFanli" />
         </set>
         <set name="lytFanlisForBtjrId" inverse="true">
             <key>
@@ -94,7 +94,7 @@
                     <comment>被推荐人卡号</comment>
                 </column>
             </key>
-            <one-to-many class="entity.LytFanli" />
+            <one-to-many class="com.lyt.member.entity.LytFanli" />
         </set>
     </class>
 </hibernate-mapping>

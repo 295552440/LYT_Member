@@ -24,10 +24,10 @@
 	}
 
 	//多条件查询	
-	function queryByMultiCondition(input) {
+/* 	function queryByMultiCondition(input) {
 		location.href = "queryByMultiCondition?input=" + input;
 
-	}
+	} */
 	//order查询	
 	function queryByOrder(order) {
 		location.href = "queryByOrder?order=" + order;
@@ -37,11 +37,7 @@
 	function queryByState(state) {
 		location.href = "queryByState?state=" + state;
 	}
-	//queryByCommend
-	function queryByCommend(commend) {
-		location.href = "queryByCommend?commend=" + commend;
 
-	}
 
 	//搜索查询	
 	function queryBySearch() {
@@ -54,7 +50,7 @@
 		}
 
 		var searchBy = $("search_list").value;
-		if (searchBy == "blogId" & isNaN(searchInput)) {
+		if (searchBy == "id" & isNaN(searchInput)) {
 			//alert("id不能为空");
 			$("msgkey").innerHTML = "Id输入必须为数字！";
 			return false;
@@ -80,7 +76,7 @@
 			return false;
 		}
 
-		location.href = "<s:property value="queryMethod"/>?pageMethod=refresh&page.currentPage="
+		location.href = "<s:property value="queryMethod"/>?pageMethod=refresh&currentPage="
 				+ currentPage;
 
 		return true;
@@ -111,23 +107,24 @@
 					class="title_bar"><select name="blog_order_list"
 						class="form_select" onChange="queryByOrder(this.value)">
 							<option value="" selected>排列顺序</option>
-							<option value="date_desc">注册时间-降序</option>
-							<option value="date">注册时间-升序</option>
-							<option value="id_desc">用户ID-降序</option>
-							<option value="id">用户ID-升序</option>
+							<option value="date_desc">申请时间-降序</option>
+							<option value="date">申请时间-升序</option>
+							<option value="id_desc">会员卡号-降序</option>
+							<option value="id">会员卡号-升序</option>
 					</select> </span></td>
-				<td width="20%" align="left"><span class="oper-bar-text">按是否开通博客查询：</span><span
+				<td width="20%" align="left"><span class="oper-bar-text">按是否审核通过：</span><span
 					class="title_bar"> <select name="state" id="state"
 						class="form_select" onChange="queryByState(this.value);">
 							<option value="all">全部</option>
-							<option value="state_no">已开通</option>
-							<option value="state_yes">未开通</option>
+							<option value="state_yes">审核通过</option>
+							<option value="state_wait">待审核</option>
+							<!-- <option value="state_no">审核未通过</option> -->
 					</select>
 				</span></td>
 				<td width="35%" align="right"><span class="oper-bar-text">搜索查询：
 						<select name="search_list" id="search_list">
-							<option value="userId">ID</option>
-							<option value="userName">名称</option>
+							<option value="id">会员卡号</option>
+							<option value="name">会员姓名</option>
 
 					</select> <input name="key" type="text" id="key" size="21" onKeyDown="">
 						<input name="Submit5" type="button" class="form-buttun"
@@ -156,38 +153,114 @@
 		<table width="99%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_title">
-				<td width="9%" class="table-titlebar">用户ID</td>
-				<td width="9%" class="table-titlebar">博客ID</td>
-				<td width="9%" class="table-titlebar">用户名</td>
-				<td width="9%" class="table-titlebar">真实姓名</td>
-				<td width="9%" class="table-titlebar">头像</td>
-				<td width="9%" class="table-titlebar">注册时间</td>
-				<td width="9%" class="table-titlebar">操作</td>
+				<td width="5%" class="table-titlebar">ID(隐藏)</td>
+				<td width="5%" class="table-titlebar">会员卡号</td>
+				<td width="5%" class="table-titlebar">会员姓名</td>
+				<td width="5%" class="table-titlebar">会员级别</td>
+				<td width="5%" class="table-titlebar">电话</td>
+				<td width="5%" class="table-titlebar">身份证号</td>
+				<td width="5%" class="table-titlebar">银行卡账号</td>
+				<td width="5%" class="table-titlebar">收款人姓名</td>
+				<td width="5%" class="table-titlebar">收货地址</td>
+				<td width="5%" class="table-titlebar">推荐人卡号</td>
+				<td width="5%" class="table-titlebar">会员费</td>
+				<td width="5%" class="table-titlebar">邮费</td>
+				<td width="5%" class="table-titlebar">合计金额</td>
+				<td width="5%" class="table-titlebar">备注</td>
+				<td width="5%" class="table-titlebar">审核状态</td>
+				<td width="5%" class="table-titlebar">申请日期</td>
+				<td width="5%" class="table-titlebar">操作</td>
 			</tr>
-			<c:forEach items="${users }" var="item">
+					<!-- 详细列表 -->
+			<s:iterator id="memberList" value="memberList" var="blogList"
+				status="status">
 				<tr class="table_border_cell_bg">
-					<td class="table-cell">${item.userId }</td>
-					<td class="table-cell"><c:if
-							test="${fn:length(item.blogs)!=0 }">
-							<c:forEach var="entry" items="${item.blogs }">
-								<c:out value="${entry.blogName}" />
-							</c:forEach>
-						</c:if> <c:if test="${fn:length(item.blogs)==0 }">未开通博客</c:if></td>
-					<td class="table-cell">${item.userName }</td>
-					<td class="table-cell">${item.userRealName }</td>
-					<td class="table-cell"><img src="../${item.userHeadUrl }"
-						width="50" height="50"></td>
-					<td class="table-cell">${item.userRegisterDatetime }</td>
-					<td class="table-cell"><a
-						href="deleteUser?user.userId=${item.userId }">删除</a> <a
-						href="queryUserById?user.userId=${item.userId }" target="main">编辑</a>
-						<c:if test="${fn:length(item.blogs)==0 }">
-							<a href="openBlog.jsp?userId=${item.userId }" target="main">开通博客</a>
-						</c:if> <c:if test="${fn:length(item.blogs)!=0 }">
-							<a href="../${item.userHeadUrl }" target=_blank>访问博客</a>
-						</c:if></td>
+
+					<td align="left" class="table-cell"><s:property value="id" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="hycardId" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="hyname" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="hyLevel" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="phoneNumber" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="identifyId" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="bankcardNumber" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="skrName" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="shouhuoAddress" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="tjrId" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="hyFee" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="inforFee" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="totalMoney" />
+					</td>
+					<td align="left" class="table-cell"><s:property
+							value="beizhu" />
+					</td>
+					<td align="center" class="table-cell"><s:if
+							test="hyState==0">待审核</s:if> <s:if
+							test="hyState==1">通过</s:if><%-- <s:if
+							test="hyState==2">未通过</s:if> --%>
+					</td>
+					<td align="center" class="table-cell"><s:date
+							name="applyTime" format="yyyy-MM-dd HH:mm" />
+					</td>
+
+
+
+		
+
+
+
+
+			
+
+
+
+				
+
+
+				
+					<td align="center" class="table-cell">
+					
+						<s:url id="url2"
+							action="updateState">
+							<s:param name="lytHuiyuan.id" value="id" />
+						</s:url>
+						
+						<a href="<s:property value="#url2"/>"><s:if
+								test="hyState==0">审核</s:if><s:if test="hyState==1">取消审核</s:if></a> &nbsp; 
+						
+						
+						<s:url id="url1" action="updateBlogState">
+							<s:param name="blog.blogId" value="blogId" />
+						</s:url> 
+						
+						<a href="<s:property value="#url"/>">删</a>
+					</td>
 				</tr>
-			</c:forEach>
+
+			</s:iterator>
 		</table>
 		<table width="99%" border="0" align="center" cellpadding="0"
 			cellspacing="0">

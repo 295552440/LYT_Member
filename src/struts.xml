@@ -17,18 +17,47 @@
 		<!-- Manager -->
 
 		<action name="adminLogin" class="adminAction">
-			<result name="error">/admin/login.jsp</result>
+			 
 			<result name="success">/admin/framework/main.jsp</result>
 		</action>
 
 
         <action name="showMemberList" class="lytHuiyuanAction" method="showMemberList">
-			<result name="error">/admin/login.jsp</result>
+			 
 			<result name="success">/admin/memberList.jsp</result>
 		</action>
 
-
-
+        <action name="queryByOrder" class="lytHuiyuanAction" method="queryByOrder">
+			 
+			<result name="success">/admin/memberList.jsp</result>
+		</action>
+        <action name="queryByState" class="lytHuiyuanAction" method="queryByState">
+			<result name="success">/admin/memberList.jsp</result>
+		</action>
+		<action name="queryBySearch" class="lytHuiyuanAction" method="queryBySearch">
+			<result name="success">/admin/memberList.jsp</result>
+		</action>
+		<action name="updateState" class="lytHuiyuanAction" method="updateState">
+			<result name="success">/admin/memberList.jsp</result>
+		</action>
+		
+		
+		
+		
+		<action name="addLytHuiyuan" class="lytHuiyuanAction" method="addLytHuiyuan">
+			<result name="error">/admin/login.jsp</result>
+			<result name="success" type="chain">showMemberList</result>
+			<result name="input" type="redirect">
+				<!-- /admin/addMember.jsp?msg=${message} -->
+				<param name="location">/admin/addMember.jsp</param>
+				<param name="msg">${message}</param>
+			</result>
+		</action>
+		
+		
+		
+		
+		
 	</package>
 	
 	<!-- 会员 -->

@@ -21,6 +21,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
+<script>
+
+//控制LOGO框架的显示与隐藏
+function showOrHiddenLogoFrame(isShow){
+	if (isShow){
+		document.all.middleFrame.cols = "180,10,*";
+	}else{
+		document.all.middleFrame.cols = "0,10,*";
+	}
+}
+</script> 
+ 
+ 
+ 
+ 
+ 
   
  <frameset rows="33,30,*,4" cols="*" frameborder="yes" border="0" framespacing="0" id="fwFrame"> 
   <frame name="logoFrame" scrolling="NO" noresize src="<%=request.getContextPath()%>/admin/framework/top.jsp" frameborder="0">

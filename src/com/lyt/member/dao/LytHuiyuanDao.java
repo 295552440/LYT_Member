@@ -7,6 +7,10 @@ import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
  
+
+
+
+ 
 import com.lyt.member.entity.LytHuiyuan;
 import com.lyt.member.util.Constant;
 
@@ -66,5 +70,91 @@ public class LytHuiyuanDao extends BaseDao {
 		query.setMaxResults(Constant.PAGE_SIZE);// 设置每页显示的数
 		return query.list();
 	}
+	
+	/**
+	 * 按Hql查询
+	 */
+	public List<LytHuiyuan> queryByHql(String hql) {
 
+		Session session = sessionFactory.getCurrentSession();
+
+		Query query = session.createQuery(hql);
+		return query.list();
+	}
+	/**
+	 * 查询数量
+	 */
+	public List<LytHuiyuan> querySize(String input, String searchInput) {
+		String hql = "from LytHuiyuan ";// 默认
+
+		if ("state_yes".equals(input)) {
+			hql = "from LytHuiyuan  as l where l.hyState=1";
+		} else if ("state_no".equals(input)) {
+			hql = "from LytHuiyuan   as l where l.hyState=2";
+		} else if ("state_wait".equals(input)) {
+			hql = "from LytHuiyuan   as l where l.hyState=0";
+		} else if ("id".equals(input)) {
+
+			hql = "from LytHuiyuan   as l where l.hycardId="
+					+ searchInput;
+		} else if ("name".equals(input)) {
+
+			hql = "from LytHuiyuan   as l where l.hyname='" + searchInput + "'";
+		} else {
+			hql = "from LytHuiyuan ";
+		}
+
+		return queryByHql(hql);
+	}
+
+	
+	
+	
+	/**
+	 * queryByState
+	 */
+
+	public List<LytHuiyuan> queryByState(String state, int startRow) {
+		String hql = "from LytHuiyuan ";// 默认
+		if ("state_yes".equals(state)) {
+			hql = "from LytHuiyuan  as l where l.hyState=1 ORDER  BY applyTime desc";
+		} else if ("state_no".equals(state)) {
+			hql = "from LytHuiyuan   as l where l.hyState=2 ORDER BY applyTime desc";
+		} else if ("state_wait".equals(state)) {
+			hql = "from LytHuiyuan   as l where l.hyState=0 ORDER BY applyTime desc";
+		}
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		// 可以取到一定范围内的数据，用来数据分页显示
+		query.setFirstResult(startRow);// 设置结果集第一个数据的行数，注意：从0行开始计数
+		query.setMaxResults(Constant.PAGE_SIZE);// 设置每页显示的数
+		return query.list();
+	}
+	/**
+	 * queryBySearch
+	 */
+	public List<LytHuiyuan> queryBySearch(String searchBy, String searchInput,
+			int startRow) {
+		String hql = "from LytHuiyuan ORDER BY applyTime desc";// 默认
+
+		if ("id".equals(searchBy)) {
+			hql = "from LytHuiyuan   as l where l.hycardId="
+					+ searchInput
+					+ " ORDER BY applyTime desc";
+		} else if ("name".equals(searchBy)) {
+
+			hql = "from LytHuiyuan   as l where l.hyname ='" + searchInput
+					+ "' ORDER BY applyTime desc";
+		}
+
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		// 可以取到一定范围内的数据，用来数据分页显示
+		query.setFirstResult(startRow);// 设置结果集第一个数据的行数，注意：从0行开始计数
+		query.setMaxResults(Constant.PAGE_SIZE);// 设置每页显示的数
+		return query.list();
+	}
+
+	
+	
 }

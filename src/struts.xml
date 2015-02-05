@@ -31,7 +31,12 @@
 			 
 			<result name="success">/admin/memberList.jsp</result>
 		</action>
-
+        <action name="queryByState" class="lytHuiyuanAction" method="queryByState">
+			<result name="success">/admin/memberList.jsp</result>
+		</action>
+		<action name="queryBySearch" class="lytHuiyuanAction" method="queryBySearch">
+			<result name="success">/admin/memberList.jsp</result>
+		</action>
 	</package>
 
 

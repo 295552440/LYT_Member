@@ -114,7 +114,34 @@ a:active {
 				</div> <br></td>
 		</tr>
 	
+
+		
 		<tr>
+			<td class="menu_title" id="imgmenu9"
+				onMouseOver="this.className='menu_title2';" style="CURSOR: hand"
+				onclick="showsubmenu(9)" onMouseOut="this.className='menu_title';"
+				background="images/admin/left/menudown.gif" height="25"><span>申请审核</span>
+			</td>
+		</tr>
+	<tr>
+			<td id="submenu9" style="DISPLAY: ">
+				<div class="sec_menu" style="WIDTH: 158px">
+					<div align="center">
+						<table cellSpacing="3" cellPadding="0" width="130">
+							<tr>
+								<td><A href="admin/queryByState?state=state_wait" target="main">待审核</A>
+								</td>
+							</tr>
+							<tr>
+								<td><A href="admin/queryByState?state=state_no" target="main">审核未通过</A>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div> <br></td>
+		</tr>
+		
+			<tr>
 			<td class="menu_title" id="imgmenu1"
 				onMouseOver="this.className='menu_title2';" style="CURSOR: hand"
 				onclick="showsubmenu(1)" onMouseOut="this.className='menu_title';"
@@ -138,33 +165,6 @@ a:active {
 				</div> <br>
 			</td>
 		</tr>
-		
-		<tr>
-			<td class="menu_title" id="imgmenu9"
-				onMouseOver="this.className='menu_title2';" style="CURSOR: hand"
-				onclick="showsubmenu(9)" onMouseOut="this.className='menu_title';"
-				background="images/admin/left/menudown.gif" height="25"><span>申请审核</span>
-			</td>
-		</tr>
-	<tr>
-			<td id="submenu9" style="DISPLAY: ">
-				<div class="sec_menu" style="WIDTH: 158px">
-					<div align="center">
-						<table cellSpacing="3" cellPadding="0" width="130">
-							<tr>
-								<td><A href="admin/selectAllTag" target="main">待审核</A>
-								</td>
-							</tr>
-							<tr>
-								<td><A href="link/linknewclass.jsp" target="main">审核未通过</A>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div> <br></td>
-		</tr>
-		
-	
 		
 		
 		<tr>

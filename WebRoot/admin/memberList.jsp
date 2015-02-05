@@ -24,10 +24,10 @@
 	}
 
 	//多条件查询	
-	function queryByMultiCondition(input) {
+/* 	function queryByMultiCondition(input) {
 		location.href = "queryByMultiCondition?input=" + input;
 
-	}
+	} */
 	//order查询	
 	function queryByOrder(order) {
 		location.href = "queryByOrder?order=" + order;
@@ -37,11 +37,7 @@
 	function queryByState(state) {
 		location.href = "queryByState?state=" + state;
 	}
-	//queryByCommend
-	function queryByCommend(commend) {
-		location.href = "queryByCommend?commend=" + commend;
 
-	}
 
 	//搜索查询	
 	function queryBySearch() {
@@ -54,7 +50,7 @@
 		}
 
 		var searchBy = $("search_list").value;
-		if (searchBy == "blogId" & isNaN(searchInput)) {
+		if (searchBy == "id" & isNaN(searchInput)) {
 			//alert("id不能为空");
 			$("msgkey").innerHTML = "Id输入必须为数字！";
 			return false;
@@ -80,7 +76,7 @@
 			return false;
 		}
 
-		location.href = "<s:property value="queryMethod"/>?pageMethod=refresh&page.currentPage="
+		location.href = "<s:property value="queryMethod"/>?pageMethod=refresh&currentPage="
 				+ currentPage;
 
 		return true;
@@ -120,15 +116,15 @@
 					class="title_bar"> <select name="state" id="state"
 						class="form_select" onChange="queryByState(this.value);">
 							<option value="all">全部</option>
-							<option value="state_no">已成为会员</option>
-							<option value="state_yes">待审核</option>
-							<option value="state_yes">审核未通过</option>
+							<option value="state_yes">已成为会员</option>
+							<option value="state_wait">待审核</option>
+							<option value="state_no">审核未通过</option>
 					</select>
 				</span></td>
 				<td width="35%" align="right"><span class="oper-bar-text">搜索查询：
 						<select name="search_list" id="search_list">
-							<option value="userId">会员卡号</option>
-							<option value="userName">会员姓名</option>
+							<option value="id">会员卡号</option>
+							<option value="name">会员姓名</option>
 
 					</select> <input name="key" type="text" id="key" size="21" onKeyDown="">
 						<input name="Submit5" type="button" class="form-buttun"

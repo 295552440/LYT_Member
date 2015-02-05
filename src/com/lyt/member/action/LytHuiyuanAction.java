@@ -22,6 +22,7 @@ public class LytHuiyuanAction extends BaseAction {
 	private String state;// 按状态查询
 	private String searchBy;// 按搜索查询
 	private String searchInput;// 接收页面传来搜索参数
+	private Integer currentPage;
 	
 	
 	
@@ -32,6 +33,16 @@ public class LytHuiyuanAction extends BaseAction {
 	
 	
 	
+
+
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
 
 	public Page getPage() {
 		return page;
@@ -120,42 +131,100 @@ public class LytHuiyuanAction extends BaseAction {
 	 */
 	
 	public String queryByOrder() throws Exception {
-		// 第一访问页面时page=null，防止空指针
-		
-		
+	
 		page=(Page)session.get("page");
-		
+		if(currentPage!=null){
+			page.setCurrentPage(currentPage);
+		}
+		// 第一次访问页面时page=null，防止空指针
 		if (page == null) {
 			page = new Page();
-			System.out.println("kong");
-		}
 		
+		}
+		if(order==null){
+			order=(String) session.get("order");
+		}		
 		// 设置每页显示的条数
 		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
-		
-		
-		System.out.println(page.getCurrentPage());
-		System.out.println(page.getStartRow());
-	
+			
 		memberList = lytHuiyuanService.queryByOrder(page, pageMethod, order);
 
 		// 将执行完后的page作为lytHuiyuanService的静态变量再传递给blogAction,及时更新页面page
 		page = lytHuiyuanService.page;
-		// 执行完first,previous,next,last,refresh之后，必须将pageMethod清空，以保证重新query时，从第一页查询
-		/*pageMethod = null;
-
-		state = null;
-		searchBy = null;
-		searchInput = null;*/
 		queryMethod = "queryByOrder";
 		session.put("page", page);
+		session.put("order", order);
 		return SUCCESS;
 
 	}	
 	
+	/**
+	 * queryByState
+	 */
+	public String queryByState() throws Exception {
+		page=(Page)session.get("page");
+		if(currentPage!=null){
+			page.setCurrentPage(currentPage);
+		}
+		// 第一访问页面时page=null，防止空指针
+		if (page == null) {
+			page = new Page();
+			
+			System.out.println("kong");
+		}
+		if(state==null){
+			state=(String) session.get("state");
+		}
+				// 设置每页显示的条数
+		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
+		
+		memberList = lytHuiyuanService.queryByState(page, pageMethod, state);
+
+		// 将执行完后的page作为blogService的静态变量再传递给blogAction,及时更新页面page
+		page = lytHuiyuanService.page;
+		queryMethod = "queryByState";
+		session.put("page", page);
+		session.put("state", state);
+		return SUCCESS;
+
+	}
 	
-	
-	
+
+	/**
+	 * queryBySearch
+	 */
+	public String queryBySearch() throws Exception {
+		page=(Page)session.get("page");
+		if(currentPage!=null){
+			page.setCurrentPage(currentPage);
+		}
+		// 第一访问页面时page=null，防止空指针
+		if (page == null) {
+			page = new Page();
+		}
+		if(searchBy==null){
+			searchBy=(String) session.get("searchBy");
+		}
+		if(searchInput==null){
+			searchInput=(String) session.get("searchInput");
+		}
+		// 设置每页显示的条数
+		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
+		memberList = lytHuiyuanService.queryBySearch(page, pageMethod, searchBy,
+				searchInput);
+
+		// 将执行完后的page作为blogService的静态变量再传递给blogAction,及时更新页面page
+		page = lytHuiyuanService.page;
+		// 执行完first,previous,next,last,refresh之后，必须将pageMethod清空，以保证重新query时，从第一页查询
+ 
+		queryMethod = "queryBySearch";
+		session.put("page", page);
+		session.put("searchBy", searchBy);
+		session.put("searchInput", searchInput);
+		return SUCCESS;
+
+	}
+
 	
 	
 	

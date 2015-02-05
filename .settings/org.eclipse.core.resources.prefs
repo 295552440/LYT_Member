@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebRoot/sql/lyt.sql=UTF-8
+encoding//src/com/lyt/member/util/Constant.java=UTF-8
 encoding//src/com/lyt/member/util/EncodeFilter.java=UTF-8
+encoding//src/com/lyt/member/util/Page.java=UTF-8

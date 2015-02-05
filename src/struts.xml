@@ -17,17 +17,20 @@
 		<!-- Manager -->
 
 		<action name="adminLogin" class="adminAction">
-			<result name="error">/admin/login.jsp</result>
+			 
 			<result name="success">/admin/framework/main.jsp</result>
 		</action>
 
 
         <action name="showMemberList" class="lytHuiyuanAction" method="showMemberList">
-			<result name="error">/admin/login.jsp</result>
+			 
 			<result name="success">/admin/memberList.jsp</result>
 		</action>
 
-
+        <action name="queryByOrder" class="lytHuiyuanAction" method="queryByOrder">
+			 
+			<result name="success">/admin/memberList.jsp</result>
+		</action>
 
 	</package>
 

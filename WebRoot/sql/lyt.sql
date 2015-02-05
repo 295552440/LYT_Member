@@ -14,7 +14,7 @@ create table lyt_huiyuan(
 	tjrId char(36) comment'推荐人卡号',
 	skrName varchar(20) comment'收款人姓名',
 	shouhuoAddress varchar(200) comment'收货地址',
-	hyState int(1) default 0 comment'会员审核状态，0未通过，1通过，默认0',
+	hyState int(1) default 0 comment'会员审核状态，0待审核，1通过，2未通过，默认0',
 	applyTime datetime default CURRENT_TIMESTAMP comment'申请日期'
 );
 

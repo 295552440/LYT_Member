@@ -28,21 +28,20 @@ public class LytHuiyuan implements java.io.Serializable {
 	private Integer hyState;
 	private Timestamp applyTime;
 	private String beizhu;
-	private Set lytFanlisForTjrId = new HashSet(0);
-	private Set lytFanlisForBtjrId = new HashSet(0);
-
-	// Constructors
-
-	/** default constructor */
+	private Set<LytFanli> lytFanlisForTjrId = new HashSet<LytFanli>();
+	private Set<LytFanli> lytFanlisForBtjrId = new HashSet<LytFanli>();
+	
 	public LytHuiyuan() {
+		// TODO Auto-generated constructor stub
 	}
-
-	/** full constructor */
-	public LytHuiyuan(String hyname, String hyLevel, String hycardId,
-			String phoneNumber, String identifyId, String bankcardNumber,
-			Double hyFee, Double inforFee, Double totalMoney, String tjrId,
-			String skrName, String shouhuoAddress, Integer hyState,
-			Timestamp applyTime, Set lytFanlisForTjrId, Set lytFanlisForBtjrId) {
+	public LytHuiyuan(String id, String hyname, String hyLevel,
+			String hycardId, String phoneNumber, String identifyId,
+			String bankcardNumber, Double hyFee, Double inforFee,
+			Double totalMoney, String tjrId, String skrName,
+			String shouhuoAddress, Integer hyState, Timestamp applyTime,
+			String beizhu, Set<LytFanli> lytFanlisForTjrId,
+			Set<LytFanli> lytFanlisForBtjrId) {
+		this.id = id;
 		this.hyname = hyname;
 		this.hyLevel = hyLevel;
 		this.hycardId = hycardId;
@@ -57,154 +56,123 @@ public class LytHuiyuan implements java.io.Serializable {
 		this.shouhuoAddress = shouhuoAddress;
 		this.hyState = hyState;
 		this.applyTime = applyTime;
+		this.beizhu = beizhu;
 		this.lytFanlisForTjrId = lytFanlisForTjrId;
 		this.lytFanlisForBtjrId = lytFanlisForBtjrId;
 	}
-
-	// Property accessors
-
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getHyname() {
-		return this.hyname;
+		return hyname;
 	}
-
 	public void setHyname(String hyname) {
 		this.hyname = hyname;
 	}
-
 	public String getHyLevel() {
-		return this.hyLevel;
+		return hyLevel;
 	}
-
 	public void setHyLevel(String hyLevel) {
 		this.hyLevel = hyLevel;
 	}
-
 	public String getHycardId() {
-		return this.hycardId;
+		return hycardId;
 	}
-
 	public void setHycardId(String hycardId) {
 		this.hycardId = hycardId;
 	}
-
 	public String getPhoneNumber() {
-		return this.phoneNumber;
+		return phoneNumber;
 	}
-
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
 	public String getIdentifyId() {
-		return this.identifyId;
+		return identifyId;
 	}
-
 	public void setIdentifyId(String identifyId) {
 		this.identifyId = identifyId;
 	}
-
 	public String getBankcardNumber() {
-		return this.bankcardNumber;
+		return bankcardNumber;
 	}
-
 	public void setBankcardNumber(String bankcardNumber) {
 		this.bankcardNumber = bankcardNumber;
 	}
-
 	public Double getHyFee() {
-		return this.hyFee;
+		return hyFee;
 	}
-
 	public void setHyFee(Double hyFee) {
 		this.hyFee = hyFee;
 	}
-
 	public Double getInforFee() {
-		return this.inforFee;
+		return inforFee;
 	}
-
 	public void setInforFee(Double inforFee) {
 		this.inforFee = inforFee;
 	}
-
 	public Double getTotalMoney() {
-		return this.totalMoney;
+		return totalMoney;
 	}
-
 	public void setTotalMoney(Double totalMoney) {
 		this.totalMoney = totalMoney;
 	}
-
 	public String getTjrId() {
-		return this.tjrId;
+		return tjrId;
 	}
-
 	public void setTjrId(String tjrId) {
 		this.tjrId = tjrId;
 	}
-
 	public String getSkrName() {
-		return this.skrName;
+		return skrName;
 	}
-
 	public void setSkrName(String skrName) {
 		this.skrName = skrName;
 	}
-
 	public String getShouhuoAddress() {
-		return this.shouhuoAddress;
+		return shouhuoAddress;
 	}
-
 	public void setShouhuoAddress(String shouhuoAddress) {
 		this.shouhuoAddress = shouhuoAddress;
 	}
-
 	public Integer getHyState() {
-		return this.hyState;
+		return hyState;
 	}
-
 	public void setHyState(Integer hyState) {
 		this.hyState = hyState;
 	}
-
 	public Timestamp getApplyTime() {
-		return this.applyTime;
+		return applyTime;
 	}
-
 	public void setApplyTime(Timestamp applyTime) {
 		this.applyTime = applyTime;
 	}
-
 	public String getBeizhu() {
 		return beizhu;
 	}
-
 	public void setBeizhu(String beizhu) {
 		this.beizhu = beizhu;
 	}
-
-	public Set getLytFanlisForTjrId() {
-		return this.lytFanlisForTjrId;
+	public Set<LytFanli> getLytFanlisForTjrId() {
+		return lytFanlisForTjrId;
 	}
-
-	public void setLytFanlisForTjrId(Set lytFanlisForTjrId) {
+	public void setLytFanlisForTjrId(Set<LytFanli> lytFanlisForTjrId) {
 		this.lytFanlisForTjrId = lytFanlisForTjrId;
 	}
-
-	public Set getLytFanlisForBtjrId() {
-		return this.lytFanlisForBtjrId;
+	public Set<LytFanli> getLytFanlisForBtjrId() {
+		return lytFanlisForBtjrId;
 	}
-
-	public void setLytFanlisForBtjrId(Set lytFanlisForBtjrId) {
+	public void setLytFanlisForBtjrId(Set<LytFanli> lytFanlisForBtjrId) {
 		this.lytFanlisForBtjrId = lytFanlisForBtjrId;
 	}
+	
+	
+
+	// Constructors
+
+
 
 }

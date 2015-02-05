@@ -1,47 +1,43 @@
 package com.lyt.member.service;
 
-import static org.junit.Assert.*;
-
-import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.lyt.member.dao.LytHuiyuanDao;
 import com.lyt.member.entity.LytFanli;
 import com.lyt.member.entity.LytHuiyuan;
 
 public class LytHuiyuanServiceTest {
 
-	
-//	private String id;
-//	private LytHuiyuan lytHuiyuanByBtjrId;
-//	private LytHuiyuan lytHuiyuanByTjrId;
-//	private Timestamp tjTime;
-//	private Integer fanliState;
-//	private Double fanliMoney;
-//	private Integer fanliType;
-//	private Timestamp fanliTime;
+	ApplicationContext ac = new ClassPathXmlApplicationContext(
+			"com/lyt/member/config/spring.xml");
+
 	@Test
 	public void testQueryAllLytHuiyuan() {
-		 ApplicationContext ac = new ClassPathXmlApplicationContext("/LYT_Member/src/com/lyt/member/config/spring.xml");  
-		 LytHuiyuanDao lytHuiyuanDao= (LytHuiyuanDao) ac.getBean("lytHuiyuanDao");  
-	     List<LytHuiyuan> ls = lytHuiyuanDao.queryAllLytHuiyuan();
-		System.out.println(ls);
+		LytHuiyuanDao lytHuiyuanDao = (LytHuiyuanDao) ac
+				.getBean("lytHuiyuanDao");
+		// List<LytHuiyuan> ls = lytHuiyuanDao.queryAllLytHuiyuan();
+		LytHuiyuan lytHuiyuan = lytHuiyuanDao.queryById("06");
+		Set<LytFanli> lytFanlis = lytHuiyuan.getLytFanlisForTjrId();
+
+		if (lytFanlis.isEmpty()) {
+			System.out.println("null");
+		}
+		for (LytFanli lytFanli : lytFanlis) {
+			System.out.println(lytFanli.getId());
+			System.out.println(lytFanli.getFanliMoney());
+		}
 	}
 
 	@Test
 	public void testQueryById() {
-		LytHuiyuanDao lytHuiyuanDao= new LytHuiyuanDao();
+		LytHuiyuanDao lytHuiyuanDao = (LytHuiyuanDao) ac
+				.getBean("lytHuiyuanDao");
 		LytHuiyuan lytHuiyuan = new LytHuiyuan();
 		lytHuiyuan = lytHuiyuanDao.queryById("15");
-		System.out.println("-----"+lytHuiyuan.getId());
-		System.out.println("--"+lytHuiyuan.getTjrId());
-		
+		System.out.println("--" + lytHuiyuan.getTjrId());
+
 	}
 
 }

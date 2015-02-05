@@ -21,5 +21,10 @@ public class LytHuiyuanService {
 		return lytHuiyuanDao.queryAllLytHuiyuan();
 	}
 	
-	
+	public LytHuiyuan queryById(String id){
+		return lytHuiyuanDao.queryById(id);
+	}
+	public LytHuiyuan queryByName(String name){
+		return lytHuiyuanDao.queryByName(name);
+	}
 }

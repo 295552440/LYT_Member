@@ -30,6 +30,19 @@
 
 
 	</package>
+	
+	<!-- 会员 -->
+	
+	<package name="main" namespace="/main" extends="struts-default,json-default">
+		<action name="queryById" class="com.lyt.member.action.LytHuiyuanAction" method="queryById">
+			<result name="error">/main/main.jsp</result>
+			<result name="success" >/main/main.jsp</result>
+			
+		</action>
+
+
+
+	</package>
 
 
 

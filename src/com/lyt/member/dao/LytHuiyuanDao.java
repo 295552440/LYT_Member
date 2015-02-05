@@ -27,7 +27,7 @@ public class LytHuiyuanDao extends BaseDao {
 
 	public List<LytHuiyuan> queryAllLytHuiyuan() {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from LytHuiyuan ORDER BY applyTime desc";// ½µÐòÅÅÁÐ
+		String hql = "from LytHuiyuan ORDER BY applyTime desc";// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Query query = session.createQuery(hql);
 		return query.list();
 	}
@@ -41,5 +41,13 @@ public class LytHuiyuanDao extends BaseDao {
 		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
 		return lytHuiyuan;
 	}
-
+	public LytHuiyuan queryByName(String name) {
+		LytHuiyuan lytHuiyuan = null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from LytHuiyuan as l where l.hyname=?";
+		Query query = session.createQuery(hql);
+		query.setString(0, name);
+		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
+		return lytHuiyuan;
+	}
 }

@@ -17,7 +17,7 @@ import com.lyt.member.util.Page;
 public class LytHuiyuanService {
 
 	private LytHuiyuanDao lytHuiyuanDao;
-	public static Page page;// ҳ��
+	public static Page page;// 页面
 	public LytHuiyuanDao getLytHuiyuanDao() {
 		return lytHuiyuanDao;
 	}
@@ -36,22 +36,23 @@ public class LytHuiyuanService {
 	public LytHuiyuan queryByName(String name){
 		return lytHuiyuanDao.queryByName(name);
 	}
+	@SuppressWarnings("finally")
 	public String addLytHuiyuan(LytHuiyuan lytHuiyuan) {
 		String message = null;
 		try {
 			if (lytHuiyuan.getHyState().equals(0))
-				message = "�������ύ����ȴ����ͨ��";
+				message = "申请已提交，请等待审核通过。";
 			else if (lytHuiyuan.getHyState().equals(1)) {
 				String cardId = new SimpleDateFormat("yyyyMMddHHmmss").format(
 						new Date().getTime()).concat(Constant.getRandomNum(2));
-				if (lytHuiyuan.getHyLevel() == "�꿨") {
+				if (lytHuiyuan.getHyLevel() == "钻卡") {
 					lytHuiyuan.setHycardId("DC".concat(cardId));
-				} else if (lytHuiyuan.getHyLevel() == "��") {
+				} else if (lytHuiyuan.getHyLevel() == "金卡") {
 					lytHuiyuan.setHycardId("GC".concat(cardId));
-				} else if (lytHuiyuan.getHyLevel() == "��") {
+				} else if (lytHuiyuan.getHyLevel() == "银卡") {
 					lytHuiyuan.setHycardId("SC".concat(cardId));
 				} else {
-					// return "ϵͳ��ʶ���Ա���������ԣ�";
+					// return "系统不识别会员级别，请重试！";
 					return "1";
 				}
 				message = lytHuiyuan.getHycardId();
@@ -60,7 +61,7 @@ public class LytHuiyuanService {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			// message = "ϵͳ����δ֪�������Ժ����ԣ�";
+			// message = "系统出现未知错误，请稍后重试！";
 			message = "2";
 		} finally {
 			return message;
@@ -73,21 +74,21 @@ public class LytHuiyuanService {
 	 */
 
 	public List<LytHuiyuan> queryByOrder(Page page, String pageMethod, String order) {
-		// �״μ���ʱ�����õ�ǰҳΪ��һҳ
+		// 首次加载时，设置当前页为第一页
 		int currentPage = page.getCurrentPage();
 
 		if (currentPage == 0) {
 			currentPage = 1;
 		}
 
-		// ��ѯȫ����ݣ��õ����������
+		// 查询全部数据，得到数据总行数
 
 		int totalRows = lytHuiyuanDao.queryAllLytHuiyuan().size();
 		page = page.getPage(currentPage, pageMethod, totalRows);
 		List list = new ArrayList<LytHuiyuan>();
 		list = lytHuiyuanDao.queryByOrder(order, page.getStartRow());
 
-		// ��ִ������page��ΪphotoService�ľ�̬�����ٴ��ݸ�photoAction,��ʱ����ҳ��page
+		// 将执行完后的page作为photoService的静态变量再传递给photoAction,及时更新页面page
 		this.page = page;
 
 		return list;
@@ -99,12 +100,12 @@ public class LytHuiyuanService {
 	 * queryByState
 	 */
 	public List<LytHuiyuan> queryByState(Page page, String pageMethod, String state) {
-		// �״μ���ʱ�����õ�ǰҳΪ��һҳ
+		// 首次加载时，设置当前页为第一页
 		int currentPage = page.getCurrentPage();
 		if (currentPage == 0) {
 			currentPage = 1;
 		}
-		// ��ѯȫ����ݣ��õ����������
+		// 查询全部数据，得到数据总行数
 		int totalRows = lytHuiyuanDao.querySize(state, null).size();
 
 		page = page.getPage(currentPage, pageMethod, totalRows);
@@ -112,7 +113,7 @@ public class LytHuiyuanService {
 
 		list = lytHuiyuanDao.queryByState(state, page.getStartRow());
 
-		// ��ִ������page��ΪphotoService�ľ�̬�����ٴ��ݸ�photoAction,��ʱ����ҳ��page
+		// 将执行完后的page作为photoService的静态变量再传递给photoAction,及时更新页面page
 		this.page = page;
 		return list;
 
@@ -123,7 +124,7 @@ public class LytHuiyuanService {
 	 */
 	public List<LytHuiyuan> queryBySearch(Page page, String pageMethod,
 			String searchBy, String searchInput) {
-		// �״μ���ʱ�����õ�ǰҳΪ��һҳ
+		// 首次加载时，设置当前页为第一页
 		int currentPage = page.getCurrentPage();
 		if (currentPage == 0) {
 			currentPage = 1;
@@ -131,7 +132,7 @@ public class LytHuiyuanService {
 
 		if (searchInput != null) {
 			searchInput = searchInput.trim();
-			// �ַ�ת��
+			// 字符转码
 			try {
 				searchInput = new String(searchInput.getBytes("iso-8859-1"),
 						"UTF-8");
@@ -149,7 +150,7 @@ public class LytHuiyuanService {
 		List list = new ArrayList<LytHuiyuan>();
 		list = lytHuiyuanDao.queryBySearch(searchBy, searchInput, page.getStartRow());
 
-		// ��ִ������page��ΪphotoService�ľ�̬�����ٴ��ݸ�photoAction,��ʱ����ҳ��page
+		// 将执行完后的page作为photoService的静态变量再传递给photoAction,及时更新页面page
 		this.page = page;
 
 		return list;

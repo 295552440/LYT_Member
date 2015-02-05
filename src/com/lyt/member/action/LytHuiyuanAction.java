@@ -18,13 +18,13 @@ public class LytHuiyuanAction extends BaseAction {
 	private List<LytHuiyuan> memberList;
 
 
-	private Page page;// ҳ��
-	private String pageMethod;// ���ڽ���ҳ�洫���ġ���һҳ����һҳ���Ȳ���
-	private String queryMethod;// ���ڽ��ղ�ѯ����
-	private String order;// ��˳���ѯ
-	private String state;// ��״̬��ѯ
-	private String searchBy;// ��������ѯ
-	private String searchInput;// ����ҳ�洫����������
+	private Page page;// 页面
+	private String pageMethod;// 用于接收页面传来的“上一页、下一页”等参数
+	private String queryMethod;// 用于接收查询方法
+	private String order;// 按顺序查询
+	private String state;// 按状态查询
+	private String searchBy;// 按搜索查询
+	private String searchInput;// 接收页面传来搜索参数
 	private Integer currentPage;
 
 	
@@ -250,7 +250,10 @@ public class LytHuiyuanAction extends BaseAction {
 		if (currentPage != null) {
 			page.setCurrentPage(currentPage);
 		}
-		// ��һ�η���ҳ��ʱpage=null����ֹ��ָ��
+
+		// 第一次访问页面时page=null，防止空指针
+
+		
 		if (page == null) {
 			page = new Page();
 
@@ -258,12 +261,16 @@ public class LytHuiyuanAction extends BaseAction {
 		if (order == null) {
 			order = (String) session.get("order");
 		}
-		// ����ÿҳ��ʾ������
+
+		// 设置每页显示的条数
+
 		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
 
 		memberList = lytHuiyuanService.queryByOrder(page, pageMethod, order);
 
-		// ��ִ������page��ΪlytHuiyuanService�ľ�̬�����ٴ��ݸ�blogAction,��ʱ����ҳ��page
+
+		// 将执行完后的page作为lytHuiyuanService的静态变量再传递给blogAction,及时更新页面page
+
 		page = lytHuiyuanService.page;
 		queryMethod = "queryByOrder";
 		session.put("page", page);
@@ -283,7 +290,9 @@ public class LytHuiyuanAction extends BaseAction {
 		if (currentPage != null) {
 			page.setCurrentPage(currentPage);
 		}
-		// ��һ����ҳ��ʱpage=null����ֹ��ָ��
+
+		// 第一访问页面时page=null，防止空指针
+
 		if (page == null) {
 			page = new Page();
 
@@ -292,12 +301,16 @@ public class LytHuiyuanAction extends BaseAction {
 		if (state == null) {
 			state = (String) session.get("state");
 		}
-		// ����ÿҳ��ʾ������
+
+		// 设置每页显示的条数
+
 		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
 
 		memberList = lytHuiyuanService.queryByState(page, pageMethod, state);
 
-		// ��ִ������page��ΪblogService�ľ�̬�����ٴ��ݸ�blogAction,��ʱ����ҳ��page
+
+		// 将执行完后的page作为blogService的静态变量再传递给blogAction,及时更新页面page
+
 		page = lytHuiyuanService.page;
 		queryMethod = "queryByState";
 		session.put("page", page);
@@ -317,7 +330,9 @@ public class LytHuiyuanAction extends BaseAction {
 		if (currentPage != null) {
 			page.setCurrentPage(currentPage);
 		}
-		// ��һ����ҳ��ʱpage=null����ֹ��ָ��
+
+		// 第一访问页面时page=null，防止空指针
+
 		if (page == null) {
 			page = new Page();
 		}
@@ -327,14 +342,20 @@ public class LytHuiyuanAction extends BaseAction {
 		if (searchInput == null) {
 			searchInput = (String) session.get("searchInput");
 		}
-		// ����ÿҳ��ʾ������
+
+		// 设置每页显示的条数
+
 		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
 		memberList = lytHuiyuanService.queryBySearch(page, pageMethod,
 				searchBy, searchInput);
 
-		// ��ִ������page��ΪblogService�ľ�̬�����ٴ��ݸ�blogAction,��ʱ����ҳ��page
+
+		// 将执行完后的page作为blogService的静态变量再传递给blogAction,及时更新页面page
+
 		page = lytHuiyuanService.page;
-		// ִ����first,previous,next,last,refresh֮�󣬱��뽫pageMethod��գ��Ա�֤����queryʱ���ӵ�һҳ��ѯ
+
+		// 执行完first,previous,next,last,refresh之后，必须将pageMethod清空，以保证重新query时，从第一页查询
+
 
 		queryMethod = "queryBySearch";
 		session.put("page", page);
@@ -354,8 +375,10 @@ public class LytHuiyuanAction extends BaseAction {
 	public String updateState() throws Exception {
 
 		lytHuiyuanService.updateState(lytHuiyuan);
-		pageMethod = "555";// ��ֹpage��ˢ��Ϊ0
-		// �ж�����������ԭ����ҳ��
+
+		pageMethod = "555";// 防止page被刷新为0
+		// 判断条件，返回原来的页面
+
 		if (session.get("order") != null) {
 			return queryByOrder();
 		}
@@ -369,13 +392,14 @@ public class LytHuiyuanAction extends BaseAction {
 		return SUCCESS;
 
 	}
-
 	
 	public String addLytHuiyuan() {
 		message = lytHuiyuanService.addLytHuiyuan(lytHuiyuan);
 		lytFanliService.addFanli(lytHuiyuan);
 		if (message.equals("1")) {
-			message = "ϵͳ��ʶ���Ա���������ԣ�";
+
+			message = "系统不识别会员级别，请重试！";
+
 			return INPUT;
 		} else if (message.equals("2")) {
 			return ERROR;

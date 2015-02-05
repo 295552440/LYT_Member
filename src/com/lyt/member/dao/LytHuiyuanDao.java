@@ -33,7 +33,6 @@ public class LytHuiyuanDao extends BaseDao {
 
 	public List<LytHuiyuan> queryAllLytHuiyuan() {
 		Session session = sessionFactory.getCurrentSession();
-//		String hql = "from LytHuiyuan ORDER BY applyTime desc";// ��������
 		String hql = "from LytHuiyuan";
 		Query query = session.createQuery(hql);
 		return query.list();
@@ -72,7 +71,7 @@ public class LytHuiyuanDao extends BaseDao {
 	 * queryByOrder
 	 */
 	public List<LytHuiyuan> queryByOrder(String order, int startRow) {
-		String hql = "from LytHuiyuan ";// Ĭ��
+		String hql = "from LytHuiyuan ";// 默认
 
 		if ("date_desc".equals(order)) {
 			hql = "from LytHuiyuan ORDER BY applyTime desc";
@@ -86,14 +85,14 @@ public class LytHuiyuanDao extends BaseDao {
 
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
-		// ����ȡ��һ����Χ�ڵ���ݣ�������ݷ�ҳ��ʾ
-		query.setFirstResult(startRow);// ���ý���һ����ݵ�����ע�⣺��0�п�ʼ����
-		query.setMaxResults(Constant.PAGE_SIZE);// ����ÿҳ��ʾ����
+		// 可以取到一定范围内的数据，用来数据分页显示
+		query.setFirstResult(startRow);// 设置结果集第一个数据的行数，注意：从0行开始计数
+		query.setMaxResults(Constant.PAGE_SIZE);// 设置每页显示的数
 		return query.list();
 	}
 	
 	/**
-	 * ��Hql��ѯ
+	 * 按Hql查询
 	 */
 	public List<LytHuiyuan> queryByHql(String hql) {
 
@@ -103,10 +102,10 @@ public class LytHuiyuanDao extends BaseDao {
 		return query.list();
 	}
 	/**
-	 * ��ѯ����
+	 * 查询数量
 	 */
 	public List<LytHuiyuan> querySize(String input, String searchInput) {
-		String hql = "from LytHuiyuan ";// Ĭ��
+		String hql = "from LytHuiyuan ";// 默认
 
 		if ("state_yes".equals(input)) {
 			hql = "from LytHuiyuan  as l where l.hyState=1";
@@ -136,7 +135,7 @@ public class LytHuiyuanDao extends BaseDao {
 	 */
 
 	public List<LytHuiyuan> queryByState(String state, int startRow) {
-		String hql = "from LytHuiyuan ";// Ĭ��
+		String hql = "from LytHuiyuan ";// 默认
 		if ("state_yes".equals(state)) {
 			hql = "from LytHuiyuan  as l where l.hyState=1 ORDER  BY applyTime desc";
 		} /*else if ("state_no".equals(state)) {
@@ -146,9 +145,9 @@ public class LytHuiyuanDao extends BaseDao {
 		}
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
-		// ����ȡ��һ����Χ�ڵ���ݣ�������ݷ�ҳ��ʾ
-		query.setFirstResult(startRow);// ���ý���һ����ݵ�����ע�⣺��0�п�ʼ����
-		query.setMaxResults(Constant.PAGE_SIZE);// ����ÿҳ��ʾ����
+		// 可以取到一定范围内的数据，用来数据分页显示
+		query.setFirstResult(startRow);// 设置结果集第一个数据的行数，注意：从0行开始计数
+		query.setMaxResults(Constant.PAGE_SIZE);// 设置每页显示的数
 		return query.list();
 	}
 	/**
@@ -156,7 +155,7 @@ public class LytHuiyuanDao extends BaseDao {
 	 */
 	public List<LytHuiyuan> queryBySearch(String searchBy, String searchInput,
 			int startRow) {
-		String hql = "from LytHuiyuan ORDER BY applyTime desc";// Ĭ��
+		String hql = "from LytHuiyuan ORDER BY applyTime desc";// 默认
 
 		if ("id".equals(searchBy)) {
 			hql = "from LytHuiyuan   as l where l.hycardId="
@@ -170,12 +169,11 @@ public class LytHuiyuanDao extends BaseDao {
 
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
-		// ����ȡ��һ����Χ�ڵ���ݣ�������ݷ�ҳ��ʾ
-		query.setFirstResult(startRow);// ���ý���һ����ݵ�����ע�⣺��0�п�ʼ����
-		query.setMaxResults(Constant.PAGE_SIZE);// ����ÿҳ��ʾ����
+		// 可以取到一定范围内的数据，用来数据分页显示
+		query.setFirstResult(startRow);// 设置结果集第一个数据的行数，注意：从0行开始计数
+		query.setMaxResults(Constant.PAGE_SIZE);// 设置每页显示的数
 		return query.list();
 	}
 
-	
 	
 }

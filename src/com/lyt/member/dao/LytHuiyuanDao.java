@@ -1,0 +1,181 @@
+package com.lyt.member.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
+
+ 
+
+
+
+ 
+import com.lyt.member.entity.LytHuiyuan;
+import com.lyt.member.util.Constant;
+
+@Transactional
+public class LytHuiyuanDao extends BaseDao {
+	public boolean addLytHuiyuan(LytHuiyuan lytHuiyuan) {
+		sessionFactory.getCurrentSession().save(lytHuiyuan);
+		return true;
+	}
+
+	public boolean deleteLytHuiyuan(LytHuiyuan lytHuiyuan) {
+		sessionFactory.getCurrentSession().delete(lytHuiyuan);
+		return true;
+	}
+
+	public boolean updateLytHuiyuan(LytHuiyuan lytHuiyuan) {
+		sessionFactory.getCurrentSession().update(lytHuiyuan);
+		return true;
+	}
+
+	public List<LytHuiyuan> queryAllLytHuiyuan() {
+		Session session = sessionFactory.getCurrentSession();
+//		String hql = "from LytHuiyuan ORDER BY applyTime desc";// ��������
+		String hql = "from LytHuiyuan";
+		Query query = session.createQuery(hql);
+		return query.list();
+	}
+
+	public LytHuiyuan queryById(String id) {
+		LytHuiyuan lytHuiyuan = null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from LytHuiyuan as l where l.id=?";
+		Query query = session.createQuery(hql);
+		query.setString(0, id);
+		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
+		return lytHuiyuan;
+	}
+	public LytHuiyuan queryByName(String name) {
+		LytHuiyuan lytHuiyuan = null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from LytHuiyuan as l where l.hyname=?";
+		Query query = session.createQuery(hql);
+		query.setString(0, name);
+		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
+		return lytHuiyuan;
+	}
+	
+	public LytHuiyuan queryByCardId(String id) {
+		LytHuiyuan lytHuiyuan = null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from LytHuiyuan as l where l.hycardId=?";
+		Query query = session.createQuery(hql);
+		query.setString(0, id);
+		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
+		return lytHuiyuan;
+	}
+
+	/**
+	 * queryByOrder
+	 */
+	public List<LytHuiyuan> queryByOrder(String order, int startRow) {
+		String hql = "from LytHuiyuan ";// Ĭ��
+
+		if ("date_desc".equals(order)) {
+			hql = "from LytHuiyuan ORDER BY applyTime desc";
+		} else if ("date".equals(order)) {
+			hql = "from LytHuiyuan ORDER BY applyTime";
+		} else if ("id_desc".equals(order)) {
+			hql = "from LytHuiyuan ORDER BY hycardId desc";
+		} else if ("id".equals(order)) {
+			hql = "from LytHuiyuan ORDER BY hycardId";
+		}
+
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		// ����ȡ��һ����Χ�ڵ���ݣ�������ݷ�ҳ��ʾ
+		query.setFirstResult(startRow);// ���ý���һ����ݵ�����ע�⣺��0�п�ʼ����
+		query.setMaxResults(Constant.PAGE_SIZE);// ����ÿҳ��ʾ����
+		return query.list();
+	}
+	
+	/**
+	 * ��Hql��ѯ
+	 */
+	public List<LytHuiyuan> queryByHql(String hql) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		Query query = session.createQuery(hql);
+		return query.list();
+	}
+	/**
+	 * ��ѯ����
+	 */
+	public List<LytHuiyuan> querySize(String input, String searchInput) {
+		String hql = "from LytHuiyuan ";// Ĭ��
+
+		if ("state_yes".equals(input)) {
+			hql = "from LytHuiyuan  as l where l.hyState=1";
+		} /*else if ("state_no".equals(input)) {
+			hql = "from LytHuiyuan   as l where l.hyState=2";
+		} */else if ("state_wait".equals(input)) {
+			hql = "from LytHuiyuan   as l where l.hyState=0";
+		} else if ("id".equals(input)) {
+
+			hql = "from LytHuiyuan   as l where l.hycardId="
+					+ searchInput;
+		} else if ("name".equals(input)) {
+
+			hql = "from LytHuiyuan   as l where l.hyname='" + searchInput + "'";
+		} else {
+			hql = "from LytHuiyuan ";
+		}
+
+		return queryByHql(hql);
+	}
+
+	
+	
+	
+	/**
+	 * queryByState
+	 */
+
+	public List<LytHuiyuan> queryByState(String state, int startRow) {
+		String hql = "from LytHuiyuan ";// Ĭ��
+		if ("state_yes".equals(state)) {
+			hql = "from LytHuiyuan  as l where l.hyState=1 ORDER  BY applyTime desc";
+		} /*else if ("state_no".equals(state)) {
+			hql = "from LytHuiyuan   as l where l.hyState=2 ORDER BY applyTime desc";
+		}*/ else if ("state_wait".equals(state)) {
+			hql = "from LytHuiyuan   as l where l.hyState=0 ORDER BY applyTime desc";
+		}
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		// ����ȡ��һ����Χ�ڵ���ݣ�������ݷ�ҳ��ʾ
+		query.setFirstResult(startRow);// ���ý���һ����ݵ�����ע�⣺��0�п�ʼ����
+		query.setMaxResults(Constant.PAGE_SIZE);// ����ÿҳ��ʾ����
+		return query.list();
+	}
+	/**
+	 * queryBySearch
+	 */
+	public List<LytHuiyuan> queryBySearch(String searchBy, String searchInput,
+			int startRow) {
+		String hql = "from LytHuiyuan ORDER BY applyTime desc";// Ĭ��
+
+		if ("id".equals(searchBy)) {
+			hql = "from LytHuiyuan   as l where l.hycardId="
+					+ searchInput
+					+ " ORDER BY applyTime desc";
+		} else if ("name".equals(searchBy)) {
+
+			hql = "from LytHuiyuan   as l where l.hyname ='" + searchInput
+					+ "' ORDER BY applyTime desc";
+		}
+
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		// ����ȡ��һ����Χ�ڵ���ݣ�������ݷ�ҳ��ʾ
+		query.setFirstResult(startRow);// ���ý���һ����ݵ�����ע�⣺��0�п�ʼ����
+		query.setMaxResults(Constant.PAGE_SIZE);// ����ÿҳ��ʾ����
+		return query.list();
+	}
+
+	
+	
+}

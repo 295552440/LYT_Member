@@ -31,7 +31,7 @@
             </column>
         </property>
         <property name="identifyId" type="java.lang.String">
-            <column name="identifyId" length="15">
+            <column name="identifyId" length="19">
                 <comment>身份证号</comment>
             </column>
         </property>

@@ -136,6 +136,10 @@ a:active {
 								<td><A href="admin/queryByState?state=state_no" target="main">审核未通过</A>
 								</td>
 							</tr>
+							<tr>
+								<td><A href="admin/queryByState?state=state_yes" target="main">已成为会员</A>
+								</td>
+							</tr>
 						</table>
 					</div>
 				</div> <br></td>

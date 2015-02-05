@@ -1,10 +1,14 @@
 package com.lyt.member.service;
 
 import com.lyt.member.dao.LytFanliDao;
+import com.lyt.member.dao.LytHuiyuanDao;
+import com.lyt.member.entity.LytFanli;
+import com.lyt.member.entity.LytHuiyuan;
 
 public class LytFanliService {
 
 	private LytFanliDao lytFanliDao;
+	private LytHuiyuanDao lytHuiyuanDao;
 
 	public LytFanliDao getLytFanliDao() {
 		return lytFanliDao;
@@ -13,4 +17,30 @@ public class LytFanliService {
 	public void setLytFanliDao(LytFanliDao lytFanliDao) {
 		this.lytFanliDao = lytFanliDao;
 	}
+	
+	public LytHuiyuanDao getLytHuiyuanDao() {
+		return lytHuiyuanDao;
+	}
+
+	public void setLytHuiyuanDao(LytHuiyuanDao lytHuiyuanDao) {
+		this.lytHuiyuanDao = lytHuiyuanDao;
+	}
+
+	public boolean addFanli(LytHuiyuan lytHuiyuan) {
+		try {
+			if(lytHuiyuan.getHycardId().equals(""))
+				return false;
+			else {
+				LytFanli lytFanli  = new LytFanli();
+				lytFanli.setLytHuiyuanByTjrId(lytHuiyuanDao.queryByCardId(lytHuiyuan.getTjrId()));
+				lytFanli.setLytHuiyuanByBtjrId(lytHuiyuanDao.queryByCardId(lytHuiyuan.getHycardId()));
+				lytFanliDao.addFanli(lytFanli);
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("LytFanliService:addFanli" + e.toString());
+			return false;
+		}
+	}
+
 }

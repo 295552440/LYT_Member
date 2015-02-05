@@ -132,12 +132,12 @@ a:active {
 								<td><A href="admin/queryByState?state=state_wait" target="main">待审核</A>
 								</td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td><A href="admin/queryByState?state=state_no" target="main">审核未通过</A>
 								</td>
-							</tr>
+							</tr> -->
 							<tr>
-								<td><A href="admin/queryByState?state=state_yes" target="main">已成为会员</A>
+								<td><A href="admin/queryByState?state=state_yes" target="main">审核通过</A>
 								</td>
 							</tr>
 						</table>

@@ -1,7 +1,9 @@
 package com.lyt.member.service;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -9,6 +11,7 @@ import java.util.List;
 
 import com.lyt.member.dao.LytHuiyuanDao;
 import com.lyt.member.entity.LytHuiyuan;
+import com.lyt.member.util.Constant;
 import com.lyt.member.util.Page;
 
 public class LytHuiyuanService {
@@ -27,6 +30,36 @@ public class LytHuiyuanService {
 		return lytHuiyuanDao.queryAllLytHuiyuan();
 	}
 	
+	public String addLytHuiyuan(LytHuiyuan lytHuiyuan) {
+		String message = null;
+		try {
+			if (lytHuiyuan.getHyState().equals(0))
+				message = "申请已提交，请等待审核通过。";
+			else if (lytHuiyuan.getHyState().equals(1)) {
+				String cardId = new SimpleDateFormat("yyyyMMddHHmmss").format(
+						new Date().getTime()).concat(Constant.getRandomNum(2));
+				if (lytHuiyuan.getHyLevel() == "钻卡") {
+					lytHuiyuan.setHycardId("DC".concat(cardId));
+				} else if (lytHuiyuan.getHyLevel() == "金卡") {
+					lytHuiyuan.setHycardId("GC".concat(cardId));
+				} else if (lytHuiyuan.getHyLevel() == "银卡") {
+					lytHuiyuan.setHycardId("SC".concat(cardId));
+				} else {
+					// return "系统不识别会员级别，请重试！";
+					return "1";
+				}
+				message = lytHuiyuan.getHycardId();
+			}
+			lytHuiyuanDao.addLytHuiyuan(lytHuiyuan);
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			// message = "系统出现未知错误，请稍后重试！";
+			message = "2";
+		} finally {
+			return message;
+		}
+	}
 	
 	
 	/**
@@ -117,7 +150,24 @@ public class LytHuiyuanService {
 
 	}
 	
-	
+	/**
+	 * updateState
+	 */
+	public List<LytHuiyuan> updateState(LytHuiyuan hy) {
+
+		String id = hy.getId();
+		LytHuiyuan hyQuery = lytHuiyuanDao.queryById(id);
+
+		if (hyQuery.getHyState() == 0) {
+			hyQuery.setHyState(1);
+		} else {
+			hyQuery.setHyState(0);
+		}
+
+		lytHuiyuanDao.updateLytHuiyuan(hyQuery);
+		return null;
+
+	}
 	
 	
 	

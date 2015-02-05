@@ -47,6 +47,17 @@ public class LytHuiyuanDao extends BaseDao {
 		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
 		return lytHuiyuan;
 	}
+	
+	public LytHuiyuan queryByCardId(String id) {
+		LytHuiyuan lytHuiyuan = null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from LytHuiyuan as l where l.hycardId=?";
+		Query query = session.createQuery(hql);
+		query.setString(0, id);
+		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
+		return lytHuiyuan;
+	}
+
 	/**
 	 * queryByOrder
 	 */
@@ -89,9 +100,9 @@ public class LytHuiyuanDao extends BaseDao {
 
 		if ("state_yes".equals(input)) {
 			hql = "from LytHuiyuan  as l where l.hyState=1";
-		} else if ("state_no".equals(input)) {
+		} /*else if ("state_no".equals(input)) {
 			hql = "from LytHuiyuan   as l where l.hyState=2";
-		} else if ("state_wait".equals(input)) {
+		} */else if ("state_wait".equals(input)) {
 			hql = "from LytHuiyuan   as l where l.hyState=0";
 		} else if ("id".equals(input)) {
 
@@ -118,9 +129,9 @@ public class LytHuiyuanDao extends BaseDao {
 		String hql = "from LytHuiyuan ";// д╛хо
 		if ("state_yes".equals(state)) {
 			hql = "from LytHuiyuan  as l where l.hyState=1 ORDER  BY applyTime desc";
-		} else if ("state_no".equals(state)) {
+		} /*else if ("state_no".equals(state)) {
 			hql = "from LytHuiyuan   as l where l.hyState=2 ORDER BY applyTime desc";
-		} else if ("state_wait".equals(state)) {
+		}*/ else if ("state_wait".equals(state)) {
 			hql = "from LytHuiyuan   as l where l.hyState=0 ORDER BY applyTime desc";
 		}
 		Session session = sessionFactory.getCurrentSession();

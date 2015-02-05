@@ -116,9 +116,9 @@
 					class="title_bar"> <select name="state" id="state"
 						class="form_select" onChange="queryByState(this.value);">
 							<option value="all">全部</option>
-							<option value="state_yes">已成为会员</option>
+							<option value="state_yes">审核通过</option>
 							<option value="state_wait">待审核</option>
-							<option value="state_no">审核未通过</option>
+							<!-- <option value="state_no">审核未通过</option> -->
 					</select>
 				</span></td>
 				<td width="35%" align="right"><span class="oper-bar-text">搜索查询：
@@ -219,8 +219,8 @@
 					</td>
 					<td align="center" class="table-cell"><s:if
 							test="hyState==0">待审核</s:if> <s:if
-							test="hyState==1">通过</s:if><s:if
-							test="hyState==2">未通过</s:if>
+							test="hyState==1">通过</s:if><%-- <s:if
+							test="hyState==2">未通过</s:if> --%>
 					</td>
 					<td align="center" class="table-cell"><s:date
 							name="applyTime" format="yyyy-MM-dd HH:mm" />
@@ -241,13 +241,22 @@
 
 
 				
-					<td align="center" class="table-cell"><s:url id="url2"
-							action="updateBlogCommend">
+					<td align="center" class="table-cell">
+					
+						<s:url id="url2"
+							action="updateState">
+							<s:param name="lytHuiyuan.id" value="id" />
+						</s:url>
+						
+						<a href="<s:property value="#url2"/>"><s:if
+								test="hyState==0">审核</s:if><s:if test="hyState==1">取消审核</s:if></a> &nbsp; 
+						
+						
+						<s:url id="url1" action="updateBlogState">
 							<s:param name="blog.blogId" value="blogId" />
-						</s:url><a href="<s:property value="#url2"/>"><s:if
-								test="hyState==0">审核</s:if><s:if test="hyState==1">取消审核</s:if></a> &nbsp; <s:url id="url1" action="updateBlogState">
-							<s:param name="blog.blogId" value="blogId" />
-						</s:url> <a href="<s:property value="#url"/>">删</a>
+						</s:url> 
+						
+						<a href="<s:property value="#url"/>">删</a>
 					</td>
 				</tr>
 

@@ -50,11 +50,11 @@
 		}
 
 		var searchBy = $("search_list").value;
-		if (searchBy == "id" & isNaN(searchInput)) {
+		/* if (searchBy == "id" & isNaN(searchInput)) {
 			//alert("id不能为空");
 			$("msgkey").innerHTML = "Id输入必须为数字！";
 			return false;
-		}
+		} */
 
 		location.href = "queryBySearch?searchBy=" + searchBy + "&searchInput="
 				+ searchInput;

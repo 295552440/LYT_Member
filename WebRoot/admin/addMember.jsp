@@ -83,12 +83,12 @@
 					type="text" name="lytHuiyuan.phoneNumber" id="phoneNumber">
 				</td>
 			</tr>
-			<tr class="table_border_cell_bg">
+			<!-- <tr class="table_border_cell_bg">
 				<td class="table-cell">日期</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
 					class="Wdate" type="text" name="lytHuiyuan.applyTime"
 					onClick="WdatePicker()" readonly="readonly"></td>
-			</tr>
+			</tr> -->
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">身份证号</td>
 				<td class="table-cell" style="padding:3px" align="left"><input

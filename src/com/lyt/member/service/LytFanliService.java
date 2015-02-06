@@ -28,7 +28,7 @@ public class LytFanliService {
 
 	public boolean addFanli(LytHuiyuan lytHuiyuan) {
 		try {
-			if(lytHuiyuan.getHycardId().equals(""))
+			if(lytHuiyuan.getHycardId()==null)
 				return false;
 			else {
 				LytFanli lytFanli  = new LytFanli();

@@ -17,21 +17,21 @@
 		<!-- Manager -->
 
 		<action name="adminLogin" class="adminAction">
-			 
+
 			<result name="success">/admin/framework/main.jsp</result>
 		</action>
 
 
-        <action name="showMemberList" class="lytHuiyuanAction" method="showMemberList">
-			 
+		<action name="showMemberList" class="lytHuiyuanAction" method="showMemberList">
+
 			<result name="success">/admin/memberList.jsp</result>
 		</action>
 
-        <action name="queryByOrder" class="lytHuiyuanAction" method="queryByOrder">
-			 
+		<action name="queryByOrder" class="lytHuiyuanAction" method="queryByOrder">
+
 			<result name="success">/admin/memberList.jsp</result>
 		</action>
-        <action name="queryByState" class="lytHuiyuanAction" method="queryByState">
+		<action name="queryByState" class="lytHuiyuanAction" method="queryByState">
 			<result name="success">/admin/memberList.jsp</result>
 		</action>
 		<action name="queryBySearch" class="lytHuiyuanAction" method="queryBySearch">
@@ -40,10 +40,10 @@
 		<action name="updateState" class="lytHuiyuanAction" method="updateState">
 			<result name="success">/admin/memberList.jsp</result>
 		</action>
-		
-		
-		
-		
+
+
+
+
 		<action name="addLytHuiyuan" class="lytHuiyuanAction" method="adminAddLytHuiyuan">
 			<result name="error">/admin/login.jsp</result>
 			<result name="success" type="chain">showMemberList</result>
@@ -53,25 +53,38 @@
 				<param name="msg">${message}</param>
 			</result>
 		</action>
-		
-		
-		
-		
-		
+
+
+
+
+
 	</package>
-	
+
 	<!-- 会员 -->
-	
+
 	<package name="main" namespace="/main" extends="struts-default,json-default">
-		<action name="queryById" class="com.lyt.member.action.LytHuiyuanAction" method="queryById">
+		<action name="queryById" class="com.lyt.member.action.LytHuiyuanAction"
+			method="queryById">
 			<result name="error">/main/main.jsp</result>
-			<result name="success" >/main/main.jsp</result>
-			
+			<result name="success">/main/main.jsp</result>
+
 		</action>
-		
-		<action name="lytHuiyuanApply" class="com.lyt.member.action.LytHuiyuanAction" method="lytHuiyuanApply">
-		
-			<result name="success" >/main/main.jsp</result>
+
+		<action name="lytHuiyuanApply" class="com.lyt.member.action.LytHuiyuanAction"
+			method="lytHuiyuanApply">
+			<!-- <result name="error" type="redirect">
+				<param name="location">/index.jsp</param>
+				<param name="msg">${message}</param>
+			</result> -->
+			<result name="success" type="redirect">/index.jsp?msg=${message }
+				<!-- <param name="location">/index.jsp</param>
+				<param name="msg">${message}</param> -->
+			</result>
+			<!-- <result name="input" type="redirect">
+				/admin/addMember.jsp?msg=${message}
+				<param name="location">/index.jsp</param>
+				<param name="msg">${message}</param>
+			</result> -->
 		</action>
 
 
@@ -89,7 +102,7 @@
 
 
 
-	
+
 
 
 

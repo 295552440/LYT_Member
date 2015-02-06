@@ -420,6 +420,7 @@ public class LytHuiyuanAction extends BaseAction {
 		} else if (message.equals("2")) {
 			return ERROR;
 		}
+		System.out.println(message);
 		return SUCCESS;
 	}
 

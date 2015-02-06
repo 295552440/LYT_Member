@@ -65,7 +65,7 @@
 				<td class="table-cell">会员级别</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
 					name="lytHuiyuan.hyLevel" id="DC" type="radio" value="钻卡"
-					onclick="gainHyFee('钻卡',1980);"><label for="DC">钻卡<u>1980￥</u></label>
+					onclick="gainHyFee('钻卡',1980);" checked="checked"><label for="DC">钻卡<u>1980￥</u></label>
 					<input name="lytHuiyuan.hyLevel" id="GC" type="radio" value="金卡"
 					onclick="gainHyFee('金卡',990);"> <label for="GC">金卡<u>990￥</u></label>
 					<input name="lytHuiyuan.hyLevel" id="SC" type="radio" value="银卡"
@@ -83,12 +83,12 @@
 					type="text" name="lytHuiyuan.phoneNumber" id="phoneNumber">
 				</td>
 			</tr>
-			<tr class="table_border_cell_bg">
+			<!-- <tr class="table_border_cell_bg">
 				<td class="table-cell">日期</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
 					class="Wdate" type="text" name="lytHuiyuan.applyTime"
-					onClick="WdatePicker()" readonly="readonly"></td>
-			</tr>
+					onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"></td>
+			</tr> -->
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">身份证号</td>
 				<td class="table-cell" style="padding:3px" align="left"><input

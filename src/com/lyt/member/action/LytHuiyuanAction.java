@@ -393,7 +393,8 @@ public class LytHuiyuanAction extends BaseAction {
 
 	}
 	
-	public String addLytHuiyuan() {
+	public String adminAddLytHuiyuan() {
+		lytHuiyuan.setHyState(1);
 		message = lytHuiyuanService.addLytHuiyuan(lytHuiyuan);
 		lytFanliService.addFanli(lytHuiyuan);
 		if (message.equals("1")) {
@@ -404,6 +405,22 @@ public class LytHuiyuanAction extends BaseAction {
 		} else if (message.equals("2")) {
 			return ERROR;
 		}
+		return SUCCESS;
+	}
+	
+	public String lytHuiyuanApply() {
+		lytHuiyuan.setHyState(0);
+		message = lytHuiyuanService.addLytHuiyuan(lytHuiyuan);
+		lytFanliService.addFanli(lytHuiyuan);
+		if (message.equals("1")) {
+			
+			message = "系统不识别会员级别，请重试！";
+
+			return INPUT;
+		} else if (message.equals("2")) {
+			return ERROR;
+		}
+		System.out.println(message);
 		return SUCCESS;
 	}
 

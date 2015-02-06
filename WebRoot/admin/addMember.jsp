@@ -15,10 +15,24 @@
 <meta http-equiv="description" content="This is my page">
 <link href="<%=request.getContextPath()%>/css/admin/oper_area.css"
 	rel="stylesheet" type="text/css">
-<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery-1.8.2.js" type="text/javascript"></script>
 
 <script language="javascript" type="text/javascript"
 	src="../js/DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+	function gainHyFee(level,data) {
+		/* alert($("input[name='lytHuiyuan.hyLevel']:checked").val());*/
+		$("#hyFee").val(data);
+		confirm("请确认您所选级别为：" + level + ",费用为：" + data);
+		gainTotalFee();
+	}
+	
+	function gainTotalFee() {
+		var data = parseFloat($("#inforFee").val().trim());
+		data += parseFloat($("#hyFee").val());
+		$("#totalMoney").val(data);
+	}
+</script>
 
 </head>
 
@@ -43,103 +57,94 @@
 			<td align="left" width=80% style="color:red"></td>
 		</tr>
 	</table>
-	<form action="update_User" method="post" enctype="multipart/form-data">
-		<table width="66%" border="0" align="center" cellpadding="0"
+	<form action="addLytHuiyuan" method="post" enctype="multipart/form-data">
+		<table width="31%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">会员级别</td>
-				<td class="table-cell" style="padding:3px" align="left">
-					<label for="DC">钻卡</label>
-					<input name="lytHuiyuan.hyLevel" id="DC" type="radio"
-						value="钻卡">
-					<label for="GC">金卡</label>
-					<input name="lytHuiyuan.hyLevel" id="GC" type="radio"
-						value="金卡">
-					<label for="SC">银卡</label>
-					<input name="lytHuiyuan.hyLevel" id="SC" type="radio"
-						value="银卡">
+				<td class="table-cell" style="padding:3px" align="left"><label
+					for="DC">钻卡<u>1980￥</u></label> <input name="lytHuiyuan.hyLevel"
+					id="DC" type="radio" value="钻卡" onclick="gainHyFee('钻卡',1980);"> <label for="GC">金卡<u>990￥</u></label>
+					<input name="lytHuiyuan.hyLevel" id="GC" type="radio" value="金卡" onclick="gainHyFee('金卡',990);">
+					<label for="SC">银卡<u>198￥</u></label> <input
+					name="lytHuiyuan.hyLevel" id="SC" type="radio" value="银卡" onclick="gainHyFee('银卡',198);">
+					<input
+					name="lytHuiyuan.hyFee" id="hyFee" type="hidden">
 				</td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">
-					会员姓名
-				</td>
-				<td class="table-cell" style="padding:3px" align="left">
-				<input type="text" name="lytHuiyuan.hyname" id="hyname">
-				</td>
+				<td class="table-cell">会员姓名</td>
+				<td class="table-cell" style="padding:3px" align="left"><input
+					type="text" name="lytHuiyuan.hyname" id="hyname" ></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">电话</td>
-				<td class="table-cell" style="padding:3px" align="left">
-					<input type="text" name="lytHuiyuan.phoneNumber" id="phoneNumber">
+				<td class="table-cell" style="padding:3px" align="left"><input
+					type="text" name="lytHuiyuan.phoneNumber" id="phoneNumber">
 				</td>
 			</tr>
-			<tr class="table_border_cell_bg">
+			<!-- <tr class="table_border_cell_bg">
 				<td class="table-cell">日期</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
 					class="Wdate" type="text" name="lytHuiyuan.applyTime"
 					onClick="WdatePicker()" readonly="readonly"></td>
-			</tr>
+			</tr> -->
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">身份证号</td>
-				<td class="table-cell" style="padding:3px" align="left">
-					<input type="text" name="lytHuiyuan.identifyId" id="identifyId">
-				</td>
+				<td class="table-cell" style="padding:3px" align="left"><input
+					type="text" name="lytHuiyuan.identifyId" id="identifyId"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">推荐人卡号</td>
-				<td class="table-cell" style="padding:3px" align="left">
-					<input type="text" name="lytHuiyuan.tjrId" id='tjrId'>
+				<td class="table-cell" style="padding:3px" align="left"><input
+					type="text" name="lytHuiyuan.tjrId" id='tjrId'></td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">生日</td>
-				<td class="table-cell" style="padding:3px" align="left">
-				<input class="Wdate" type="text" name=user.userBirthday onClick="WdatePicker()" readonly="readonly">
+				<td class="table-cell">银行账号</td>
+				<td class="table-cell" style="padding:3px" align="left"><input
+					type="text" name="lytHuiyuan.bankcardNumber" id="bankcardNumber">
 				</td>
 
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">userAgency</td>
+				<td class="table-cell">信息费（邮费）</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name=user.userAgency id="userAgency"></td>
+					type="text" name="lytHuiyuan.inforFee" id="inforFee" value=0.00 onblur="gainTotalFee()">￥</td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">userPost</td>
+				<td class="table-cell">收货地址</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name=user.userPost id="userPost"></td>
+					type="text" name="lytHuiyuan.shouhuoAddress" id="shouhuoAddress"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">邮箱</td>
+				<td class="table-cell">合计金额</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name=user.userEmail id="userEmail"></td>
+					type="text" name="lytHuiyuan.totalMoney" id="totalMoney"
+					readonly="readonly"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">电话</td>
+				<td class="table-cell">收款人姓名</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name=user.userPhone id="userPhone"></td>
+					type="text" name="lytHuiyuan.skrName" id="skrName"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">userDegree</td>
+				<td class="table-cell">备注</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name=user.userDegree id="userDegree"></td>
+					type="text" name="lytHuiyuan.beizhu" id="beizhu"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">userSelfIntroduce</td>
-				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name=user.userSelfIntroduce id="userSelfIntroduce">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
-			<tr>
-				<td style="padding:3px" align="right"><input type="submit"
-					value="确定"></td>
-				<td style="padding:3px" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<input
-					type="reset" value="取消"></td>
+				<td colspan="2" class="table-cell"><h2 align="center">声明：</h2>
+
+					<p align="justify">
+						&nbsp;&nbsp;填写以上信息必须真实有效，所填信息未经公司允许任何人不得修改，如检查无误请点击提交。</p></td>
 			</tr>
 		</table>
-		<font size="3" color="red">${message }</font>
+		<p align="center">
+			<input type="submit" value="提交">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="reset"
+				value="取消">
+		</p>
+		<font size="3" color="red">${msg }</font>
 	</form>
 </body>
 </html>

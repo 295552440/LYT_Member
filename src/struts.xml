@@ -75,16 +75,20 @@
 			<!-- <result name="error" type="redirect">
 				<param name="location">/index.jsp</param>
 				<param name="msg">${message}</param>
-			</result> -->
+			</result> 
 			<result name="success" type="redirect">/index.jsp?msg=${message }
-				<!-- <param name="location">/index.jsp</param>
-				<param name="msg">${message}</param> -->
+				 <param name="location">/index.jsp</param>
+				<param name="msg">${message}</param>
 			</result>
-			<!-- <result name="input" type="redirect">
+			<result name="input" type="redirect">
 				/admin/addMember.jsp?msg=${message}
 				<param name="location">/index.jsp</param>
 				<param name="msg">${message}</param>
 			</result> -->
+			<result type="json">
+				<param name="includeProperties">message</param>
+			</result>
+			
 		</action>
 
 

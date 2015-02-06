@@ -20,13 +20,13 @@
 <script language="javascript" type="text/javascript"
 	src="../js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
-	function gainHyFee(level,data) {
+	function gainHyFee(level, data) {
 		/* alert($("input[name='lytHuiyuan.hyLevel']:checked").val());*/
 		$("#hyFee").val(data);
 		confirm("请确认您所选级别为：" + level + ",费用为：" + data);
 		gainTotalFee();
 	}
-	
+
 	function gainTotalFee() {
 		var data = parseFloat($("#inforFee").val().trim());
 		data += parseFloat($("#hyFee").val());
@@ -57,25 +57,25 @@
 			<td align="left" width=80% style="color:red"></td>
 		</tr>
 	</table>
-	<form action="addLytHuiyuan" method="post" enctype="multipart/form-data">
+	<form action="addLytHuiyuan" method="post"
+		enctype="multipart/form-data">
 		<table width="31%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">会员级别</td>
-				<td class="table-cell" style="padding:3px" align="left"><label
-					for="DC">钻卡<u>1980￥</u></label> <input name="lytHuiyuan.hyLevel"
-					id="DC" type="radio" value="钻卡" onclick="gainHyFee('钻卡',1980);"> <label for="GC">金卡<u>990￥</u></label>
-					<input name="lytHuiyuan.hyLevel" id="GC" type="radio" value="金卡" onclick="gainHyFee('金卡',990);">
-					<label for="SC">银卡<u>198￥</u></label> <input
-					name="lytHuiyuan.hyLevel" id="SC" type="radio" value="银卡" onclick="gainHyFee('银卡',198);">
-					<input
-					name="lytHuiyuan.hyFee" id="hyFee" type="hidden">
-				</td>
+				<td class="table-cell" style="padding:3px" align="left"><input
+					name="lytHuiyuan.hyLevel" id="DC" type="radio" value="钻卡"
+					onclick="gainHyFee('钻卡',1980);"><label for="DC">钻卡<u>1980￥</u></label>
+					<input name="lytHuiyuan.hyLevel" id="GC" type="radio" value="金卡"
+					onclick="gainHyFee('金卡',990);"><label for="GC">金卡<u>990￥</u></label>
+					<input name="lytHuiyuan.hyLevel" id="SC" type="radio" value="银卡"
+					onclick="gainHyFee('银卡',198);"><label for="SC">银卡<u>198￥</u></label>
+					<input name="lytHuiyuan.hyFee" id="hyFee" type="hidden"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">会员姓名</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name="lytHuiyuan.hyname" id="hyname" ></td>
+					type="text" name="lytHuiyuan.hyname" id="hyname"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">电话</td>
@@ -109,7 +109,8 @@
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">信息费（邮费）</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name="lytHuiyuan.inforFee" id="inforFee" value=0.00 onblur="gainTotalFee()">￥</td>
+					type="text" name="lytHuiyuan.inforFee" id="inforFee" value=0.00
+					onblur="gainTotalFee()">￥</td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">收货地址</td>

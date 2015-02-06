@@ -45,11 +45,11 @@ public class LytHuiyuanService {
 			else if (lytHuiyuan.getHyState().equals(1)) {
 				String cardId = new SimpleDateFormat("yyyyMMddHHmmss").format(
 						new Date().getTime()).concat(Constant.getRandomNum(2));
-				if (lytHuiyuan.getHyLevel() == "钻卡") {
+				if (lytHuiyuan.getHyLevel().equals("钻卡")) {
 					lytHuiyuan.setHycardId("DC".concat(cardId));
-				} else if (lytHuiyuan.getHyLevel() == "金卡") {
+				} else if (lytHuiyuan.getHyLevel().equals("金卡")) {
 					lytHuiyuan.setHycardId("GC".concat(cardId));
-				} else if (lytHuiyuan.getHyLevel() == "银卡") {
+				} else if (lytHuiyuan.getHyLevel().equals("银卡")) {
 					lytHuiyuan.setHycardId("SC".concat(cardId));
 				} else {
 					// return "系统不识别会员级别，请重试！";

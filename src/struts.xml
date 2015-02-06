@@ -68,6 +68,11 @@
 			<result name="success" >/main/main.jsp</result>
 			
 		</action>
+		<action name="queryByTypeHy" class="com.lyt.member.action.LytHuiyuanAction" method="queryByTypeHy">
+			<result name="error">/main/main.jsp</result>
+			<result name="success" type="redirect" >/main/main.jsp</result>
+			
+		</action>
 
 
 

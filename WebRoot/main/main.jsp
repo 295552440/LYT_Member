@@ -13,32 +13,65 @@
 			<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 				<meta http-equiv="description" content="This is my page">
 </head>
+<script src="../js/jquery.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	function $(id) {
+		return document.getElementById(id);
+	}
+
+	//卡号和类型查询；
+	function queryByTypeHy() {
+		var hycardId = $("hycardId").value;
+		var fanliType = $("fanliType").val();
+		alert(hycardId);
+		alert(fanliType);
+		if (hycardId == "") {
+			alert("id不能为空");
+			$("msgkey").innerHTML = "输入不能为空！";
+			return false;
+		} else {
+			location.href = "queryByTypeHy?hycardId=" + hycardId
+					+ "&fanliType=" + fanliType;
+			return true;
+		}
+	}
+</script>
 
 <body>
-	<form action="queryById" method="post">
-		<table width="99%" border="0" align="center" cellpadding="0"
-			cellspacing="0" class="oper-bar">
-			<tr>
-				<td width="25%"><span class="oper-bar-text"> 按查询全部：</span><span
-					class="title_bar"><select name="blog_order_list"
-						class="form_select" onChange="queryByOrder(this.value)">
-							<option value="" selected>排列顺序</option>
-							<option value="date_desc">返利时间-降序</option>
-							<option value="date">返利时间-升序</option>
-							<option value="id_desc">用户ID-降序</option>
-							<option value="id">用户ID-升序</option>
-					</select> </span></td>
-				<td width="35%" align="right"><span class="oper-bar-text">搜索查询：
-						<select name="search_list" id="search_list">
-							<option value="id">ID</option>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="title-bar">
+				<table width="98%" border="0" align="center" cellpadding="0"
+					cellspacing="0">
+					<tr>
+						<td width="26" class="title-bar-title-icon">&nbsp;</td>
+						<td width="745" class="title-bar-text">用户返利查询</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table width="99%" border="0" align="center" cellpadding="0"
+		cellspacing="0" class="oper-bar">
+		<tr>
+			<td width="35%" align="right"><span class="oper-bar-text">搜索查询：
+					<select name="search_list" id="search_list">
+						<option value="id">会员卡号</option>
+				</select> <input name="hycardId" type="text" id="hycardId" size="21"
+					onKeyDown=""><input name="Submit5" type="button"
+					class="form-buttun" onClick="return queryByTypeHy()" value="搜索">
+			</span></td>
+			<td width="25%"><span class="oper-bar-text"> 类型：</span><span
+				class="title_bar"><select name="fanliType" id="fanliType"
+					class="form_select">
+						<option value="" selected>排列顺序</option>
+						<option value="0">0</option>
+						<option value="1">1</option>
+				</select> </span></td>
 
-					</select> <input name="huiyuanid" type="text" id="huiyuanid" size="21"
-						onKeyDown=""> <input name="Submit5" type="submit"
-							class="form-buttun" value="搜索">
-				</span></td>
-			</tr>
-		</table>
-	</form>
+		</tr>
+	</table>
 	<table width="99%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="oper-bar">
 		<tr>
@@ -47,7 +80,7 @@
 					src="../images/admin/oper/msg.png" alt="消息" width='20' height='20'
 					border="0"></img> </span>
 			</td>
-			<td width="20%" align="center">&nbsp;<span style="color: red">您好，共查询出
+			<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
 					条记录！ </span>
 			</td>
 			<td width="20%" align="right">&nbsp;<span style="color: red"

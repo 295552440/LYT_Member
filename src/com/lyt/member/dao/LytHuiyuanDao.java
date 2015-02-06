@@ -4,13 +4,9 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.jboss.cache.interceptors.TxInterceptor;
 import org.springframework.transaction.annotation.Transactional;
-
- 
-
-
-
- 
 import com.lyt.member.entity.LytHuiyuan;
 import com.lyt.member.util.Constant;
 
@@ -38,6 +34,11 @@ public class LytHuiyuanDao extends BaseDao {
 		return query.list();
 	}
 
+	/**
+	 * 通过id查询会员记录；
+	 * @param id
+	 * @return
+	 */
 	public LytHuiyuan queryById(String id) {
 		LytHuiyuan lytHuiyuan = null;
 		Session session = sessionFactory.getCurrentSession();
@@ -47,24 +48,44 @@ public class LytHuiyuanDao extends BaseDao {
 		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
 		return lytHuiyuan;
 	}
+	/**
+	 * 通过
+	 * @param name
+	 * @return
+	 */
 	public LytHuiyuan queryByName(String name) {
-		LytHuiyuan lytHuiyuan = null;
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from LytHuiyuan as l where l.hyname=?";
-		Query query = session.createQuery(hql);
-		query.setString(0, name);
-		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
-		return lytHuiyuan;
+		return (LytHuiyuan) hibernateTemplate.find("from LytHuiyuan l where l.id= ?", name).get(0);
 	}
 	
+	/**
+	 * 通过会员卡号去查询；
+	 * @param id
+	 * @return
+	 */
 	public LytHuiyuan queryByCardId(String id) {
 		LytHuiyuan lytHuiyuan = null;
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from LytHuiyuan as l where l.hycardId=?";
-		Query query = session.createQuery(hql);
-		query.setString(0, id);
-		lytHuiyuan = (LytHuiyuan) query.uniqueResult();
-		return lytHuiyuan;
+		Session session = sessionFactory.openSession();
+		Transaction tx=null;
+		try {
+			tx = session.beginTransaction();
+			
+			
+			String hql = "from LytHuiyuan as l where l.hycardId=?";
+			lytHuiyuan = (LytHuiyuan) session.createQuery(hql)
+				.setString(0, id)
+				.uniqueResult();
+			
+			
+			tx.commit();
+			return lytHuiyuan;
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
+	
 	}
 
 	/**

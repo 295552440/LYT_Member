@@ -1,5 +1,7 @@
 package com.lyt.member.service;
 
+import java.util.List;
+
 import com.lyt.member.dao.LytFanliDao;
 import com.lyt.member.dao.LytHuiyuanDao;
 import com.lyt.member.entity.LytFanli;
@@ -43,4 +45,14 @@ public class LytFanliService {
 		}
 	}
 
+	public List<LytFanli> queryAll(String shunxu) {
+		String hql = "";
+		if (shunxu == "desc") {
+			hql = "from LytFanli as l  ORDER BY fanliTime desc";
+		}else {
+			hql = "from LytFanli ";
+		}
+		return lytFanliDao.queryAll(hql);
+	}
+	
 }

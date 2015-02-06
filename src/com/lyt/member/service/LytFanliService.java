@@ -32,7 +32,7 @@ public class LytFanliService {
 
 	public boolean addFanli(LytHuiyuan lytHuiyuan) {
 		try {
-			if(lytHuiyuan.getHycardId().equals(""))
+			if(lytHuiyuan.getHycardId()==null)
 				return false;
 			else {
 				LytFanli lytFanli  = new LytFanli();
@@ -58,7 +58,7 @@ public class LytFanliService {
 	}
 	
 	public List<LytFanli> queryByTypeHy(int type,String hycardId) {
-		return lytFanliDao.queryByTypeHy(type, lytHuiyuanDao.queryByCardId(hycardId));
+		return lytFanliDao.queryByTypeHy(type, hycardId);
 //		lytHuiyuanDao.queryByCardId(hycardId)
 	}
 	

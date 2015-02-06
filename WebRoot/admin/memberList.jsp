@@ -243,8 +243,7 @@
 				
 					<td align="center" class="table-cell">
 					
-						<s:url id="url2"
-							action="updateState">
+						<s:url id="url2" action="updateState">
 							<s:param name="lytHuiyuan.id" value="id" />
 						</s:url>
 						
@@ -252,11 +251,12 @@
 								test="hyState==0">审核</s:if><s:if test="hyState==1">取消审核</s:if></a> &nbsp; 
 						
 						
-						<s:url id="url1" action="updateBlogState">
-							<s:param name="blog.blogId" value="blogId" />
+						<s:url id="url1" action="deleteHy">
+							<s:param name="lytHuiyuan.id" value="id" />
 						</s:url> 
+						<a
+						href="javascript:if(confirm('确认删除该条记录？删除后将不可恢复！'))location='<s:property value="#url1"/>'">删除</a>
 						
-						<a href="<s:property value="#url"/>">删</a>
 					</td>
 				</tr>
 

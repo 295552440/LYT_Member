@@ -1,6 +1,8 @@
 package com.lyt.member.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.lyt.member.dao.LytFanliDao;
 import com.lyt.member.dao.LytHuiyuanDao;
@@ -57,6 +59,7 @@ public class LytFanliService {
 	
 	public List<LytFanli> queryByTypeHy(int type,String hycardId) {
 		return lytFanliDao.queryByTypeHy(type, lytHuiyuanDao.queryByCardId(hycardId));
+//		lytHuiyuanDao.queryByCardId(hycardId)
 	}
 	
 }

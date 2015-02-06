@@ -1,6 +1,7 @@
 package com.lyt.member.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,10 +35,10 @@ public class LytFanliDao extends BaseDao {
 	 * @param type
 	 * @return
 	 */
-	public List<LytFanli> queryByType(int type) {
+	public List<LytFanli> queryByType(int fanliState) {
 		return hibernateTemplate
-				.find("from LytFanli as l where l.fanliType = ? ORDER BY fanliTime desc",
-						type);
+				.find("from LytFanli as l where l.fanliState= ? ORDER BY fanliTime desc",
+						fanliState);
 		
 	}
 	
@@ -47,15 +48,15 @@ public class LytFanliDao extends BaseDao {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<LytFanli> queryByTypeHy(int type,LytHuiyuan lytHuiyuan) {
+	public List<LytFanli> queryByTypeHy(int type,String hyid) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx= session.beginTransaction();
-			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByBtjrId =? ORDER BY fanliTime desc";
+			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.id =? ORDER BY fanliTime desc";
 			List<LytFanli> lytFanlis = session.createQuery(hql)
 				.setInteger(0, type)
-				.setEntity(1, lytHuiyuan)
+				.setString(1,  hyid)
 				.list();
 			
 			

@@ -408,7 +408,31 @@ public class LytHuiyuanAction extends BaseAction {
 	}
 
 	
-	
+	/**
+	 * delete
+	 * 
+	 * @return
+	 */
+	public String deleteHy() throws Exception {
+
+		
+		lytHuiyuanService.delete(lytHuiyuan);
+
+		pageMethod = "555";// 防止page被刷新为0
+		// 判断条件，返回原来的页面
+
+		if (session.get("order") != null) {
+			return queryByOrder();
+		}
+		if (session.get("state") != null) {
+			return queryByState();
+		}
+		if (session.get("searchBy") != null) {
+			return queryBySearch();
+		}
+		return SUCCESS;
+
+	}
 	
 	
 	

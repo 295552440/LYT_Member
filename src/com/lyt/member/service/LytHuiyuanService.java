@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-
-
 import com.lyt.member.dao.LytHuiyuanDao;
 import com.lyt.member.entity.LytHuiyuan;
 import com.lyt.member.util.Constant;
@@ -88,7 +85,7 @@ public class LytHuiyuanService {
 		List list = new ArrayList<LytHuiyuan>();
 		list = lytHuiyuanDao.queryByOrder(order, page.getStartRow());
 
-		// 将执行完后的page作为photoService的静态变量再传递给photoAction,及时更新页面page
+	
 		this.page = page;
 
 		return list;
@@ -176,4 +173,16 @@ public class LytHuiyuanService {
 
 	}
 	
+	
+	public List<LytHuiyuan> delete(LytHuiyuan hy) {
+
+
+		String id = hy.getId();
+		LytHuiyuan hyQuery = lytHuiyuanDao.queryById(id);
+
+		lytHuiyuanDao.deleteLytHuiyuan(hyQuery);
+
+		return null;
+
+	}
 }

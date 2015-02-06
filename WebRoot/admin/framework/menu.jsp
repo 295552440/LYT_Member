@@ -184,11 +184,11 @@ a:active {
 					<div align="center">
 						<table cellSpacing="3" cellPadding="0" width="130">
 							<tr>
-								<td><A href="admin/adminManage" target="main">密码修改</A>
+								<td><A href="admin/adminManage.jsp" target="main">账号设置</A>
 								</td>
 							</tr>
 							<tr>
-								<td><A href="logout.jsp" target="_blank">退出系统</A>
+								<td><A href="<%=request.getContextPath()%>/admin/logout" target="_parent">退出系统</A>
 								</td>
 							</tr>
 						</table>

@@ -35,12 +35,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td class="right-button-left">&nbsp;</td>
             <td align="right" class="right-button-bg"><table border="0" cellspacing="0" cellpadding="0">
               <tr>
-			 
+			 <td class=""><a style="color:white">${sessionScope.admin.adminName }</a></td>
               <!--   <td class="button-help-mouseout" onMouseOut="this.className='button-help-mouseout'" onMouseOver="this.className='button-help-mouseover'" style="cursor:pointer" onClick="top.mainFrame.location.href='http://www.blog4j.com'">&nbsp;</td>
                 <td class="button-split-line">&nbsp;</td> -->
-				<td class="button-mpwd-mouseout" onMouseOut="this.className='button-mpwd-mouseout'" onMouseOver="this.className='button-mpwd-mouseover'" style="cursor:pointer" onClick="top.mainFrame.location.href='../modify_pwd.jsp'">&nbsp;</td>
+				<td class="button-mpwd-mouseout" onMouseOut="this.className='button-mpwd-mouseout'" onMouseOver="this.className='button-mpwd-mouseover'" style="cursor:pointer" onClick="window.parent.main.location.href='<%=request.getContextPath()%>/admin/adminManage.jsp'">&nbsp;</td>
                 <td class="button-split-line">&nbsp;</td>
-                <td class="button-logout-mouseout" onMouseOut="this.className='button-logout-mouseout'" onMouseOver="this.className='button-logout-mouseover'" style="cursor:pointer" onClick="top.location.href='../../AdminLogout'">&nbsp;</td>
+                <td class="button-logout-mouseout" onMouseOut="this.className='button-logout-mouseout'" onMouseOver="this.className='button-logout-mouseover'" style="cursor:pointer" onClick="window.parent.location.href='<%=request.getContextPath()%>/admin/logout'">&nbsp;</td>
                 </tr>
             </table></td>
             <td class="right-button-right">&nbsp;</td>

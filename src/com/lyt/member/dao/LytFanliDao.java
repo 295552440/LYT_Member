@@ -48,15 +48,15 @@ public class LytFanliDao extends BaseDao {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<LytFanli> queryByTypeHy(int type,String hyid) {
+	public List<LytFanli> queryByTypeHy(int type,String hycardId) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx= session.beginTransaction();
-			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.id =? ORDER BY fanliTime desc";
+			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.hycardId =? ORDER BY fanliTime desc";
 			List<LytFanli> lytFanlis = session.createQuery(hql)
 				.setInteger(0, type)
-				.setString(1,  hyid)
+				.setString(1,  hycardId)
 				.list();
 			
 			

@@ -29,7 +29,7 @@ public class LytHuiyuanAction extends BaseAction {
 
 	
 	private String message;
-	private LytHuiyuan lytHuiyuan;
+	private LytHuiyuan lytHuiyuan = new LytHuiyuan();
 	private LytFanliService lytFanliService;
 	
 	
@@ -163,12 +163,19 @@ public class LytHuiyuanAction extends BaseAction {
 	
 	//用户查询
 	
-	private String cardId;
 	private String name;
 	private String huiyuanid;
-	private LytHuiyuan LytHuiyuan;
 	private Set<LytFanli> setLytFanlis = new HashSet<LytFanli>();
+	private String hycardId;
 	
+
+	public String getHycardId() {
+		return hycardId;
+	}
+
+	public void setHycardId(String hycardId) {
+		this.hycardId = hycardId;
+	}
 
 	public Set<LytFanli> getSetLytFanlis() {
 		return setLytFanlis;
@@ -187,15 +194,6 @@ public class LytHuiyuanAction extends BaseAction {
 		this.huiyuanid = huiyuanid;
 	}
 
-	public String getCardId() {
-		return cardId;
-	}
-
-	public void setCardId(String cardId) {
-		this.cardId = cardId;
-	}
-
-
 	public String getName() {
 		return name;
 	}
@@ -210,7 +208,7 @@ public class LytHuiyuanAction extends BaseAction {
 	 */
 	public String queryByName() {
 		
-		LytHuiyuan = lytHuiyuanService.queryByName(name);
+		lytHuiyuan = lytHuiyuanService.queryByName(name);
 		return SUCCESS;
 		
 	}
@@ -220,8 +218,8 @@ public class LytHuiyuanAction extends BaseAction {
 	 */
 	public String queryById() {
 		System.out.println("id:"+huiyuanid);
-		LytHuiyuan = lytHuiyuanService.queryById(huiyuanid);
-		setLytFanlis= LytHuiyuan.getLytFanlisForTjrId();
+		lytHuiyuan = lytHuiyuanService.queryById(huiyuanid);
+		setLytFanlis= lytHuiyuan.getLytFanlisForTjrId();
 		for (LytFanli lytFanli : setLytFanlis) {
 			System.out.println(lytFanli.getId());
 			System.out.println(lytFanli.getFanliMoney());
@@ -236,7 +234,9 @@ public class LytHuiyuanAction extends BaseAction {
 	 */
 	public String queryByCardId() {
 		
-//		lytHuiyuanService.queryBy(cardId);
+		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		System.out.println(lytHuiyuan.getHycardId());
+		System.out.println(lytHuiyuan.getId());
 		return SUCCESS;
 		
 	}

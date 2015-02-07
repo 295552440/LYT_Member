@@ -27,12 +27,31 @@ public class LytHuiyuanService {
 		return lytHuiyuanDao.queryAllLytHuiyuan();
 	}
 	
+	/**
+	 * 根据id查询
+	 * @param id
+	 * @return
+	 */
 	public LytHuiyuan queryById(String id){
 		return lytHuiyuanDao.queryById(id);
 	}
+	/**
+	 * 根据会员名字查询
+	 * @param name
+	 * @return
+	 */
 	public LytHuiyuan queryByName(String name){
 		return lytHuiyuanDao.queryByName(name);
 	}
+	/**
+	 * 根据卡号查询
+	 * @param name
+	 * @return
+	 */
+	public LytHuiyuan queryByCardId(String hycardId){
+		return lytHuiyuanDao.queryByCardId(hycardId);
+	}
+	
 	@SuppressWarnings("finally")
 	public String addLytHuiyuan(LytHuiyuan lytHuiyuan) {
 		String message = null;

@@ -18,7 +18,7 @@ public class LytFanliAction extends BaseAction {
 		this.lytFanliService = lytFanliService;
 	}
 	
-	 Exception ex = (Exception) ActionContext.getContext() .getValueStack().findValue("exception"); 
+	Exception ex = (Exception) ActionContext.getContext() .getValueStack().findValue("exception"); 
 	 
 	private int fanliType;
 	private String hycardId;
@@ -48,7 +48,7 @@ public class LytFanliAction extends BaseAction {
 	}
 
 	public String queryByTypeHy() {
-		List<LytFanli> lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId);
+		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId);
 		return SUCCESS;
 		
 	}

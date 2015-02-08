@@ -36,9 +36,8 @@ public class LytFanliServiceTest {
 
 	@Test
 	public void testQueryByType() {
-//		LytHuiyuan l = lytHuiyuanDao.queryById("06");
 		List<LytFanli> lytFanlis = new ArrayList<LytFanli>();
-		lytFanlis= lytFanliDao.queryByTypeHy(1,"31000");
+		lytFanlis= lytFanliDao.queryByC(0,null,"31000");
 		System.out.println(lytFanlis);
 		for(LytFanli lytFanli :lytFanlis){
 			System.out.println(lytFanli.getId());

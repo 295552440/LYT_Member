@@ -12,23 +12,25 @@
 <meta http-equiv="expires" content="0" />
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3" />
 <meta http-equiv="description" content="This is my page" />
-<script src="../js/jquery-1.8.2.js" type="text/javascript" >
+<script src="../js/jquery-1.8.2.js" type="text/javascript">
 </script>
 <script type="text/javascript">
 
 	//卡号和类型查询；
 	function queryByTypeHy() {
-		var hycardId = $("#hycardId").value;
+		var hycardId = $("#hycardId").val();
 		var fanliType = $("#fanliType").val();
-		alert(hycardId);
-		alert(fanliType);
+		var fanliState = $("#fanliState").val();
+		//alert(hycardId);
+		//alert(fanliType);
+		//alert(fanliState);
 		if (hycardId == "") {
 			alert("id不能为空");
 			$("#msgkey").innerHTML = "输入不能为空！";
 			return false;
 		} else {
 			window.location.href = "queryByTypeHy?hycardId=" + hycardId
-					+ "&fanliType=" + fanliType;
+					+ "&fanliType=" + fanliType +"&fanliState=" +fanliState;
 			return true;
 		}
 	}
@@ -82,14 +84,20 @@
 				<td><span class="oper-bar-text"> 类型：</span><span
 					class="title_bar"><select name="fanliType" id="fanliType"
 						class="form_select">
-							<option value="" selected>排列顺序</option>
+							<option value="" selected>返利的类型</option>
 							<option value="0">0</option>
 							<option value="1">1</option>
-					</select> </span> <input name="Submit5" type="button" class="form-buttun"
+					</select> </span></td>
+				<td><span class="oper-bar-text"> 状态：</span><span
+					class="title_bar"><select name="fanliState" id="fanliState"
+						class="form_select">
+							<option value="" selected>返利的状态</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+					</select> </span></td>
+				<td><input name="Submit5" type="button" class="form-buttun"
 					onclick="return queryByTypeHy()" value="搜索" /> <a
 					href="queryByTypeHy?hycardId=31000&fanliType=1">查询</a></td>
-
-
 			</tr>
 		</table>
 	</form>
@@ -101,14 +109,42 @@
 					src="../images/admin/oper/msg.png" alt="消息" width='20' height='20'
 					border="0"></img> </span>
 			</td>
-			<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
-					条记录！ </span>
-			</td>
-			<td width="20%" align="right">&nbsp;<span style="color: red"
-				id="msgkey"></span>
+
+			<td width="20%" align="center">&nbsp;<span style="color: red"
+				id="msgkey" name="msgkey"></span> 
+				<c:if test="${empty lytHuiyuan}">
+					<span style="color: red">没有这个卡号的会员！</span>
+					</c:if>
+					<c:if test="${ empty lytFanlis}">
+						<span style="color: red">没有返利记录</span>
+					</c:if>
 			</td>
 		</tr>
 	</table>
+
+	<c:if test="${ not empty lytHuiyuan }">
+		<table width="99%" border="0" align="center" cellpadding="0"
+			cellspacing="0" class="table-frame">
+			<tr class="table_title">
+				<td class="table-titlebar">ID</td>
+				<td class="table-titlebar">会员姓名</td>
+				<td class="table-titlebar">卡号</td>
+				<td class="table-titlebar">级别</td>
+				<td class="table-titlebar">申请时间</td>
+
+
+			</tr>
+
+			<tr>
+				<td class="table-cell">${lytHuiyuan.id}</td>
+				<td class="table-cell">${lytHuiyuan.hyname}</td>
+				<td class="table-cell">${lytHuiyuan.hycardId }</td>
+				<td class="table-cell">${lytHuiyuan.hyLevel}</td>
+				<td class="table-cell">${lytHuiyuan.applyTime}</td>
+			</tr>
+
+		</table>
+	</c:if>
 	<table width="99%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="table-frame">
 		<tr class="table_title">
@@ -125,19 +161,28 @@
 		<c:forEach items="${lytFanlis}" var="flset" varStatus="st">
 			<tr>
 				<td class="table-cell">${flset.id}</td>
-				<td class="table-cell">${flset.lytHuiyuanByBtjrId.hycardId }</td>
 				<td class="table-cell">${flset.lytHuiyuanByTjrId.hycardId }</td>
+				<td class="table-cell">${flset.lytHuiyuanByBtjrId.hycardId }</td>
 				<td class="table-cell">${flset.tjTime }</td>
 				<td class="table-cell">${flset.fanliState }</td>
 				<td class="table-cell">${flset.fanliMoney }</td>
 				<td class="table-cell">${flset.fanliType }</td>
 				<td class="table-cell">${flset.fanliTime }</td>
 			</tr>
+			<c:if test="${st.last}">
+				<tr>
+					<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
+							${st.count }条记录！ </span>
+					</td>
+				</tr>
+			</c:if>
 		</c:forEach>
 	</table>
+	<!--  
 	<a href="javascript:queryByCardId()">查询个人信息</a>
 	<a href="queryByCardId?hycardId=31000">查询个人信息</a>
 	<div id="deptListDiv"></div>
+	-->
 	<table width="99%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
 		<tr>

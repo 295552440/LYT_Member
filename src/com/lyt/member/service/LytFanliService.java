@@ -57,8 +57,9 @@ public class LytFanliService {
 		return lytFanliDao.queryAll(hql);
 	}
 	
-	public List<LytFanli> queryByTypeHy(int type,String hycardId) {
-		return lytFanliDao.queryByTypeHy(type, hycardId);
+	public List<LytFanli> queryByTypeHy(Integer type,String hycardId,Integer fanliState) {
+		
+		return lytFanliDao.queryByC(fanliState, type, hycardId);
 //		lytHuiyuanDao.queryByCardId(hycardId)
 	}
 	

@@ -3,8 +3,10 @@ package com.lyt.member.dao;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.lyt.member.entity.LytFanli;
 import com.lyt.member.entity.LytHuiyuan;
@@ -72,5 +74,37 @@ public class LytFanliDao extends BaseDao {
 		}
 		
 	}
+	
+	public List<LytFanli> queryByC(Integer fanliState,Integer type,String hycardId) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx= session.beginTransaction();
+//			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.hycardId =? ORDER BY fanliTime desc";
+			Criteria criteria = session.createCriteria(LytFanli.class);
+			criteria.createCriteria("lytHuiyuanByTjrId").add(Restrictions.eq("hycardId", hycardId));
+			
+			if (type != null) {
+				criteria.add(Restrictions.eq("fanliType", type));
+			}
+			if(fanliState != null){
+				criteria.add(Restrictions.eq("fanliState", fanliState));
+			}
+			List<LytFanli> lytFanlis = criteria.list();
+			
+			
+			tx.commit();
+			return lytFanlis;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			return null;
+		}finally{
+			session.close();
+		}
+		
+	}
+	
 
 }

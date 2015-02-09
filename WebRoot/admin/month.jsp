@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -23,6 +23,38 @@
 	function queryByOrder(order) {
 		location.href = "queryMonthByOrder?order=" + order;
 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		//页面跳转	
+	function refreshPage() {
+
+		var currentPage =$("#refreshCurrentPage").val();
+		if (currentPage == "") {
+			alert("输入不能为空！");
+			//$("msgkey").innerHTML = "输入不能为空！";
+			return false;
+		}
+		if (isNaN(currentPage)) {
+			alert("输入必须为数字！");
+			//$("msgkey").innerHTML = "Id输入必须为数字！";
+			return false;
+		}
+
+		location.href = "<s:property value="queryMethod"/>?pageMethod=refresh&currentPage="
+				+ currentPage;
+
+		return true;
 	}
     </script>
 </head>
@@ -82,22 +114,23 @@
 
 	
 	<table width="99%" border="0" align="center" cellpadding="0"
-		cellspacing="0" class="oper-bar">
-		<tr>
+			cellspacing="0" class="oper-bar">
+			<tr>
 
-			<td width="15%" align="left">&nbsp;<span class="oper-bar-text">消息框&nbsp;<img
-					src="../images/admin/oper/msg.png" alt="消息" width='20' height='20' border="0"></img> </span></td>
+				<td width="15%" align="left">&nbsp;<span class="oper-bar-text">消息框&nbsp;<img
+						src="../images/admin/oper/msg.png" alt="消息" width='20' height='20'
+						border="0"></img> </span>
+				</td>
+				<td width="20%" align="center">&nbsp;<span style="color:red">您好，共查询出
+						<s:property value="page.totalRows" /> 条记录！ </span>
+				</td>
+				<td width="20%" align="right">&nbsp;<span style="color:red"
+					id="msgkey"></span>
+				</td>
+			</tr>
+		</table>
 
-			<td width="20%" align="center">&nbsp;<span style="color: red"
-				id="msgkey" name="msgkey"></span> <c:if test="${empty lytHuiyuan}">
-					<span style="color: red">没有这个卡号的会员！</span>
-				</c:if> <c:if test="${empty lytFanlis}">
-					<span style="color: red">没有返利记录!</span>
-				</c:if></td>
-		</tr>
-	</table>
 
-	<c:if test="${ not empty lytHuiyuan }">
 		<table width="99%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_title">
@@ -113,41 +146,45 @@
 
 
 			</tr>
-
+<s:iterator id="list" value="list" var="blogList"
+				status="status">
 			<tr>
-				<td class="table-cell"></td>
-				<td class="table-cell"></td>
-				<td class="table-cell"></td>
-				<td class="table-cell"></td>
-				<td class="table-cell"></td>
-				<td class="table-cell"></td>
-				<td class="table-cell"></td>
+				<td class="table-cell"><s:property value="tjrCardId" /></td>
+				<td class="table-cell"><s:property value="hyname" /></td>
+				<td class="table-cell"><s:property value="tjTime" /></td>
+				<td class="table-cell"><s:property value="tjRenshu" /></td>
+				<td class="table-cell"><s:property value="fanLimoney" /></td>
+				<td class="table-cell"><s:property value="fanliState" /></td>
+				<td class="table-cell">更改</td>
 			</tr>
-
+</s:iterator>
 		</table>
-	</c:if>
 	
 	<table width="99%" border="0" align="center" cellpadding="0"
-		cellspacing="0">
-		<tr>
-			<td class="paeg_bar"><a> 第${currentPage} 页/
-					共${pageliu.totalPages } 页(共 ${pageliu.totalRows } 条) </a> [<span
-				class="list_text"><a href="javascript:queryByTypeHy(1)">首页</a>
-			</span>] <c:if test="${currentPage== 1 }">
-					[<span class="list_text"> <a>已是首页</a> </span>] 
-			</c:if> <c:if test="${currentPage> 1 }">
-					[<span class="list_text"> <a
-						href="javascript:queryByTypeHy(${currentPage-1 })">上一页</a> </span>] 
-			</c:if> <c:if test="${currentPage==pageliu.totalPages }">
-				[<span class="list_text"> <a>已是末页</a> </span>]
-			</c:if> <c:if test="${currentPage<pageliu.totalPages}">
-				[<span class="list_text"> <a
-						href="javascript:queryByTypeHy(${currentPage+1 })">下一页</a> </span>]
-				</c:if> [<span class="list_text"><a
-					href="javascript:queryByTypeHy(${pageliu.totalPages })">末页</a> </span>]
-				&nbsp;&nbsp;</td>
-		</tr>
-	</table>
+			cellspacing="0">
+			<tr>
+
+				<td class="paeg_bar">
+					<!-------------------------
+					---------------------下面代码达到如此效果：1 / 4 页(共 19 条) --> <s:property
+						value="page.currentPage" /> / <s:property value="page.totalPages" />
+					页(共 <s:property value="page.totalRows" /> 条) &nbsp;&nbsp;&nbsp;跳转至<input
+					type="text" name="refreshCurrentPage" id="refreshCurrentPage"
+					size="3" />页
+
+					<button type="button" class="form-buttun"
+						onClick="return refreshPage()">GO</button>&nbsp;&nbsp;[<span
+					class="list_text"><a
+						href="<s:property value="queryMethod"/>?pageMethod=first">首页</a> </span>]
+					[<span class="list_text"><a
+						href="<s:property value="queryMethod"/>?pageMethod=previous">上一页</a>
+				</span>] [<span class="list_text"><a
+						href="<s:property value="queryMethod"/>?pageMethod=next">下一页</a> </span>]
+					[<span class="list_text"><a
+						href="<s:property value="queryMethod"/>?pageMethod=last">末页</a> </span>]
+					&nbsp;&nbsp;</td>
+			</tr>
+		</table>
 	<table width="99%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
 		<tr>

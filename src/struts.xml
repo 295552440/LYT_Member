@@ -108,9 +108,9 @@
 			</result>
 		</action>
 
-		<!-- 月任务奖 -->
+	<!-- 月任务奖 -->
 
-    <action name="queryMonthByOrder" class="" method="queryMonthByOrder">
+    <action name="queryMonthByOrder" class="lytMonthAction" method="queryMonthByOrder">
 			<result name="success">/admin/month.jsp</result>
 	</action>
 	</package>

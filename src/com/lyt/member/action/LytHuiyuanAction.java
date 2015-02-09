@@ -14,6 +14,10 @@ import com.lyt.member.util.Page;
 
 public class LytHuiyuanAction extends BaseAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private LytHuiyuanService lytHuiyuanService;
 	private List<LytHuiyuan> memberList;
 

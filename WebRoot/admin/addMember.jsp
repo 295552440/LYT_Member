@@ -70,7 +70,8 @@
 					onclick="gainHyFee('金卡',990);"><label for="GC">金卡<u>990￥</u></label>
 					<input name="lytHuiyuan.hyLevel" id="SC" type="radio" value="银卡"
 					onclick="gainHyFee('银卡',198);"><label for="SC">银卡<u>198￥</u></label>
-					<input name="lytHuiyuan.hyFee" id="hyFee" type="hidden"></td>
+					<input name="lytHuiyuan.hyFee" id="hyFee"
+					 type="hidden"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">会员姓名</td>

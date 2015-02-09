@@ -154,6 +154,12 @@
 		</action>
 
 
+		<action name="checkHuiyuanCard" class="com.lyt.member.action.LytHuiyuanAction"
+			method="checkHuiyuanCard">
+			<result type="json">
+				<param name="includeProperties">message</param>
+			</result>
+		</action>
 
 	</package>
 

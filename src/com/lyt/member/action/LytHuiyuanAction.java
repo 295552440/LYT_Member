@@ -420,6 +420,7 @@ public class LytHuiyuanAction extends BaseAction {
 
 			return INPUT;
 		} else if (message.equals("2")) {
+			message = "系统出现未知错误，请稍后重试！";
 			return ERROR;
 		}
 		System.out.println(message);
@@ -454,7 +455,12 @@ public class LytHuiyuanAction extends BaseAction {
 	}
 	
 	
-	
+	public String  checkHuiyuanCard() {
+		if(lytHuiyuanService.queryByCardId(lytHuiyuan.getTjrId())==null)
+			//不存在推荐人
+			message = "4";
+		return SUCCESS;
+	}
 	
 	
 	

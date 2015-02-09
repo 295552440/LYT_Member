@@ -15,6 +15,7 @@ public class LytHuiyuanService {
 
 	private LytHuiyuanDao lytHuiyuanDao;
 	public static Page page;// 页面
+
 	public LytHuiyuanDao getLytHuiyuanDao() {
 		return lytHuiyuanDao;
 	}
@@ -22,8 +23,8 @@ public class LytHuiyuanService {
 	public void setLytHuiyuanDao(LytHuiyuanDao lytHuiyuanDao) {
 		this.lytHuiyuanDao = lytHuiyuanDao;
 	}
-	
-	public List<LytHuiyuan> queryAllLytHuiyuan(){
+
+	public List<LytHuiyuan> queryAllLytHuiyuan() {
 		return lytHuiyuanDao.queryAllLytHuiyuan();
 	}
 	
@@ -43,6 +44,7 @@ public class LytHuiyuanService {
 	public LytHuiyuan queryByName(String name){
 		return lytHuiyuanDao.queryByName(name);
 	}
+
 	/**
 	 * 根据卡号查询
 	 * @param name
@@ -83,13 +85,13 @@ public class LytHuiyuanService {
 			return message;
 		}
 	}
-	
-	
+
 	/**
 	 * queryByOrder
 	 */
 
-	public List<LytHuiyuan> queryByOrder(Page page, String pageMethod, String order) {
+	public List<LytHuiyuan> queryByOrder(Page page, String pageMethod,
+			String order) {
 		// 首次加载时，设置当前页为第一页
 		int currentPage = page.getCurrentPage();
 
@@ -104,18 +106,17 @@ public class LytHuiyuanService {
 		List list = new ArrayList<LytHuiyuan>();
 		list = lytHuiyuanDao.queryByOrder(order, page.getStartRow());
 
-	
 		this.page = page;
 
 		return list;
 
 	}
 
-	
 	/**
 	 * queryByState
 	 */
-	public List<LytHuiyuan> queryByState(Page page, String pageMethod, String state) {
+	public List<LytHuiyuan> queryByState(Page page, String pageMethod,
+			String state) {
 		// 首次加载时，设置当前页为第一页
 		int currentPage = page.getCurrentPage();
 		if (currentPage == 0) {
@@ -134,7 +135,7 @@ public class LytHuiyuanService {
 		return list;
 
 	}
-	
+
 	/**
 	 * queryBySearch
 	 */
@@ -164,7 +165,8 @@ public class LytHuiyuanService {
 
 		page = page.getPage(currentPage, pageMethod, totalRows);
 		List list = new ArrayList<LytHuiyuan>();
-		list = lytHuiyuanDao.queryBySearch(searchBy, searchInput, page.getStartRow());
+		list = lytHuiyuanDao.queryBySearch(searchBy, searchInput,
+				page.getStartRow());
 
 		// 将执行完后的page作为photoService的静态变量再传递给photoAction,及时更新页面page
 		this.page = page;
@@ -172,7 +174,7 @@ public class LytHuiyuanService {
 		return list;
 
 	}
-	
+
 	/**
 	 * updateState
 	 */
@@ -191,10 +193,8 @@ public class LytHuiyuanService {
 		return null;
 
 	}
-	
-	
-	public List<LytHuiyuan> delete(LytHuiyuan hy) {
 
+	public List<LytHuiyuan> delete(LytHuiyuan hy) {
 
 		String id = hy.getId();
 		LytHuiyuan hyQuery = lytHuiyuanDao.queryById(id);

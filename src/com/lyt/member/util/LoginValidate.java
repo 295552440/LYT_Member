@@ -16,7 +16,11 @@ public class LoginValidate extends AbstractInterceptor {
 		String namespace = invocation.getProxy().getNamespace();
 		String actionName = invocation.getProxy().getActionName();
 		System.out.println("======拦截器开始工作=========================================");
-		if ("/admin".equals(namespace)&&!"adminLogin".equals(actionName)) {
+		if ("/admin".equals(namespace)&&!"adminLogin".equals(actionName)
+				&&"/admin".equals(namespace)&&!"logout".equals(actionName)	
+				
+				
+				) {
              System.out.print(namespace+"/"+actionName);
 			// 获取session中保存的用户信息
 			Map<String, Object> session = invocation.getInvocationContext()

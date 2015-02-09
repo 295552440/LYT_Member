@@ -26,7 +26,7 @@
 		<default-interceptor-ref name="mystack" />
 
 		<global-results>
-			<result name="adminLogin" type="redirect">/admin/login.jsp</result>
+			<result name="adminLogin" type="redirect">/admin/gotologin.jsp</result>
 		</global-results>
 
 

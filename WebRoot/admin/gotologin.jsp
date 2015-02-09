@@ -1,13 +1,7 @@
-<%@page import="com.lyt.member.entity.Admin"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-Admin admin=(Admin)session.getAttribute("admin");
-if(admin==null){
-response.sendRedirect(basePath+"admin/gotologin.jsp");  
-}
-
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -24,7 +18,7 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 	<meta http-equiv="description" content="This is my page">
 	
 	
-	<link href="../../css/admin/oper_area.css" rel="stylesheet" type="text/css">
+	<link href="<%=request.getContextPath()%>/css/admin/oper_area.css" rel="stylesheet" type="text/css">
 
   </head>
   
@@ -42,10 +36,20 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 </table>
 <table width="99%" border="0" align="center" cellpadding="0" cellspacing="0" class="table-frame-input">
   <tr>
-    <td height="100" colspan="2" class="table-frame-input-title"><h1>欢迎您使用 
+    <td height="100" colspan="2" class="table-frame-input-title">
+
+
+<h2>由于您长时间没有操作，请重新登录！<a href="<%=request.getContextPath()%>/admin/login.jsp" target="_parent" style="color:red;font-size:20px">登录》》</a>
   
-<span style="color:green">丽颜堂</span> 会员管理系统</h1></td>
+</h2>
+
+</td>
   </tr>
+   <%--  <tr>
+    <td height="100" colspan="2" class="table-frame-input-title"><h1>由于您长时间没有操作，请重新登录！<a href="<%=request.getContextPath()%>/admin/login.jsp" target="_parent">登录》》</a>
+  
+</h1></td>
+  </tr> --%>
 </table>
   </body>
 </html>

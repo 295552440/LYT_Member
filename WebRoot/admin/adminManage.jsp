@@ -1,6 +1,22 @@
+<%@page import="com.lyt.member.entity.Admin"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% 
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
+
+Admin admin=(Admin)session.getAttribute("admin");
+if(admin==null){
+response.sendRedirect(basePath+"admin/gotologin.jsp");  
+}
+
+
+
+
+
+
+%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>

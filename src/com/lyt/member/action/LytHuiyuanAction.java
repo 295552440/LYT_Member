@@ -406,6 +406,7 @@ public class LytHuiyuanAction extends BaseAction {
 		} else if (message.equals("2")) {
 			return ERROR;
 		}
+		session.put("order", "date_desc");
 		return SUCCESS;
 	}
 	

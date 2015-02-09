@@ -16,18 +16,18 @@
 <meta http-equiv="description" content="This is my page">
 <link href="<%=request.getContextPath()%>/css/admin/oper_area.css"
 	rel="stylesheet" type="text/css">
-<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery-1.8.2.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-	function $(id) {
+	/* function $(id) {
 		return document.getElementById(id);
-	}
+	} */
 
 	//多条件查询	
-/* 	function queryByMultiCondition(input) {
-		location.href = "queryByMultiCondition?input=" + input;
+	/* 	function queryByMultiCondition(input) {
+	 location.href = "queryByMultiCondition?input=" + input;
 
-	} */
+	 } */
 	//order查询	
 	function queryByOrder(order) {
 		location.href = "queryByOrder?order=" + order;
@@ -38,18 +38,17 @@
 		location.href = "queryByState?state=" + state;
 	}
 
-
 	//搜索查询	
 	function queryBySearch() {
 
-		var searchInput = $("key").value;
+		var searchInput = $("#key").val();
 		if (searchInput == "") {
 			//alert("id不能为空");
-			$("msgkey").innerHTML = "输入不能为空！";
+			$("#msgkey").html("输入不能为空！");
 			return false;
 		}
 
-		var searchBy = $("search_list").value;
+		var searchBy =$("#search_list").val();
 		/* if (searchBy == "id" & isNaN(searchInput)) {
 			//alert("id不能为空");
 			$("msgkey").innerHTML = "Id输入必须为数字！";
@@ -64,7 +63,7 @@
 	//页面跳转	
 	function refreshPage() {
 
-		var currentPage = $("refreshCurrentPage").value;
+		var currentPage =$("#refreshCurrentPage").val();
 		if (currentPage == "") {
 			alert("输入不能为空！");
 			//$("msgkey").innerHTML = "输入不能为空！";
@@ -82,19 +81,35 @@
 		return true;
 	}
 </script>
+<script type="text/javascript">
+	function display(id) {
+		//alert("#"+""+id+"");
+		$("#"+""+id+"").show();
+	
+		//document.getElementById(id).style.display = "block";
+	}
+	function disappear(id) {
+	     $("#"+""+id+"").hide();
+		//document.getElementById(id).style.display = "none";
+	}
+</script>
+
+
 
 </head>
 
 <body>
+
+	
 	<form action="" method="post" name="">
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<table id="55" width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td class="title-bar">
 					<table width="98%" border="0" align="center" cellpadding="0"
 						cellspacing="0">
 						<tr>
 							<td width="26" class="title-bar-title-icon">&nbsp;</td>
-							<td width="745" class="title-bar-text">用户管理--显示所有用户</td>
+							<td width="745" class="title-bar-text">会员管理</td>
 						</tr>
 					</table>
 				</td>
@@ -119,8 +134,7 @@
 							<option value="state_yes">审核通过</option>
 							<option value="state_wait">待审核</option>
 							<!-- <option value="state_no">审核未通过</option> -->
-					</select>
-				</span></td>
+					</select> </span></td>
 				<td width="35%" align="right"><span class="oper-bar-text">搜索查询：
 						<select name="search_list" id="search_list">
 							<option value="id">会员卡号</option>
@@ -128,8 +142,7 @@
 
 					</select> <input name="key" type="text" id="key" size="21" onKeyDown="">
 						<input name="Submit5" type="button" class="form-buttun"
-						onClick="return queryBySearch()" value="搜索">
-				</span></td>
+						onClick="return queryBySearch()" value="搜索"> </span></td>
 			</tr>
 		</table>
 		<table width="99%" border="0" align="center" cellpadding="0"
@@ -138,12 +151,10 @@
 
 				<td width="15%" align="left">&nbsp;<span class="oper-bar-text">消息框&nbsp;<img
 						src="../images/admin/oper/msg.png" alt="消息" width='20' height='20'
-						border="0"></img>
-				</span>
+						border="0"></img> </span>
 				</td>
 				<td width="20%" align="center">&nbsp;<span style="color:red">您好，共查询出
-						<s:property value="page.totalRows" /> 条记录！
-				</span>
+						<s:property value="page.totalRows" /> 条记录！ </span>
 				</td>
 				<td width="20%" align="right">&nbsp;<span style="color:red"
 					id="msgkey"></span>
@@ -153,38 +164,37 @@
 		<table width="99%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_title">
-				<td width="5%" class="table-titlebar">ID(隐藏)</td>
-				<td width="5%" class="table-titlebar">会员卡号</td>
+				<!-- 	<td width="5%" class="table-titlebar">ID(隐藏)</td> -->
+				<td width="6%" class="table-titlebar">会员卡号</td>
 				<td width="5%" class="table-titlebar">会员姓名</td>
-				<td width="5%" class="table-titlebar">会员级别</td>
+				<td width="3%" class="table-titlebar">级别</td>
 				<td width="5%" class="table-titlebar">电话</td>
 				<td width="5%" class="table-titlebar">身份证号</td>
 				<td width="5%" class="table-titlebar">银行卡账号</td>
-				<td width="5%" class="table-titlebar">收款人姓名</td>
+				<td width="4%" class="table-titlebar">收款人</td>
 				<td width="5%" class="table-titlebar">收货地址</td>
-				<td width="5%" class="table-titlebar">推荐人卡号</td>
-				<td width="5%" class="table-titlebar">会员费</td>
-				<td width="5%" class="table-titlebar">邮费</td>
-				<td width="5%" class="table-titlebar">合计金额</td>
+				<td width="6%" class="table-titlebar">推荐人卡号</td>
+				<td width="4%" class="table-titlebar">会员费</td>
+				<td width="3%" class="table-titlebar">邮费</td>
+				<td width="4%" class="table-titlebar">合计</td>
 				<td width="5%" class="table-titlebar">备注</td>
 				<td width="5%" class="table-titlebar">审核状态</td>
 				<td width="5%" class="table-titlebar">申请日期</td>
-				<td width="5%" class="table-titlebar">操作</td>
+				<td width="10%" class="table-titlebar">操作</td>
 			</tr>
-					<!-- 详细列表 -->
+			<!-- 详细列表 -->
 			<s:iterator id="memberList" value="memberList" var="blogList"
 				status="status">
 				<tr class="table_border_cell_bg">
 
-					<td align="left" class="table-cell"><s:property value="id" />
-					</td>
+					<%-- <td align="left" class="table-cell"><s:property value="id" />
+					</td> --%>
 					<td align="left" class="table-cell"><s:property
 							value="hycardId" />
 					</td>
-					<td align="left" class="table-cell"><s:property
-							value="hyname" />
+					<td align="left" class="table-cell"><s:property value="hyname" />
 					</td>
-					<td align="left" class="table-cell"><s:property
+					<td align="center" class="table-cell"><s:property
 							value="hyLevel" />
 					</td>
 					<td align="left" class="table-cell"><s:property
@@ -199,14 +209,20 @@
 					<td align="left" class="table-cell"><s:property
 							value="skrName" />
 					</td>
-					<td align="left" class="table-cell"><s:property
-							value="shouhuoAddress" />
+					<td align="left" class="table-cell" onmouseover="display('<s:property
+							value="id" />')" onmouseout="disappear('<s:property
+							value="id" />')">
+							<a>详情..</a> 
+							<div style="display: none" id="<s:property
+							value="id" />">
+								<s:property value="shouhuoAddress" />
+							</div>
+							
+							
 					</td>
-					<td align="left" class="table-cell"><s:property
-							value="tjrId" />
+					<td align="left" class="table-cell"><s:property value="tjrId" />
 					</td>
-					<td align="left" class="table-cell"><s:property
-							value="hyFee" />
+					<td align="left" class="table-cell"><s:property value="hyFee" />
 					</td>
 					<td align="left" class="table-cell"><s:property
 							value="inforFee" />
@@ -214,49 +230,50 @@
 					<td align="left" class="table-cell"><s:property
 							value="totalMoney" />
 					</td>
-					<td align="left" class="table-cell"><s:property
-							value="beizhu" />
-					</td>
-					<td align="center" class="table-cell"><s:if
-							test="hyState==0">待审核</s:if> <s:if
-							test="hyState==1">通过</s:if><%-- <s:if
+					<td align="left" class="table-cell"  onmouseover="display('<s:property
+							value="hycardId" />')" onmouseout="disappear('<s:property
+							value="hycardId" />')"   >
+
+						
+							<a>详情..</a> 
+							<div style="display: none" id="<s:property
+							value="hycardId" />">
+								<s:property value="beizhu" />
+							</div>
+							 
+						</td>
+					<td align="center" class="table-cell"><s:if test="hyState==0"><span style="color:red">待审核</span></s:if>
+						<s:if test="hyState==1">通过</s:if> <%-- <s:if
 							test="hyState==2">未通过</s:if> --%>
 					</td>
-					<td align="center" class="table-cell"><s:date
-							name="applyTime" format="yyyy-MM-dd HH:mm" />
+					<td align="center" class="table-cell"><s:date name="applyTime"
+							format="yyyy-MM-dd HH:mm" />
 					</td>
 
 
 
-		
 
 
 
 
-			
 
 
 
-				
 
 
-				
-					<td align="center" class="table-cell">
-					
-						<s:url id="url2" action="updateState">
+
+
+
+
+					<td align="center" class="table-cell"><s:url id="url2"
+							action="updateState">
 							<s:param name="lytHuiyuan.id" value="id" />
-						</s:url>
-						
-						<a href="<s:property value="#url2"/>"><s:if
-								test="hyState==0">审核</s:if><s:if test="hyState==1">取消审核</s:if></a> &nbsp; 
-						
-						
-						<s:url id="url1" action="deleteHy">
+						</s:url> <a href="<s:property value="#url2"/>"><s:if test="hyState==0">审核</s:if><s:if test="hyState==1">取消审核</s:if></a>&nbsp;&nbsp; <s:url id="url1"
+							action="deleteHy">
 							<s:param name="lytHuiyuan.id" value="id" />
-						</s:url> 
-						<a
+						</s:url><a
 						href="javascript:if(confirm('确认删除该条记录？删除后将不可恢复！'))location='<s:property value="#url1"/>'">删除</a>
-						
+
 					</td>
 				</tr>
 
@@ -284,8 +301,7 @@
 						href="<s:property value="queryMethod"/>?pageMethod=next">下一页</a> </span>]
 					[<span class="list_text"><a
 						href="<s:property value="queryMethod"/>?pageMethod=last">末页</a> </span>]
-					&nbsp;&nbsp;
-				</td>
+					&nbsp;&nbsp;</td>
 			</tr>
 		</table>
 		<table width="99%" border="0" align="center" cellpadding="0"

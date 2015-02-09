@@ -100,7 +100,7 @@
 		<action name="addLytHuiyuan" class="lytHuiyuanAction" method="adminAddLytHuiyuan">
 
 			<result name="error">/admin/login.jsp</result>
-			<result name="success" type="chain">showMemberList</result>
+			<result name="success" type="chain">queryByOrder</result>
 			<result name="input" type="redirect">
 				<!-- /admin/addMember.jsp?msg=${message} -->
 				<param name="location">/admin/addMember.jsp</param>

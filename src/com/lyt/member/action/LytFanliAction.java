@@ -96,7 +96,7 @@ public class LytFanliAction extends BaseAction {
 
 
 	/**
-	 * 通过会员id,返利的类型，返利的状态，查
+	 * 通过会员id,返利的类型，返利的状态，第一次查询
 	 * @return
 	 */
 	public String queryByTypeHy() {
@@ -105,7 +105,7 @@ public class LytFanliAction extends BaseAction {
 			session.put("fanliType", fanliType);
 			session.put("hycardId", hycardId);
 			session.put("fanliState", fanliState);
-			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
 		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,1);
 		int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
 		pageliu.setTotalRows(count);
@@ -115,7 +115,7 @@ public class LytFanliAction extends BaseAction {
 		
 	}
 	/**
-	 * 分页的查询方法；
+	 * 带查询条件加上分页
 	 * @return
 	 */
 	public String queryByTypeHyPage() {
@@ -135,16 +135,20 @@ public class LytFanliAction extends BaseAction {
 		
 	}
 	
-	private Integer flid;
+	private String flid;
 	
-	public Integer getFlid() {
+	public String getFlid() {
 		return flid;
 	}
 
-	public void setFlid(Integer flid) {
+	public void setFlid(String flid) {
 		this.flid = flid;
 	}
 
+	/**
+	 * 带分页加条件去更新
+	 * @return
+	 */
 	public String queryByTypeHyPageUp() {
 		if (session.get("hycardId")!=null) {
 			hycardId =  (String) session.get("hycardId");

@@ -37,6 +37,7 @@
 			return true;
 		}
 	}
+	
     
     </script>
 </head>
@@ -134,6 +135,7 @@
 			<td class="table-titlebar">返利金额</td>
 			<td class="table-titlebar">返利类型</td>
 			<td class="table-titlebar">返利时间</td>
+			<td class="table-titlebar">操作</td>
 		</tr>
 		<c:forEach items="${lytFanlis}" var="flset" varStatus="st">
 			<tr>
@@ -154,6 +156,8 @@
 					月任务奖
 				</c:if></td>
 				<td class="table-cell">${flset.fanliTime }</td>
+				<td class="table-cell">${flset.id }</td>
+				<td class="table-cell"><a href="queryByTypeHyPageUp?currentPage=${currentPage}&flid=${flset.id}">修改返利状态</a></td>
 			</tr>
 			<c:if test="${st.last}">
 				<tr>

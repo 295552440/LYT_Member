@@ -113,5 +113,21 @@ public class LytFanliDao extends BaseDao {
 		}
 	}
 	
+	public boolean updateState(int flid) {
+		try {
+			
+			LytFanli lytFanli = hibernateTemplate.get(LytFanli.class, flid);
+			if (lytFanli.getFanliState()==0) {
+				lytFanli.setFanliState(1);
+			}else if (lytFanli.getFanliState()==1) {
+				lytFanli.setFanliState(0);
+			}
+			hibernateTemplate.update(lytFanli);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return false;
+		}
+	}
 
 }

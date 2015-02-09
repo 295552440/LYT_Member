@@ -64,5 +64,8 @@ public class LytFanliService {
 		int totalRows = lytFanliDao.queryByTotalRows(fanliState, type, hycardId);
 		return totalRows;
 	}
+	public boolean updateState(Integer flid) {
+		return lytFanliDao.updateState(flid);
+	}
 	
 }

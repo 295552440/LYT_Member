@@ -109,6 +109,20 @@
 		</action>
 
 
+		<action name="queryByTypeHyPageUp" class="com.lyt.member.action.LytFanliAction" method="queryByTypeHyPageUp">
+			<result name="error">/admin/fanli.jsp</result>
+			<result name="success">/admin/fanli.jsp</result>
+			
+		</action>
+		<action name="queryByTypeHy" class="com.lyt.member.action.LytFanliAction" method="queryByTypeHy">
+			<result name="error">/admin/fanli.jsp</result>
+			<result name="success">/admin/fanli.jsp</result>
+			
+		</action>
+		<action name="queryByTypeHyPage" class="com.lyt.member.action.LytFanliAction" method="queryByTypeHyPage">
+			<result name="error">/admin/fanli.jsp</result>
+			<result name="success">/admin/fanli.jsp</result>
+		</action>
 
 
 
@@ -150,6 +164,10 @@
 			<result name="error">/main/main.jsp</result>
 			<result name="success">/main/main.jsp</result>
 			
+		</action>
+		<action name="queryByTypeHyPage" class="com.lyt.member.action.LytFanliAction" method="queryByTypeHyPage">
+			<result name="error">/main/main.jsp</result>
+			<result name="success">/main/main.jsp</result>
 		</action>
 
 

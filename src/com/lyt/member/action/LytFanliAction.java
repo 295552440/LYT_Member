@@ -101,14 +101,66 @@ public class LytFanliAction extends BaseAction {
 	 */
 	public String queryByTypeHy() {
 		
-		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
-		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+	
+			session.put("fanliType", fanliType);
+			session.put("hycardId", hycardId);
+			session.put("fanliState", fanliState);
+			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,1);
 		int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
 		pageliu.setTotalRows(count);
 		pageliu.setTotalPages(pageliu.getTotalPage(count));
-		if (lytHuiyuan!=null) {
-			session.put("lytHuiyuan", lytHuiyuan);
+		
+		return SUCCESS;
+		
+	}
+	/**
+	 * 分页的查询方法；
+	 * @return
+	 */
+	public String queryByTypeHyPage() {
+		if (session.get("hycardId")!=null) {
+			hycardId =  (String) session.get("hycardId");
+			fanliType =  (Integer) session.get("fanliType");
+			fanliState =   (Integer) session.get("fanliState");
 		}
+			
+		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+		int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
+		pageliu.setTotalRows(count);
+		pageliu.setTotalPages(pageliu.getTotalPage(count));
+		
+		return SUCCESS;
+		
+	}
+	
+	private Integer flid;
+	
+	public Integer getFlid() {
+		return flid;
+	}
+
+	public void setFlid(Integer flid) {
+		this.flid = flid;
+	}
+
+	public String queryByTypeHyPageUp() {
+		if (session.get("hycardId")!=null) {
+			hycardId =  (String) session.get("hycardId");
+			fanliType =  (Integer) session.get("fanliType");
+			fanliState =   (Integer) session.get("fanliState");
+		}
+		
+		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		if (lytFanliService.updateState(flid)) {
+			
+			lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+			int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
+			pageliu.setTotalRows(count);
+			pageliu.setTotalPages(pageliu.getTotalPage(count));
+		}
+		
 		return SUCCESS;
 		
 	}

@@ -136,8 +136,7 @@ public class LytHuiyuanDao extends BaseDao {
 			hql = "from LytHuiyuan   as l where l.hyState=0";
 		} else if ("id".equals(input)) {
 
-			hql = "from LytHuiyuan   as l where l.hycardId="
-					+ searchInput;
+			hql = "from LytHuiyuan   as l where l.hycardId='" + searchInput + "'";
 		} else if ("name".equals(input)) {
 
 			hql = "from LytHuiyuan   as l where l.hyname='" + searchInput + "'";
@@ -179,9 +178,8 @@ public class LytHuiyuanDao extends BaseDao {
 		String hql = "from LytHuiyuan ORDER BY applyTime desc";// 默认
 
 		if ("id".equals(searchBy)) {
-			hql = "from LytHuiyuan   as l where l.hycardId="
-					+ searchInput
-					+ " ORDER BY applyTime desc";
+			hql = "from LytHuiyuan   as l where l.hycardId='" + searchInput
+					+ "' ORDER BY applyTime desc";
 		} else if ("name".equals(searchBy)) {
 
 			hql = "from LytHuiyuan   as l where l.hyname ='" + searchInput

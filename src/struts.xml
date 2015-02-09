@@ -108,10 +108,11 @@
 			</result>
 		</action>
 
+		<!-- 月任务奖 -->
 
-
-
-
+    <action name="queryMonthByOrder" class="" method="queryMonthByOrder">
+			<result name="success">/admin/month.jsp</result>
+	</action>
 	</package>
 
 	<!-- 会员 -->

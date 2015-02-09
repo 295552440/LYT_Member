@@ -161,6 +161,7 @@
 					<td class="table-cell">月任务奖</td>
 				</c:if>
 				<td class="table-cell">${flset.fanliTime }</td>
+				<td class="table-cell">${flset.fanliTime }</td>
 			</tr>
 			<c:if test="${st.last}">
 				<tr>

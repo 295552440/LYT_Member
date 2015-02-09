@@ -6,7 +6,7 @@ public abstract  class Constant {
 	
 	
 	public static int PAGE_SIZE = 15;// 默认每页记录数
-	public static int PAGE_SIZE_MemberList = 5;// 会员列表默认每页记录数
+	public static int PAGE_SIZE_MemberList = 10;// 会员列表默认每页记录数
 	
 	
 	

@@ -42,3 +42,8 @@ alter table lyt_huiyuan add  beizhu varchar(500) comment'备注' after applyTime
 
 alter table lyt_fanli add  fanliMoney decimal(10,2) comment'返利钱数' after fanliState;
 alter table lyt_fanli add  fanliType int(1) comment'返利类型' after fanliMoney;
+
+<-- 修改返利表外键关系 -->
+alter table lyt_fanli drop foreign key FK_Relationship_btj;
+alter table lyt_fanli add constraint FK_Relationship_btj foreign key (btjrId)
+      references lyt_huiyuan (id) on delete cascade on update cascade;

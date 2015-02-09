@@ -16,7 +16,7 @@
 <link href="<%=request.getContextPath()%>/css/admin/oper_area.css"
 	rel="stylesheet" type="text/css">
 <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
-
+<script src="js/message.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript"
 	src="js/DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
@@ -35,17 +35,18 @@
 
 	function tijiao() {
 		var hyLevel = $("input[name='hyLevel']:checked").val();
-		var hyname = $("#hyname").val();
-		var hyFee = $("#hyFee").val();
-		var phoneNumber = $("#phoneNumber").val();
-		var identifyId = $("#identifyId").val();
-		var tjrId = $("#tjrId").val();
-		var bankcardNumber = $("#bankcardNumber").val();
-		var inforFee = $("#inforFee").val();
-		var shouhuoAddress = $("#shouhuoAddress").val();
-		var totalMoney = $("#totalMoney").val();
-		var skrName = $("#skrName").val();
-		var beizhu = $("#beizhu").val();
+		var hyname = $.trim($("#hyname").val());
+		var hyFee = $.trim($("#hyFee").val());
+		var phoneNumber = $.trim($("#phoneNumber").val());
+		var identifyId = $.trim($("#identifyId").val());
+		var tjrId = $.trim($("#tjrId").val());
+		var bankcardNumber = $.trim($("#bankcardNumber").val());
+		var inforFee = $.trim($("#inforFee").val());
+		var shouhuoAddress = $.trim($("#shouhuoAddress").val());
+		var totalMoney = $.trim($("#totalMoney").val());
+		var skrName = $.trim($("#skrName").val());
+		var beizhu = $.trim($("#beizhu").val());
+		alert(hyname.length);
 		var params = {
 			"lytHuiyuan.hyLevel" : hyLevel,
 			"lytHuiyuan.phoneNumber" : phoneNumber,
@@ -60,19 +61,22 @@
 			"lytHuiyuan.skrName" : skrName,
 			"lytHuiyuan.beizhu" : beizhu
 		};
-		$.ajax({
-			url : "main/lytHuiyuanApply",
-			type : "post",
-			data : params,
-			dataType : "json",
-			success : function(data) {
-				var msg = data.message;
-				alert(msg);
-			},
-			error : function() {
-				alert("服务器异常");
-			}
-		});
+		if (checkApply(hyname, phoneNumber, identifyId, tjrId, bankcardNumber,
+				shouhuoAddress)) {
+			$.ajax({
+				url : "main/lytHuiyuanApply",
+				type : "post",
+				data : params,
+				dataType : "json",
+				success : function(data) {
+					var msg = data.message;
+					alert(msg);
+				},
+				error : function() {
+					alert("服务器异常");
+				}
+			});
+		}
 
 	}
 </script>
@@ -108,12 +112,12 @@
 				<td class="table-cell" style="padding:3px" align="left"><input
 					name="hyLevel" id="DC" type="radio" value="钻卡"
 					onclick="gainHyFee('钻卡',1980);" checked="checked"><label
-					for="DC">钻卡<u>1980￥</u></label> <input name="hyLevel"
-					id="GC" type="radio" value="金卡" onclick="gainHyFee('金卡',990);">
-					<label for="GC">金卡<u>990￥</u></label> <input
-					name="hyLevel" id="SC" type="radio" value="银卡"
-					onclick="gainHyFee('银卡',198);"><label for="SC">银卡<u>198￥</u></label>
-					<input name="hyFee" id="hyFee" type="hidden"></td>
+					for="DC">钻卡<u>1980￥</u></label> <input name="hyLevel" id="GC"
+					type="radio" value="金卡" onclick="gainHyFee('金卡',990);"> <label
+					for="GC">金卡<u>990￥</u></label> <input name="hyLevel" id="SC"
+					type="radio" value="银卡" onclick="gainHyFee('银卡',198);"><label
+					for="SC">银卡<u>198￥</u></label> <input name="hyFee" id="hyFee"
+					type="hidden"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">会员姓名</td>
@@ -121,10 +125,9 @@
 					type="text" name="hyname" id="hyname"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
-				<td class="table-cell">电话</td>
+				<td class="table-cell">手机号</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name="phoneNumber" id="phoneNumber">
-				</td>
+					type="text" name="phoneNumber" id="phoneNumber"></td>
 			</tr>
 			<!-- <tr class="table_border_cell_bg">
 				<td class="table-cell">日期</td>
@@ -145,8 +148,7 @@
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">银行账号</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name="bankcardNumber" id="bankcardNumber">
-				</td>
+					type="text" name="bankcardNumber" id="bankcardNumber"></td>
 
 			</tr>
 			<tr class="table_border_cell_bg">
@@ -163,8 +165,8 @@
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">合计金额</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name="totalMoney" id="totalMoney"
-					readonly="readonly"></td>
+					type="text" name="totalMoney" id="totalMoney" readonly="readonly"
+					value="1980"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">收款人姓名</td>

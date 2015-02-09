@@ -2,13 +2,11 @@ package com.lyt.member.action;
 
 import java.util.List;
 
-import javassist.expr.NewArray;
-
 import com.lyt.member.entity.LytFanli;
 import com.lyt.member.entity.LytHuiyuan;
 import com.lyt.member.service.LytFanliService;
 import com.lyt.member.service.LytHuiyuanService;
-import com.opensymphony.xwork2.ActionContext;
+import com.lyt.member.util.Pageliu;
 
 public class LytFanliAction extends BaseAction {
 
@@ -78,13 +76,39 @@ public class LytFanliAction extends BaseAction {
 		this.hycardId = hycardId;
 	}
 
+	static private Integer currentPage=1;
+	private Pageliu pageliu = new Pageliu();
+	public Pageliu getPageliu() {
+		return pageliu;
+	}
+
+	public void setPageliu(Pageliu pageliu) {
+		this.pageliu = pageliu;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+
 	/**
 	 * 通过会员id,返利的类型，返利的状态，查
 	 * @return
 	 */
 	public String queryByTypeHy() {
-		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState);
+		
+		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
 		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
+		pageliu.setTotalRows(count);
+		pageliu.setTotalPages(pageliu.getTotalPage(count));
+		if (lytHuiyuan!=null) {
+			session.put("lytHuiyuan", lytHuiyuan);
+		}
 		return SUCCESS;
 		
 	}

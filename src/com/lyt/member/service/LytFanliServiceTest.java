@@ -37,12 +37,19 @@ public class LytFanliServiceTest {
 	@Test
 	public void testQueryByType() {
 		List<LytFanli> lytFanlis = new ArrayList<LytFanli>();
-		lytFanlis= lytFanliDao.queryByC(0,null,"31000");
+		lytFanlis= lytFanliDao.queryAll(null);
 		System.out.println(lytFanlis);
 		for(LytFanli lytFanli :lytFanlis){
 			System.out.println(lytFanli.getId());
 			System.out.println(lytFanli.getFanliMoney());
 		}
+	}
+	@Test
+	public void testQueryByName() {
+		LytHuiyuan lytHuiyuan = new LytHuiyuan();
+		lytHuiyuan= lytHuiyuanDao.queryByName("la");
+			System.out.println(lytHuiyuan.getId());
+			System.out.println(lytHuiyuan.getHyname());
 	}
 
 }

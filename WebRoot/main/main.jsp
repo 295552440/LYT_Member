@@ -6,7 +6,7 @@
 <html>
 <head>
 
-<title>main</title>
+<title>返利查询</title>
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="cache-control" content="no-cache" />
 <meta http-equiv="expires" content="0" />
@@ -17,7 +17,7 @@
 <script type="text/javascript">
 
 	//卡号和类型查询；
-	function queryByTypeHy() {
+	function queryByTypeHy(currentPage) {
 		var hycardId = $("#hycardId").val();
 		var fanliType = $("#fanliType").val();
 		var fanliState = $("#fanliState").val();
@@ -30,33 +30,31 @@
 			return false;
 		} else {
 			window.location.href = "queryByTypeHy?hycardId=" + hycardId
-					+ "&fanliType=" + fanliType +"&fanliState=" +fanliState;
+					+ "&fanliType=" + fanliType +"&fanliState=" +fanliState
+					+ "&currentPage="+currentPage;
 			return true;
 		}
 	}
-        function queryByCardId(){  
-            $.ajax({  
-                type : "POST",  
-                dataType : "json", 
-                data : {hycardId:"31000"},
-                url : "queryByCardId",  
-                success : function(data) { 
-                	alert(state); 
-                	alert(data.LytHuiyuan.hycardId);
-                      $.each(data.LytHuiyuan, function(i, one) {  
-            				result = "<tr align='center'><td>"+one.id+"</td><td>"+one.hyname+"</td><td>"+one.hycardId+"</td></tr>";  
-           			 $(result).appendTo("#deptListDiv");  
-      			  });  
-                },
-                error : function(data) {  
-                	alert(data.LytHuiyuan);
-                      $.each(data.LytHuiyuan, function(i, one) {  
-            				result = "<tr align='center'><td>"+one.id+"</td><td>"+one.hyname+"</td><td>"+one.hycardId+"</td></tr>";  
-           			 $(result).appendTo("#deptListDiv");  
-      			  });  
-                }
-            });  
-        }  
+    //页面跳转	
+	function refreshPage() {
+
+		var currentPage = $("refreshCurrentPage").value;
+		if (currentPage == "") {
+			alert("输入不能为空！");
+			//$("msgkey").innerHTML = "输入不能为空！";
+			return false;
+		}
+		if (isNaN(currentPage)) {
+			alert("输入必须为数字！");
+			//$("msgkey").innerHTML = "Id输入必须为数字！";
+			return false;
+		}
+
+		location.href = "queryByTypeHy?currentPage="
+				+ currentPage;
+
+		return true;
+	}
     </script>
 </head>
 <body>
@@ -69,8 +67,7 @@
 						<td class="title-bar-title-icon">&nbsp;</td>
 						<td class="title-bar-text">用户返利查询</td>
 					</tr>
-				</table>
-			</td>
+				</table></td>
 		</tr>
 	</table>
 	<form action="" method="post">
@@ -80,24 +77,27 @@
 				<td align="right"><span class="oper-bar-text">搜索查询： <select
 						name="search_list" id="search_list">
 							<option value="id">会员卡号</option>
-					</select> <input name="hycardId" type="text" id="hycardId" size="21" /> </span></td>
+					</select> <input name="hycardId" type="text" id="hycardId" size="21" /> </span>
+				</td>
 				<td><span class="oper-bar-text"> 类型：</span><span
 					class="title_bar"><select name="fanliType" id="fanliType"
 						class="form_select">
 							<option value="" selected>返利的类型</option>
-							<option value="0">0</option>
-							<option value="1">1</option>
-					</select> </span></td>
+							<option value="0">口碑传播奖</option>
+							<option value="1">月任务奖</option>
+					</select> </span>
+				</td>
 				<td><span class="oper-bar-text"> 状态：</span><span
 					class="title_bar"><select name="fanliState" id="fanliState"
 						class="form_select">
 							<option value="" selected>返利的状态</option>
-							<option value="0">0</option>
-							<option value="1">1</option>
-					</select> </span></td>
+							<option value="0">未返利</option>
+							<option value="1">返利</option>
+					</select> </span>
+				</td>
 				<td><input name="Submit5" type="button" class="form-buttun"
-					onclick="return queryByTypeHy()" value="搜索" /> <a
-					href="queryByTypeHy?hycardId=31000&fanliType=1">查询</a></td>
+					onclick="return queryByTypeHy(1)" value="搜索" />
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -107,18 +107,14 @@
 
 			<td width="15%" align="left">&nbsp;<span class="oper-bar-text">消息框&nbsp;<img
 					src="../images/admin/oper/msg.png" alt="消息" width='20' height='20'
-					border="0"></img> </span>
-			</td>
+					border="0"></img> </span></td>
 
 			<td width="20%" align="center">&nbsp;<span style="color: red"
-				id="msgkey" name="msgkey"></span> 
-				<c:if test="${empty lytHuiyuan}">
+				id="msgkey" name="msgkey"></span> <c:if test="${empty lytHuiyuan}">
 					<span style="color: red">没有这个卡号的会员！</span>
-					</c:if>
-					<c:if test="${ empty lytFanlis}">
-						<span style="color: red">没有返利记录</span>
-					</c:if>
-			</td>
+				</c:if> <c:if test="${empty lytFanlis}">
+					<span style="color: red">没有返利记录!</span>
+				</c:if></td>
 		</tr>
 	</table>
 
@@ -164,19 +160,49 @@
 				<td class="table-cell">${flset.lytHuiyuanByTjrId.hycardId }</td>
 				<td class="table-cell">${flset.lytHuiyuanByBtjrId.hycardId }</td>
 				<td class="table-cell">${flset.tjTime }</td>
-				<td class="table-cell">${flset.fanliState }</td>
+				<c:if test="${flset.fanliState == 0}">
+					<td class="table-cell">未返利</td>
+				</c:if>
+				<c:if test="${flset.fanliState == 1}">
+					<td class="table-cell">返利</td>
+				</c:if>
 				<td class="table-cell">${flset.fanliMoney }</td>
-				<td class="table-cell">${flset.fanliType }</td>
+				<c:if test="${flset.fanliType == 0}">
+					<td class="table-cell">口碑传播奖</td>
+				</c:if>
+				<c:if test="${flset.fanliType == 1}">
+					<td class="table-cell">月任务奖</td>
+				</c:if>
 				<td class="table-cell">${flset.fanliTime }</td>
 			</tr>
 			<c:if test="${st.last}">
 				<tr>
 					<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
-							${st.count }条记录！ </span>
-					</td>
+							${st.count }条记录！ </span></td>
 				</tr>
 			</c:if>
 		</c:forEach>
+	</table>
+	<table width="99%" border="0" align="center" cellpadding="0"
+		cellspacing="0">
+		<tr>
+			<td class="paeg_bar"><a> 第${currentPage} 页/
+					共${pageliu.totalPages } 页(共 ${pageliu.totalRows } 条) </a> [<span
+				class="list_text"><a href="javascript:queryByCardId(1)">首页</a>
+			</span>] <c:if test="${currentPage== 1 }">
+					[<span class="list_text"> <a>已是首页</a> </span>] 
+			</c:if> <c:if test="${currentPage> 1 }">
+					[<span class="list_text"> <a
+						href="javascript:queryByCardId(${currentPage-1 })">上一页</a> </span>] 
+			</c:if> <c:if test="${currentPage==pageliu.totalPages }">
+				[<span class="list_text"> <a>已是末页</a> </span>]
+			</c:if> <c:if test="${currentPage<pageliu.totalPages}">
+				[<span class="list_text"> <a
+						href="javascript:queryByCardId(${currentPage+1 })">下一页</a> </span>]
+				</c:if> [<span class="list_text"><a
+					href="javascript:queryByCardId(${pageliu.totalPages })">末页</a> </span>]
+				&nbsp;&nbsp;</td>
+		</tr>
 	</table>
 	<!--  
 	<a href="javascript:queryByCardId()">查询个人信息</a>

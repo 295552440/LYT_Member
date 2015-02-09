@@ -221,10 +221,11 @@ public class LytHuiyuanAction extends BaseAction {
 	public String queryById() {
 		System.out.println("id:"+huiyuanid);
 		LytHuiyuan = lytHuiyuanService.queryById(huiyuanid);
-		Set<LytFanli> setLytFanlis = new HashSet<LytFanli>();
 		setLytFanlis= LytHuiyuan.getLytFanlisForTjrId();
-		for(LytFanli lytFanli :setLytFanlis){
-		System.out.println(lytFanli.getId());
+		for (LytFanli lytFanli : setLytFanlis) {
+			System.out.println(lytFanli.getId());
+			System.out.println(lytFanli.getFanliMoney());
+			
 		}
 		return SUCCESS;
 		

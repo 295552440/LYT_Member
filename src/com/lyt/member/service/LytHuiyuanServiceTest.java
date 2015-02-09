@@ -12,11 +12,10 @@ public class LytHuiyuanServiceTest {
 
 	ApplicationContext ac = new ClassPathXmlApplicationContext(
 			"com/lyt/member/config/spring.xml");
-
+	LytHuiyuanDao lytHuiyuanDao = (LytHuiyuanDao) ac
+	.getBean("lytHuiyuanDao");
 	@Test
 	public void testQueryAllLytHuiyuan() {
-		LytHuiyuanDao lytHuiyuanDao = (LytHuiyuanDao) ac
-				.getBean("lytHuiyuanDao");
 		// List<LytHuiyuan> ls = lytHuiyuanDao.queryAllLytHuiyuan();
 		LytHuiyuan lytHuiyuan = lytHuiyuanDao.queryById("06");
 		Set<LytFanli> lytFanlis = lytHuiyuan.getLytFanlisForTjrId();
@@ -32,11 +31,11 @@ public class LytHuiyuanServiceTest {
 
 	@Test
 	public void testQueryById() {
-		LytHuiyuanDao lytHuiyuanDao = (LytHuiyuanDao) ac
-				.getBean("lytHuiyuanDao");
 		LytHuiyuan lytHuiyuan = new LytHuiyuan();
-		lytHuiyuan = lytHuiyuanDao.queryById("15");
-		System.out.println("--" + lytHuiyuan.getTjrId());
+//		lytHuiyuan = lytHuiyuanDao.queryById("15");
+		lytHuiyuan = lytHuiyuanDao.queryByName("06");
+		System.out.println("--" + lytHuiyuan.getHycardId());
+		System.out.println("--" + lytHuiyuan.getHyname());
 
 	}
 

@@ -35,6 +35,7 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 
 <script language="javascript" type="text/javascript"
 	src="../js/DatePicker/WdatePicker.js"></script>
+<script src="../js/message.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function gainHyFee(level, data) {
 		/* alert($("input[name='lytHuiyuan.hyLevel']:checked").val());*/
@@ -47,6 +48,17 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 		var data = parseFloat($("#inforFee").val().trim());
 		data += parseFloat($("#hyFee").val());
 		$("#totalMoney").val(data);
+	}
+	
+	function check() {
+		var hyname = $.trim($("#hyname").val());
+		var phoneNumber = $.trim($("#phoneNumber").val());
+		var identifyId = $.trim($("#identifyId").val());
+		var tjrId = $.trim($("#tjrId").val());
+		var bankcardNumber = $.trim($("#bankcardNumber").val());
+		var shouhuoAddress = $.trim($("#shouhuoAddress").val());
+		return checkApply(hyname, phoneNumber, identifyId, tjrId, bankcardNumber,
+				shouhuoAddress);
 	}
 </script>
 
@@ -74,7 +86,7 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 		</tr>
 	</table>
 	<form action="addLytHuiyuan" method="post"
-		enctype="multipart/form-data">
+		enctype="multipart/form-data" onsubmit="check();">
 		<table width="31%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_border_cell_bg">

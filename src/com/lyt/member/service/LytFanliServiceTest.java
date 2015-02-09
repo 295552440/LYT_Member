@@ -26,7 +26,7 @@ public class LytFanliServiceTest {
 	public void testQueryAll() {
 		String hql = "from LytFanli as l  ORDER BY fanliTime desc";
 //		List<LytFanli> lytFanlis = lytFanliDao.queryByTypeHy(1, lytHuiyuanDao.queryById("06"));
-		List<LytFanli> lytFanlis = lytFanliDao.queryByType(1);
+		List<LytFanli> lytFanlis = lytFanliDao.queryByTypeHy(1, "31000");
 		System.out.println(lytFanlis);
 		for(LytFanli lytFanli :lytFanlis){
 			System.out.println(lytFanli.getId());

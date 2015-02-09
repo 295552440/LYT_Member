@@ -10,4 +10,5 @@
 	<bean id="adminDao" class="com.lyt.member.dao.AdminDao" parent="baseDao"></bean>
 	<bean id="lytFanliDao" class="com.lyt.member.dao.LytFanliDao" parent="baseDao"></bean>
 	<bean id="lytHuiyuanDao" class="com.lyt.member.dao.LytHuiyuanDao" parent="baseDao"></bean>
+	<bean id="LytMonthDao" class="com.lyt.member.dao.LytMonthDao" parent="baseDao"></bean>
 </beans>

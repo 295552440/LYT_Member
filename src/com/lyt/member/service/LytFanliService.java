@@ -1,13 +1,12 @@
 package com.lyt.member.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.lyt.member.dao.LytFanliDao;
 import com.lyt.member.dao.LytHuiyuanDao;
 import com.lyt.member.entity.LytFanli;
 import com.lyt.member.entity.LytHuiyuan;
+import com.lyt.member.util.Pageliu;
 
 public class LytFanliService {
 
@@ -57,9 +56,13 @@ public class LytFanliService {
 		return lytFanliDao.queryAll(hql);
 	}
 	
-	public List<LytFanli> queryByTypeHy(int type,String hycardId) {
-		return lytFanliDao.queryByTypeHy(type, hycardId);
-//		lytHuiyuanDao.queryByCardId(hycardId)
+	public List<LytFanli> queryByTypeHy(Integer type,String hycardId,Integer fanliState,Integer currentPage) {
+		currentPage = (currentPage-1)*Pageliu.PAGE_SIZE;
+		return lytFanliDao.queryByC(fanliState, type, hycardId,currentPage,Pageliu.PAGE_SIZE);
+	}
+	public int queryByTotalRows(Integer type,String hycardId,Integer fanliState) {
+		int totalRows = lytFanliDao.queryByTotalRows(fanliState, type, hycardId);
+		return totalRows;
 	}
 	
 }

@@ -1,3 +1,4 @@
+#Mon Feb 09 13:28:02 CST 2015
 eclipse.preferences.version=1
 encoding//WebRoot/sql/lyt.sql=UTF-8
 encoding//src/com/lyt/member/action/LytHuiyuanAction.java=UTF-8
@@ -5,4 +6,5 @@ encoding//src/com/lyt/member/service/LytHuiyuanService.java=UTF-8
 encoding//src/com/lyt/member/util/Constant.java=UTF-8
 encoding//src/com/lyt/member/util/EncodeFilter.java=UTF-8
 encoding//src/com/lyt/member/util/Page.java=UTF-8
+encoding//src/com/lyt/member/util/Pageliu.java=UTF-8
 encoding/<project>=UTF-8

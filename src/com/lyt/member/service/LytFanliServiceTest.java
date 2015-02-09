@@ -26,7 +26,7 @@ public class LytFanliServiceTest {
 	public void testQueryAll() {
 		String hql = "from LytFanli as l  ORDER BY fanliTime desc";
 //		List<LytFanli> lytFanlis = lytFanliDao.queryByTypeHy(1, lytHuiyuanDao.queryById("06"));
-		List<LytFanli> lytFanlis = lytFanliDao.queryByType(1);
+		List<LytFanli> lytFanlis = lytFanliDao.queryByTypeHy(1, "31000");
 		System.out.println(lytFanlis);
 		for(LytFanli lytFanli :lytFanlis){
 			System.out.println(lytFanli.getId());
@@ -36,14 +36,20 @@ public class LytFanliServiceTest {
 
 	@Test
 	public void testQueryByType() {
-//		LytHuiyuan l = lytHuiyuanDao.queryById("06");
 		List<LytFanli> lytFanlis = new ArrayList<LytFanli>();
-		lytFanlis= lytFanliDao.queryByTypeHy(1,"06");
+		lytFanlis= lytFanliDao.queryAll(null);
 		System.out.println(lytFanlis);
 		for(LytFanli lytFanli :lytFanlis){
 			System.out.println(lytFanli.getId());
 			System.out.println(lytFanli.getFanliMoney());
 		}
+	}
+	@Test
+	public void testQueryByName() {
+		LytHuiyuan lytHuiyuan = new LytHuiyuan();
+		lytHuiyuan= lytHuiyuanDao.queryByName("la");
+			System.out.println(lytHuiyuan.getId());
+			System.out.println(lytHuiyuan.getHyname());
 	}
 
 }

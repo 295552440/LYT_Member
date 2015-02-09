@@ -3,12 +3,20 @@ package com.lyt.member.action;
 import java.util.List;
 
 import com.lyt.member.entity.LytFanli;
+import com.lyt.member.entity.LytHuiyuan;
 import com.lyt.member.service.LytFanliService;
-import com.opensymphony.xwork2.ActionContext;
+import com.lyt.member.service.LytHuiyuanService;
+import com.lyt.member.util.Pageliu;
 
 public class LytFanliAction extends BaseAction {
 
 	private LytFanliService lytFanliService;
+	private LytHuiyuanService lytHuiyuanService;
+	
+
+	public void setLytHuiyuanService(LytHuiyuanService lytHuiyuanService) {
+		this.lytHuiyuanService = lytHuiyuanService;
+	}
 
 	public LytFanliService getLytFanliService() {
 		return lytFanliService;
@@ -18,11 +26,39 @@ public class LytFanliAction extends BaseAction {
 		this.lytFanliService = lytFanliService;
 	}
 	
-	 Exception ex = (Exception) ActionContext.getContext() .getValueStack().findValue("exception"); 
+//	Exception ex = (Exception) ActionContext.getContext() .getValueStack().findValue("exception"); 
 	 
-	private int fanliType;
-	private String hycardId;
 	private List<LytFanli> lytFanlis;
+	private Integer fanliType;
+	private String hycardId;
+	private Integer fanliState;
+	private LytHuiyuan lytHuiyuan = new LytHuiyuan();
+
+
+	public LytHuiyuan getLytHuiyuan() {
+		return lytHuiyuan;
+	}
+
+	public void setLytHuiyuan(LytHuiyuan lytHuiyuan) {
+		this.lytHuiyuan = lytHuiyuan;
+	}
+
+	public Integer getFanliType() {
+		return fanliType;
+	}
+
+	public void setFanliType(Integer fanliType) {
+		this.fanliType = fanliType;
+	}
+
+	public Integer getFanliState() {
+		return fanliState;
+	}
+
+	public void setFanliState(Integer fanliState) {
+		this.fanliState = fanliState;
+	}
+
 	public List<LytFanli> getLytFanlis() {
 		return lytFanlis;
 	}
@@ -31,13 +67,6 @@ public class LytFanliAction extends BaseAction {
 		this.lytFanlis = lytFanlis;
 	}
 
-	public int getFanliType() {
-		return fanliType;
-	}
-
-	public void setFanliType(int fanliType) {
-		this.fanliType = fanliType;
-	}
 
 	public String getHycardId() {
 		return hycardId;
@@ -47,8 +76,39 @@ public class LytFanliAction extends BaseAction {
 		this.hycardId = hycardId;
 	}
 
+	static private Integer currentPage=1;
+	private Pageliu pageliu = new Pageliu();
+	public Pageliu getPageliu() {
+		return pageliu;
+	}
+
+	public void setPageliu(Pageliu pageliu) {
+		this.pageliu = pageliu;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+
+	/**
+	 * 通过会员id,返利的类型，返利的状态，查
+	 * @return
+	 */
 	public String queryByTypeHy() {
-		List<LytFanli> lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId);
+		
+		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
+		pageliu.setTotalRows(count);
+		pageliu.setTotalPages(pageliu.getTotalPage(count));
+		if (lytHuiyuan!=null) {
+			session.put("lytHuiyuan", lytHuiyuan);
+		}
 		return SUCCESS;
 		
 	}

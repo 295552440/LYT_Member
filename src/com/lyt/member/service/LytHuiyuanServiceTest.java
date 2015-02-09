@@ -14,6 +14,7 @@ public class LytHuiyuanServiceTest {
 			"com/lyt/member/config/spring.xml");
 	LytHuiyuanDao lytHuiyuanDao = (LytHuiyuanDao) ac
 	.getBean("lytHuiyuanDao");
+	
 	@Test
 	public void testQueryAllLytHuiyuan() {
 		// List<LytHuiyuan> ls = lytHuiyuanDao.queryAllLytHuiyuan();

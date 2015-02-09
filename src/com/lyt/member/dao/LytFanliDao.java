@@ -1,14 +1,14 @@
 package com.lyt.member.dao;
 
 import java.util.List;
-import java.util.Set;
-
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lyt.member.entity.LytFanli;
-import com.lyt.member.entity.LytHuiyuan;
-
+@Transactional
 public class LytFanliDao extends BaseDao {
 
 	public boolean addFanli(LytFanli lytFanli) {
@@ -47,17 +47,37 @@ public class LytFanliDao extends BaseDao {
 	 * @param type
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	public List<LytFanli> queryByTypeHy(int type,String hyid) {
+	public List<LytFanli> queryByTypeHy(Integer type,String hycardId) {
+		Session session = sessionFactory.getCurrentSession();
+			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.hycardId =? ORDER BY fanliTime desc";
+			@SuppressWarnings("unchecked")
+			List<LytFanli> lytFanlis = session.createQuery(hql)
+				.setInteger(0, type)
+				.setString(1,  hycardId)
+				.list();
+			
+			
+			return lytFanlis;
+	}
+	
+	public List<LytFanli> queryByC(Integer fanliState,Integer type,String hycardId,Integer first,Integer maxr) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx= session.beginTransaction();
-			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.id =? ORDER BY fanliTime desc";
-			List<LytFanli> lytFanlis = session.createQuery(hql)
-				.setInteger(0, type)
-				.setString(1,  hyid)
-				.list();
+//			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.hycardId =? ORDER BY fanliTime desc";
+			Criteria criteria = session.createCriteria(LytFanli.class);
+			criteria.createCriteria("lytHuiyuanByTjrId").add(Restrictions.eq("hycardId", hycardId));
+			
+			if (type != null) {
+				criteria.add(Restrictions.eq("fanliType", type));
+			}
+			if(fanliState != null){
+				criteria.add(Restrictions.eq("fanliState", fanliState));
+			}
+			criteria.setFirstResult(first);
+			criteria.setMaxResults(maxr);
+			List<LytFanli> lytFanlis = criteria.list();
 			
 			
 			tx.commit();
@@ -72,5 +92,26 @@ public class LytFanliDao extends BaseDao {
 		}
 		
 	}
+	public int queryByTotalRows(Integer fanliState,Integer type,String hycardId) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+//			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.hycardId =? ORDER BY fanliTime desc";
+			Criteria criteria = session.createCriteria(LytFanli.class);
+			criteria.createCriteria("lytHuiyuanByTjrId").add(Restrictions.eq("hycardId", hycardId));
+			
+			if (type != null) {
+				criteria.add(Restrictions.eq("fanliType", type));
+			}
+			if(fanliState != null){
+				criteria.add(Restrictions.eq("fanliState", fanliState));
+			}
+			int count = criteria.list().size();
+			return count;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 
 }

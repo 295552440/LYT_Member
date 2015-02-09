@@ -49,12 +49,12 @@ public class LytHuiyuanDao extends BaseDao {
 		return lytHuiyuan;
 	}
 	/**
-	 * 通过
+	 * 通过姓名查询
 	 * @param name
 	 * @return
 	 */
 	public LytHuiyuan queryByName(String name) {
-		return (LytHuiyuan) hibernateTemplate.find("from LytHuiyuan l where l.id= ?", name).get(0);
+		return (LytHuiyuan) hibernateTemplate.find("from LytHuiyuan l where l.hyname= ?", name).get(0);
 	}
 	
 	/**
@@ -64,28 +64,19 @@ public class LytHuiyuanDao extends BaseDao {
 	 */
 	public LytHuiyuan queryByCardId(String id) {
 		LytHuiyuan lytHuiyuan = null;
-		Session session = sessionFactory.openSession();
-		Transaction tx=null;
+		Session session = sessionFactory.getCurrentSession();
 		try {
-			tx = session.beginTransaction();
-			
 			
 			String hql = "from LytHuiyuan as l where l.hycardId=?";
 			lytHuiyuan = (LytHuiyuan) session.createQuery(hql)
 				.setString(0, id)
 				.uniqueResult();
 			
-			
-			tx.commit();
 			return lytHuiyuan;
 		} catch (Exception e) {
-			tx.rollback();
 			e.printStackTrace();
 			return null;
-		}finally{
-			session.close();
-		}
-	
+		}	
 	}
 
 	/**

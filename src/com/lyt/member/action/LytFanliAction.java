@@ -108,9 +108,13 @@ public class LytFanliAction extends BaseAction {
 			session.put("hycardId", hycardId);
 			session.put("fanliState", fanliState);
 			
+
+		//if(!"all".equals(hycardId)){
+
 		if(hycardId.equals("all")){
 			
 		}else {
+
 			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
 			
 		}

@@ -37,6 +37,7 @@ public class LytFanliService {
 				LytFanli lytFanli  = new LytFanli();
 				lytFanli.setLytHuiyuanByTjrId(lytHuiyuanDao.queryByCardId(lytHuiyuan.getTjrId()));
 				lytFanli.setLytHuiyuanByBtjrId(lytHuiyuanDao.queryByCardId(lytHuiyuan.getHycardId()));
+				
 				lytFanliDao.addFanli(lytFanli);
 				return true;
 			}

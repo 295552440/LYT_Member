@@ -161,7 +161,7 @@ a:active {
 								<td><A href="admin/fanli.jsp" target="main">口碑传播奖</A></td>
 							</tr>
 							<tr>
-								<td><A href="admin/queryAllPhoto_ByPage" target="main">月任务奖</A>
+								<td><A href="<%=request.getContextPath()%>/admin/month.jsp" target="main">月任务奖</A>
 								</td>
 							</tr>
 						</table>

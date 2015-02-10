@@ -86,19 +86,19 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 		</tr>
 	</table>
 	<form action="addLytHuiyuan" method="post"
-		enctype="multipart/form-data" onsubmit="check();">
+		enctype="multipart/form-data" >
 		<table width="31%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">会员级别</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					name="lytHuiyuan.hyLevel" id="DC" type="radio" value="钻卡"
+					name="lytHuiyuan.hyLevel" id="DC" type="radio" value="钻卡" checked="checked"
 					onclick="gainHyFee('钻卡',1980);"><label for="DC">钻卡<u>1980￥</u></label>
-					<input name="lytHuiyuan.hyLevel" id="GC" type="radio" value="金卡"
+					<input name="lytHuiyuan.hyLevel" id="GC" type="radio"  value="金卡"
 					onclick="gainHyFee('金卡',990);"><label for="GC">金卡<u>990￥</u></label>
 					<input name="lytHuiyuan.hyLevel" id="SC" type="radio" value="银卡"
 					onclick="gainHyFee('银卡',198);"><label for="SC">银卡<u>198￥</u></label>
-					<input name="lytHuiyuan.hyFee" id="hyFee"
+					<input name="lytHuiyuan.hyFee" id="hyFee" value="1980"
 					 type="hidden"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
@@ -150,7 +150,7 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 				<td class="table-cell">合计金额</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
 					type="text" name="lytHuiyuan.totalMoney" id="totalMoney"
-					readonly="readonly"></td>
+					readonly="readonly" value="1980"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">收款人姓名</td>
@@ -170,7 +170,7 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 			</tr>
 		</table>
 		<p align="center">
-			<input type="submit" value="提交">
+			<input type="submit" onclick="return check();" value="提交">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="reset"
 				value="取消">
 		</p>

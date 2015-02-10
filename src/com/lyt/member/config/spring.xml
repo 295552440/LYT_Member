@@ -31,7 +31,7 @@
 				<value>com/lyt/member/entity/Admin.hbm.xml</value>
 				<value>com/lyt/member/entity/LytFanli.hbm.xml</value>
 				<value>com/lyt/member/entity/LytHuiyuan.hbm.xml</value>
-				
+				<value>com/lyt/member/entity/LytMonth.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

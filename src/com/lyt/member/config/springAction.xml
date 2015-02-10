@@ -24,6 +24,10 @@
 		<property name="lytHuiyuanService" ref="lytHuiyuanService" />
 		<property name="lytFanliService" ref="lytFanliService" />
 	</bean>
+	<bean id="lytMonthAction" class="com.lyt.member.action.LytMonthAction"
+		scope="prototype">
+		<property name="lytMonthService" ref="lytMonthService" />
+	</bean>
 
 
 

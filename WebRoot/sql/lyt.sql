@@ -47,3 +47,13 @@ alter table lyt_fanli add  fanliType int(1) comment'返利类型' after fanliMon
 alter table lyt_fanli drop foreign key FK_Relationship_btj;
 alter table lyt_fanli add constraint FK_Relationship_btj foreign key (btjrId)
       references lyt_huiyuan (id) on delete cascade on update cascade;
+<-- 增加月奖表 -->
+create table lyt_month(
+	id char(36) primary key comment'id,用uuid标识',
+	tjrCardId char(19) comment'推荐人卡号',
+	tjTime datetime comment'推荐时间',
+	fanliState int(1) default 0 comment'返利状态，0未返利，1返利，默认0',
+	fanLimoney decimal(10,2) comment'返利钱数',
+	fanliTime datetime comment'返利时间，等于返利状态标识为返利时的时间'
+);
+alter table lyt_month add  tjRenshu int comment'推荐人数' after tjTime;

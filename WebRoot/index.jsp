@@ -28,9 +28,10 @@
 	}
 
 	function gainTotalFee() {
-		var data = parseFloat($("#inforFee").val().trim());
+		var data = parseFloat($.trim($("#inforFee").val()));
 		data += parseFloat($("#hyFee").val());
 		$("#totalMoney").val(data);
+		alert(parseFloat($("#hyFee").val()));
 	}
 
 	function tijiao() {
@@ -46,7 +47,6 @@
 		var totalMoney = $.trim($("#totalMoney").val());
 		var skrName = $.trim($("#skrName").val());
 		var beizhu = $.trim($("#beizhu").val());
-		alert(hyname.length);
 		var params = {
 			"lytHuiyuan.hyLevel" : hyLevel,
 			"lytHuiyuan.phoneNumber" : phoneNumber,
@@ -143,7 +143,9 @@
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">推荐人卡号</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
-					type="text" name="tjrId" id='tjrId'></td>
+					type="text" name="tjrId" id='tjrId'>
+					<span id="err"></span>
+				</td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">银行账号</td>
@@ -166,7 +168,7 @@
 				<td class="table-cell">合计金额</td>
 				<td class="table-cell" style="padding:3px" align="left"><input
 					type="text" name="totalMoney" id="totalMoney" readonly="readonly"
-					value="1980"></td>
+					value=1980></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">收款人姓名</td>

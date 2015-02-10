@@ -14,7 +14,6 @@ function checkApply(hyname, phoneNumber, identifyId, tjrId, bankcardNumber,
 	}
 
 	var myreg0 = /^0?1[3|4|5|8][0-9]\d{8}$/;
-	;
 	if (!myreg0.test(phoneNumber)) {
 		alert('请输入有效的手机号码！');
 		return false;
@@ -23,7 +22,8 @@ function checkApply(hyname, phoneNumber, identifyId, tjrId, bankcardNumber,
 		alert("身份证号不能为空");
 		return false;
 	}
-	checkIdcard(num);
+	if (!checkIdcard(identifyId))
+		return false;
 	if (tjrId == "") {
 		alert("推荐人卡号不能为空");
 		return false;
@@ -37,13 +37,38 @@ function checkApply(hyname, phoneNumber, identifyId, tjrId, bankcardNumber,
 		alert("银行卡号不能为空");
 		return false;
 	}
-	luhmCheck(bankcardNumber);
+	if (!luhmCheck(bankcardNumber))
+		return false;
 	if (shouhuoAddress == "") {
 		alert("收货地址不能为空");
 		return false;
 	}
-
+	if (!checkHycard(tjrId))
+		return false;
 	return true;
+}
+
+function checkHycard(hyCardId) {
+	$.ajax({
+		url : "main/checkHuiyuanCard",
+		type : "post",
+		data : {
+			"lytHuiyuan.tjrId" : tjrId
+		},
+		dataType : "json",
+		success : function(data) {
+			var msg = data.message;
+			if (msg == "4") {
+				$("#err").html("系统不存在该会员卡号");
+				return false;
+			}
+			return true;
+		},
+		error : function() {
+			alert("服务器异常");
+			return false;
+		}
+	});
 }
 
 function checkIdcard(num) {
@@ -180,11 +205,11 @@ function luhmCheck(bankno) {
 	var luhm = 10 - k;
 
 	if (lastNum == luhm) {
-		/*$("#banknoInfo").html("Luhm验证通过");*/
-		alert("银行卡号验证通过");
+		/* $("#banknoInfo").html("Luhm验证通过"); */
+		// alert("银行卡号验证通过");
 		return true;
 	} else {
-		/*$("#banknoInfo").html("银行卡号必须符合Luhm校验");*/
+		/* $("#banknoInfo").html("银行卡号必须符合Luhm校验"); */
 		alert("银行卡号验证失败");
 		return false;
 	}

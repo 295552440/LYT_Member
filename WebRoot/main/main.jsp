@@ -65,11 +65,11 @@
 				<td><span class="oper-bar-text"> 类型：</span><span
 					class="title_bar"><select name="fanliType" id="fanliType"
 						class="form_select">
-							<option value="" selected>返利的类型</option>
-							<option value="0">口碑传播奖</option>
-							<option value="1">月任务奖</option>
-					</select> </span></td>
-				<td><span class="oper-bar-text"> 状态：</span><span
+							<!-- <option value="" >返利的类型</option> -->
+							<option value="0" selected>口碑传播奖</option>
+						<!-- 	<option value="1">月任务奖</option> -->
+					</select> </span>
+				<span class="oper-bar-text"> 状态：</span><span
 					class="title_bar"><select name="fanliState" id="fanliState"
 						class="form_select">
 							<option value="" selected>返利的状态</option>
@@ -157,7 +157,7 @@
 			</tr>
 			<c:if test="${st.last}">
 				<tr>
-					<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
+					<td width="20%" align="center">&nbsp;<span style="color: red">本页共
 							${st.count }条记录！ </span>
 					</td>
 				</tr>

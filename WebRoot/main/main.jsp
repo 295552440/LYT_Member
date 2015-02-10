@@ -28,7 +28,7 @@
 		//alert(fanliType);
 		//alert(fanliState);
 		if (hycardId == "") {
-			alert("id不能为空");
+			alert("会员卡号不能为空");
 			$("#msgkey").innerHTML = "输入不能为空！";
 			return false;
 		} else {
@@ -153,7 +153,6 @@
 				</c:if> <c:if test="${flset.fanliType == 1}">
 					月任务奖
 				</c:if></td>
-				<td class="table-cell">${flset.fanliTime }</td>
 				<td class="table-cell">${flset.fanliTime }</td>
 			</tr>
 			<c:if test="${st.last}">

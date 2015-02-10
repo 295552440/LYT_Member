@@ -1,7 +1,8 @@
 package com.lyt.member.action;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -380,6 +381,7 @@ public class LytHuiyuanAction extends BaseAction {
 	public String updateState() throws Exception {
 
 		lytHuiyuanService.updateState(lytHuiyuan);
+		lytFanliService.addFanli(lytHuiyuan);
 
 		pageMethod = "555";// 防止page被刷新为0
 		// 判断条件，返回原来的页面
@@ -397,9 +399,13 @@ public class LytHuiyuanAction extends BaseAction {
 		return SUCCESS;
 
 	}
-	
+	/**
+	 * 管理员手动添加会员
+	 * @return
+	 */
 	public String adminAddLytHuiyuan() {
 		lytHuiyuan.setHyState(1);
+		lytHuiyuan.setApplyTime(new Timestamp(new Date().getTime()));
 		message = lytHuiyuanService.addLytHuiyuan(lytHuiyuan);
 		lytFanliService.addFanli(lytHuiyuan);
 		if (message.equals("1")) {
@@ -413,7 +419,10 @@ public class LytHuiyuanAction extends BaseAction {
 		session.put("order", "date_desc");
 		return SUCCESS;
 	}
-	
+	/**
+	 * 普通用户申请会员
+	 * @return
+	 */
 	public String lytHuiyuanApply() {
 		lytHuiyuan.setHyState(0);
 		message = lytHuiyuanService.addLytHuiyuan(lytHuiyuan);

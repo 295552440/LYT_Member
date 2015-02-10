@@ -76,7 +76,13 @@ public class LytFanliDao extends BaseDao {
 			tx= session.beginTransaction();
 //			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.hycardId =? ORDER BY fanliTime desc";
 			Criteria criteria = session.createCriteria(LytFanli.class);
-			criteria.createCriteria("lytHuiyuanByTjrId").add(Restrictions.eq("hycardId", hycardId));
+			
+		
+				
+if(hycardId!="all"){
+	criteria.createCriteria("lytHuiyuanByTjrId").add(Restrictions.eq("hycardId", hycardId));
+}
+		
 			
 			if (type != null) {
 				criteria.add(Restrictions.eq("fanliType", type));
@@ -113,8 +119,10 @@ public class LytFanliDao extends BaseDao {
 		try {
 //			String hql = "from LytFanli as l where l.fanliType = ? and l.lytHuiyuanByTjrId.hycardId =? ORDER BY fanliTime desc";
 			Criteria criteria = session.createCriteria(LytFanli.class);
-			criteria.createCriteria("lytHuiyuanByTjrId").add(Restrictions.eq("hycardId", hycardId));
 			
+if(hycardId!="all"){
+criteria.createCriteria("lytHuiyuanByTjrId").add(Restrictions.eq("hycardId", hycardId));
+}
 			if (type != null) {
 				criteria.add(Restrictions.eq("fanliType", type));
 			}

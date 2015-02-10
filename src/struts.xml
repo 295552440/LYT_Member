@@ -129,7 +129,19 @@
 		<action name="queryMonthByOrder" class="lytMonthAction" method="queryMonthByOrder">
 			<result name="success">/admin/month.jsp</result>
 		</action>
+		<action name="queryMonthByState" class="lytMonthAction" method="queryMonthByState">
+			<result name="success">/admin/month.jsp</result>
+		</action>
+		<action name="queryMonthBySearch" class="lytMonthAction"
+			method="queryMonthBySearch">
+			<result name="success">/admin/month.jsp</result>
+		</action>
+
+
+
+
 	</package>
+
 
 	<!-- 会员 -->
 

@@ -158,7 +158,7 @@ a:active {
 					<div align="center">
 						<table cellSpacing="3" cellPadding="0" width="130">
 							<tr>
-								<td><A href="admin/queryAllAblum" target="main">口碑传播奖</A></td>
+								<td><A href="admin/fanli.jsp" target="main">口碑传播奖</A></td>
 							</tr>
 							<tr>
 								<td><A href="<%=request.getContextPath()%>/admin/month.jsp" target="main">月任务奖</A>

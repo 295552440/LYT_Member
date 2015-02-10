@@ -28,7 +28,7 @@
 		//alert(fanliType);
 		//alert(fanliState);
 		if (hycardId == "") {
-			alert("id不能为空");
+			alert("卡号不能为空");
 			$("#msgkey").innerHTML = "输入不能为空！";
 			return false;
 		} else {
@@ -37,6 +37,7 @@
 			return true;
 		}
 	}
+	
     
     </script>
 </head>
@@ -62,13 +63,14 @@
 						name="search_list" id="search_list">
 							<option value="id">会员卡号</option>
 					</select> <input name="hycardId" type="text" id="hycardId" size="21" /> </span></td>
-				<td><span class="oper-bar-text"> 类型：</span><span
+				<td>
+		<span class="oper-bar-text"> 类型：</span><span
 					class="title_bar"><select name="fanliType" id="fanliType"
 						class="form_select">
 							<!-- <option value="" >返利的类型</option> -->
 							<option value="0" selected>口碑传播奖</option>
-						<!-- 	<option value="1">月任务奖</option> -->
-					</select> </span>
+							<!-- <option value="1">月任务奖</option> -->
+					</select> </span> 
 				<span class="oper-bar-text"> 状态：</span><span
 					class="title_bar"><select name="fanliState" id="fanliState"
 						class="form_select">
@@ -134,6 +136,7 @@
 			<td class="table-titlebar">返利金额</td>
 			<td class="table-titlebar">返利类型</td>
 			<td class="table-titlebar">返利时间</td>
+			<td class="table-titlebar">操作</td>
 		</tr>
 		<c:forEach items="${lytFanlis}" var="flset" varStatus="st">
 			<tr>
@@ -154,11 +157,12 @@
 					月任务奖
 				</c:if></td>
 				<td class="table-cell">${flset.fanliTime }</td>
-				<td class="table-cell">${flset.fanliTime }</td>
+				
+				<td class="table-cell"><a href="queryByTypeHyPageUp?currentPage=${currentPage}&flid=${flset.id}">修改返利状态</a></td>
 			</tr>
 			<c:if test="${st.last}">
 				<tr>
-					<td width="20%" align="center">&nbsp;<span style="color: red">本页共
+					<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
 							${st.count }条记录！ </span>
 					</td>
 				</tr>

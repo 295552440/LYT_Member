@@ -24,7 +24,9 @@ public class Pageliu {
 		this.totalPages = totalPages;
 	}
 	public int getTotalPage(int totalrows){
-		if(totalrows%PAGE_SIZE==0){
+		if (totalrows<=10) {
+			totalPages=1;
+		}else if(totalrows%PAGE_SIZE==0){
 			 totalPages=totalrows/PAGE_SIZE;
 			 
 		 }else if(totalrows%PAGE_SIZE!=0){

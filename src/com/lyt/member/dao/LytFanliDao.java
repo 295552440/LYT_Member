@@ -60,6 +60,15 @@ public class LytFanliDao extends BaseDao {
 			return lytFanlis;
 	}
 	
+	/**
+	 * 动态条件查询加分页
+	 * @param fanliState
+	 * @param type
+	 * @param hycardId
+	 * @param first
+	 * @param maxr
+	 * @return
+	 */
 	public List<LytFanli> queryByC(Integer fanliState,Integer type,String hycardId,Integer first,Integer maxr) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
@@ -92,6 +101,13 @@ public class LytFanliDao extends BaseDao {
 		}
 		
 	}
+	/**
+	 * 分页的总记录数
+	 * @param fanliState
+	 * @param type
+	 * @param hycardId
+	 * @return
+	 */
 	public int queryByTotalRows(Integer fanliState,Integer type,String hycardId) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
@@ -113,5 +129,26 @@ public class LytFanliDao extends BaseDao {
 		}
 	}
 	
+	/**
+	 * 更新返利状态
+	 * @param flid
+	 * @return
+	 */
+	public boolean updateState(String flid) {
+		try {
+			
+			LytFanli lytFanli = hibernateTemplate.get(LytFanli.class, flid);
+			if (lytFanli.getFanliState()==0) {
+				lytFanli.setFanliState(1);
+			}else if (lytFanli.getFanliState()==1) {
+				lytFanli.setFanliState(0);
+			}
+			hibernateTemplate.update(lytFanli);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return false;
+		}
+	}
 
 }

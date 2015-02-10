@@ -51,5 +51,13 @@ public class LytFanliServiceTest {
 			System.out.println(lytHuiyuan.getId());
 			System.out.println(lytHuiyuan.getHyname());
 	}
+	@Test
+	public void testUpdate() {
+		LytFanli lytFanli = new LytFanli();
+		lytFanliDao.updateState("02");
+		
+		System.out.println(lytFanli.getId());
+		System.out.println(lytFanli.getFanliState());
+	}
 
 }

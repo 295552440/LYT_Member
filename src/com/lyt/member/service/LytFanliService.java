@@ -57,13 +57,37 @@ public class LytFanliService {
 		return lytFanliDao.queryAll(hql);
 	}
 	
+	/**
+	 * 动态多条件查询加分页
+	 * @param type
+	 * @param hycardId
+	 * @param fanliState
+	 * @param currentPage
+	 * @return
+	 */
 	public List<LytFanli> queryByTypeHy(Integer type,String hycardId,Integer fanliState,Integer currentPage) {
 		currentPage = (currentPage-1)*Pageliu.PAGE_SIZE;
 		return lytFanliDao.queryByC(fanliState, type, hycardId,currentPage,Pageliu.PAGE_SIZE);
 	}
+	
+	/**
+	 * 分页的总行数
+	 * @param type
+	 * @param hycardId
+	 * @param fanliState
+	 * @return
+	 */
 	public int queryByTotalRows(Integer type,String hycardId,Integer fanliState) {
 		int totalRows = lytFanliDao.queryByTotalRows(fanliState, type, hycardId);
 		return totalRows;
+	}
+	/**
+	 * 更新返利状态
+	 * @param flid
+	 * @return
+	 */
+	public boolean updateState(String flid) {
+		return lytFanliDao.updateState(flid);
 	}
 	
 }

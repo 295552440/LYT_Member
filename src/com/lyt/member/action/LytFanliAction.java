@@ -125,7 +125,7 @@ public class LytFanliAction extends BaseAction {
 		System.out.println(lytFanlis.size());
 		pageliu.setTotalRows(count);
 		pageliu.setTotalPages(pageliu.getTotalPage(count));
-		
+		currentPage=1;
 		return SUCCESS;
 		
 	}
@@ -178,6 +178,13 @@ public class LytFanliAction extends BaseAction {
 		if (lytFanliService.updateState(flid)) {
 			
 			lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+			if(lytFanlis.isEmpty()){
+				if (currentPage==1) {
+					lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+				}
+				currentPage=currentPage-1;
+				lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+			}
 			int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
 			pageliu.setTotalRows(count);
 			pageliu.setTotalPages(pageliu.getTotalPage(count));

@@ -24,7 +24,33 @@
 		location.href = "queryMonthByOrder?order=" + order;
 
 	}
+	//queryByState
+	function queryByState(state) {
+		location.href = "queryMonthByState?state=" + state;
+	}
 	
+	
+	//搜索查询	
+	function queryBySearch() {
+
+		var searchInput = $("#key").val();
+		if (searchInput == "") {
+			//alert("id不能为空");
+			$("#msgkey").html("输入不能为空！");
+			return false;
+		}
+
+		var searchBy =$("#search_list").val();
+		/* if (searchBy == "id" & isNaN(searchInput)) {
+			//alert("id不能为空");
+			$("msgkey").innerHTML = "Id输入必须为数字！";
+			return false;
+		} */
+
+		location.href = "queryMonthBySearch?searchBy=" + searchBy + "&searchInput="
+				+ searchInput;
+		return true;
+	}
 	
 	
 	
@@ -101,13 +127,15 @@
 					</select> </span></td>
 			
 			
-				<td width="35%" align="right"><span class="oper-bar-text">搜索查询： <select
-						name="search_list" id="search_list">
+		
+					<td width="35%" align="right"><span class="oper-bar-text">搜索查询：
+						<select name="search_list" id="search_list">
 							<option value="id">会员卡号</option>
-					</select> <input name="hycardId" type="text" id="hycardId" size="21" /> </span>
-				<input name="Submit5" type="button" class="form-buttun"
-					onclick="return queryByTypeHy(1)" value="搜索" />
-				</td>
+							<!-- <option value="name">会员姓名</option>
+ -->
+					</select> <input name="key" type="text" id="key" size="21" onKeyDown="">
+						<input name="Submit5" type="button" class="form-buttun"
+						onClick="return queryBySearch()" value="搜索"> </span></td>
 			</tr>
 		</table>
 	</form>

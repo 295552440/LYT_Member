@@ -38,7 +38,6 @@ public class LytFanliServiceTest {
 	public void testQueryByType() {
 		List<LytFanli> lytFanlis = new ArrayList<LytFanli>();
 		lytFanlis= lytFanliDao.queryByC(0, 0, "all", 0, 10);
-		System.out.println(lytFanlis);
 		for(LytFanli lytFanli :lytFanlis){
 			System.out.println(lytFanli.getId());
 			System.out.println(lytFanli.getFanliMoney());

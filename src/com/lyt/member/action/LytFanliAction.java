@@ -108,8 +108,11 @@ public class LytFanliAction extends BaseAction {
 			session.put("hycardId", hycardId);
 			session.put("fanliState", fanliState);
 			
-		if(hycardId!="all"){
+		if(hycardId.equals("all")){
+			
+		}else {
 			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+			
 		}
 		
 		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,1);
@@ -133,7 +136,7 @@ public class LytFanliAction extends BaseAction {
 			fanliState =   (Integer) session.get("fanliState");
 		}
 			
-		if(hycardId!="all"){
+		if(!"all".equals(hycardId)){
 			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
 		}
 		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
@@ -165,8 +168,9 @@ public class LytFanliAction extends BaseAction {
 			fanliType =  (Integer) session.get("fanliType");
 			fanliState =   (Integer) session.get("fanliState");
 		}
-		
-		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		if(!"all".equals(hycardId)){
+			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		}
 		if (lytFanliService.updateState(flid)) {
 			
 			lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);

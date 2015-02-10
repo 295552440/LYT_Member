@@ -158,6 +158,8 @@
 
 		</table>
 	</c:if>
+	<c:if test="${empty lytHuiyuan }">
+	</c:if>
 	<table width="99%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="table-frame">
 		<tr class="table_title">
@@ -202,7 +204,7 @@
 			</c:if>
 		</c:forEach>
 	</table>
-	<c:if test="${ not empty lytHuiyuan }">
+	<c:if test="${ not empty lytFanlis }">
 		<table width="99%" border="0" align="center" cellpadding="0"
 			cellspacing="0">
 			<tr>

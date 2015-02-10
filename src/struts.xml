@@ -13,8 +13,7 @@
 		<!-- 添加拦截器 -->
 		<interceptors>
 			<!-- 添加登陆拦截器 -->
-			<interceptor name="loginValidate"
-				class="com.lyt.member.util.LoginValidate" />
+			<interceptor name="loginValidate" class="com.lyt.member.util.LoginValidate" />
 			<!-- 新建一个栈，把登陆拦截器和默认的栈放进去 -->
 			<interceptor-stack name="mystack">
 				<interceptor-ref name="defaultStack" />
@@ -56,15 +55,13 @@
 			<result type="json">
 				<param name="includeProperties">message</param>
 			</result>
-       </action>
-	
+		</action>
 
 
 
 
 
-
-	<!-- LytHuiyuan -->
+		<!-- LytHuiyuan -->
 
 		<action name="showMemberList" class="lytHuiyuanAction" method="showMemberList">
 
@@ -91,7 +88,6 @@
 
 
 
-	
 
 
 
@@ -108,12 +104,44 @@
 			</result>
 		</action>
 
-	<!-- 月任务奖 -->
 
-    <action name="queryMonthByOrder" class="lytMonthAction" method="queryMonthByOrder">
+		<!-- 前台口碑奖 -->
+		<action name="queryByTypeHyPageUp" class="com.lyt.member.action.LytFanliAction"
+			method="queryByTypeHyPageUp">
+			<result name="error">/admin/fanli.jsp</result>
+			<result name="success">/admin/fanli.jsp</result>
+
+		</action>
+		<action name="queryByTypeHy" class="com.lyt.member.action.LytFanliAction"
+			method="queryByTypeHy">
+			<result name="error">/admin/fanli.jsp</result>
+			<result name="success">/admin/fanli.jsp</result>
+
+		</action>
+		<action name="queryByTypeHyPage" class="com.lyt.member.action.LytFanliAction"
+			method="queryByTypeHyPage">
+			<result name="error">/admin/fanli.jsp</result>
+			<result name="success">/admin/fanli.jsp</result>
+		</action>
+
+		<!-- 月任务奖 -->
+
+		<action name="queryMonthByOrder" class="lytMonthAction" method="queryMonthByOrder">
 			<result name="success">/admin/month.jsp</result>
-	</action>
+		</action>
+		<action name="queryMonthByState" class="lytMonthAction" method="queryMonthByState">
+			<result name="success">/admin/month.jsp</result>
+		</action>
+		<action name="queryMonthBySearch" class="lytMonthAction"
+			method="queryMonthBySearch">
+			<result name="success">/admin/month.jsp</result>
+		</action>
+
+
+
+
 	</package>
+
 
 	<!-- 会员 -->
 
@@ -128,29 +156,29 @@
 
 		<action name="lytHuiyuanApply" class="com.lyt.member.action.LytHuiyuanAction"
 			method="lytHuiyuanApply">
-			<!-- <result name="error" type="redirect">
-				<param name="location">/index.jsp</param>
-				<param name="msg">${message}</param>
-			</result> 
-			<result name="success" type="redirect">/index.jsp?msg=${message }
-				 <param name="location">/index.jsp</param>
-				<param name="msg">${message}</param>
-			</result>
-			<result name="input" type="redirect">
-				/admin/addMember.jsp?msg=${message}
-				<param name="location">/index.jsp</param>
-				<param name="msg">${message}</param>
-			</result> -->
+			<!-- <result name="error" type="redirect"> <param name="location">/index.jsp</param> 
+				<param name="msg">${message}</param> </result> <result name="success" type="redirect">/index.jsp?msg=${message 
+				} <param name="location">/index.jsp</param> <param name="msg">${message}</param> 
+				</result> <result name="input" type="redirect"> /admin/addMember.jsp?msg=${message} 
+				<param name="location">/index.jsp</param> <param name="msg">${message}</param> 
+				</result> -->
 			<result type="json">
 				<param name="includeProperties">message</param>
 			</result>
-			
+
 
 		</action>
-		<action name="queryByTypeHy" class="com.lyt.member.action.LytFanliAction" method="queryByTypeHy">
+		<!-- 前台口碑奖 -->
+		<action name="queryByTypeHy" class="com.lyt.member.action.LytFanliAction"
+			method="queryByTypeHy">
 			<result name="error">/main/main.jsp</result>
 			<result name="success">/main/main.jsp</result>
-			
+
+		</action>
+		<action name="queryByTypeHyPage" class="com.lyt.member.action.LytFanliAction"
+			method="queryByTypeHyPage">
+			<result name="error">/main/main.jsp</result>
+			<result name="success">/main/main.jsp</result>
 		</action>
 
 

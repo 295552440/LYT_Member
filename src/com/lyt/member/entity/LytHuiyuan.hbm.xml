@@ -88,7 +88,7 @@
 				<comment>备注</comment>
 			</column>
 		</property>
-		<set name="lytFanlisForTjrId" inverse="true" lazy="false">
+		<set name="lytFanlisForTjrId" inverse="true" lazy="true">
 			<key>
 				<column name="tjrId" length="36">
 					<comment>推荐人卡号</comment>
@@ -96,7 +96,7 @@
 			</key>
 			<one-to-many class="com.lyt.member.entity.LytFanli" />
 		</set>
-		<set name="lytFanlisForBtjrId" inverse="true" lazy="false">
+		<set name="lytFanlisForBtjrId" inverse="true" lazy="true">
 			<key>
 				<column name="btjrId" length="36">
 					<comment>被推荐人卡号</comment>

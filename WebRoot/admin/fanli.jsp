@@ -28,17 +28,37 @@
 		//alert(fanliType);
 		//alert(fanliState);
 		if (hycardId == "") {
-			alert("会员卡号不能为空");
+			alert("卡号不能为空");
 			$("#msgkey").innerHTML = "输入不能为空！";
 			return false;
 		} else {
 			window.location.href = "queryByTypeHy?hycardId=" + hycardId
-					+ "&fanliType=" + fanliType +"&fanliState=" +fanliState;
+					+ "&fanliType=" + fanliType + "&fanliState=" + fanliState;
 			return true;
 		}
 	}
-    
-    </script>
+	
+	function queryByOrder(fanliState){
+	
+		var hycardId = "all";
+		var fanliType = 0;
+		//var fanliState = $("#list_all").val();
+		//alert(hycardId);
+		//alert(fanliType);
+		//alert(fanliState);
+	
+			window.location.href = "queryByTypeHy?hycardId=" + hycardId
+					+ "&fanliType=" + fanliType + "&fanliState=" + fanliState;
+			
+		
+	
+	
+	}
+	
+	
+	
+	
+</script>
 </head>
 <body>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,7 +68,7 @@
 					cellspacing="0">
 					<tr>
 						<td class="title-bar-title-icon">&nbsp;</td>
-						<td class="title-bar-text">用户返利查询</td>
+						<td class="title-bar-text">返现管理--口碑传播奖</td>
 					</tr>
 				</table></td>
 		</tr>
@@ -58,26 +78,41 @@
 		<table width="99%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="oper-bar">
 			<tr>
-				<td align="right"><span class="oper-bar-text">搜索查询： <select
-						name="search_list" id="search_list">
+
+
+
+				<td width="30%"><span class="oper-bar-text"> 按返现状态查询全部：</span><span
+					class="title_bar"><select name="blog_order_list" id="list_all"
+						class="form_select" onChange="queryByOrder(this.value)">
+							<!-- <option value="" selected>排列顺序</option>
+							<option value="date_desc">推荐时间-降序</option> -->
+							<option value="date">推荐时间-升序</option>
+							<option value="1">已返现</option>
+							<option value="0">未返现</option>
+							<!-- <option value="id_desc">会员卡号-降序</option>
+							<option value="id">会员卡号-升序</option> -->
+					</select> </span>
+				</td>
+
+
+				<td align="right" width="30%"><span class="oper-bar-text">搜索查询：
+						<select name="search_list" id="search_list">
 							<option value="id">会员卡号</option>
 					</select> <input name="hycardId" type="text" id="hycardId" size="21" /> </span></td>
-				<td><span class="oper-bar-text"> 类型：</span><span
-					class="title_bar"><select name="fanliType" id="fanliType"
-						class="form_select">
+				<td align="left" width="40%"><span class="oper-bar-text">
+						&nbsp;类型：</span><span class="title_bar"><select name="fanliType"
+						id="fanliType" class="form_select">
 							<!-- <option value="" >返利的类型</option> -->
 							<option value="0" selected>口碑传播奖</option>
-						<!-- 	<option value="1">月任务奖</option> -->
-					</select> </span>
-				<span class="oper-bar-text"> 状态：</span><span
-					class="title_bar"><select name="fanliState" id="fanliState"
-						class="form_select">
-							<option value="" selected>返利的状态</option>
+							<!-- <option value="1">月任务奖</option> -->
+					</select> </span> <span class="oper-bar-text"> 返利状态：</span><span class="title_bar"><select
+						name="fanliState" id="fanliState" class="form_select">
+							<option value="" selected>全部</option>
 							<option value="0">未返利</option>
-							<option value="1">返利</option>
-					</select> </span></td>
-				<td><input name="Submit5" type="button" class="form-buttun"
+							<option value="1">已返利</option>
+					</select> </span><input name="Submit5" type="button" class="form-buttun"
 					onclick="return queryByTypeHy()" value="搜索" /></td>
+				 
 			</tr>
 		</table>
 	</form>
@@ -123,69 +158,74 @@
 
 		</table>
 	</c:if>
+	<c:if test="${empty lytHuiyuan }">
+	</c:if>
 	<table width="99%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="table-frame">
 		<tr class="table_title">
-			<td class="table-titlebar">推荐人编号</td>
+			<td class="table-titlebar">推荐人卡号</td>
 			<td class="table-titlebar">被推荐人卡号</td>
-			<td class="table-titlebar">推荐的时间</td>
+			<td class="table-titlebar">推荐时间</td>
 
 			<td class="table-titlebar">返利状态</td>
 			<td class="table-titlebar">返利金额</td>
 			<td class="table-titlebar">返利类型</td>
 			<td class="table-titlebar">返利时间</td>
+			<td class="table-titlebar">操作</td>
 		</tr>
 		<c:forEach items="${lytFanlis}" var="flset" varStatus="st">
 			<tr>
 				<td class="table-cell">${flset.lytHuiyuanByTjrId.hycardId }</td>
 				<td class="table-cell">${flset.lytHuiyuanByBtjrId.hycardId }</td>
 				<td class="table-cell">${flset.tjTime }</td>
-				<td class="table-cell">
-				<c:if test="${flset.fanliState == 0}">
+				<td class="table-cell"><c:if test="${flset.fanliState == 0}">
 					未返利
 					</c:if> <c:if test="${flset.fanliState == 1}">
 					返利
 				</c:if></td>
 				<td class="table-cell">${flset.fanliMoney }</td>
-				<td class="table-cell">
-				<c:if test="${flset.fanliType == 0}">
+				<td class="table-cell"><c:if test="${flset.fanliType == 0}">
 					口碑传播奖
 				</c:if> <c:if test="${flset.fanliType == 1}">
 					月任务奖
 				</c:if></td>
 				<td class="table-cell">${flset.fanliTime }</td>
+
+				<td class="table-cell"><a
+					href="queryByTypeHyPageUp?currentPage=${currentPage}&flid=${flset.id}">修改返利状态</a>
+				</td>
 			</tr>
 			<c:if test="${st.last}">
 				<tr>
-					<td width="20%" align="center">&nbsp;<span style="color: red">本页共
+					<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
 							${st.count }条记录！ </span>
 					</td>
 				</tr>
 			</c:if>
 		</c:forEach>
 	</table>
-	<c:if test="${ not empty lytHuiyuan }">
-	<table width="99%" border="0" align="center" cellpadding="0"
-		cellspacing="0">
-		<tr>
-			<td class="paeg_bar"><a> 第${currentPage} 页/
-					共${pageliu.totalPages } 页(共 ${pageliu.totalRows } 条) </a> [<span
-				class="list_text"><a href="queryByTypeHyPage?currentPage=1">首页</a>
-			</span>] <c:if test="${currentPage== 1 }">
+	<c:if test="${ not empty lytFanlis }">
+		<table width="99%" border="0" align="center" cellpadding="0"
+			cellspacing="0">
+			<tr>
+				<td class="paeg_bar"><a> 第${currentPage} 页/
+						共${pageliu.totalPages } 页(共 ${pageliu.totalRows } 条) </a> [<span
+					class="list_text"><a href="queryByTypeHyPage?currentPage=1">首页</a>
+				</span>] <c:if test="${currentPage== 1 }">
 					[<span class="list_text"> <a>已是首页</a> </span>] 
 			</c:if> <c:if test="${currentPage> 1 }">
 					[<span class="list_text"> <a
-						href="queryByTypeHyPage?currentPage=${currentPage-1 }">上一页</a> </span>] 
+							href="queryByTypeHyPage?currentPage=${currentPage-1 }">上一页</a> </span>] 
 			</c:if> <c:if test="${currentPage==pageliu.totalPages }">
 				[<span class="list_text"> <a>已是末页</a> </span>]
 			</c:if> <c:if test="${currentPage<pageliu.totalPages}">
 				[<span class="list_text"> <a
-						href="queryByTypeHyPage?currentPage=${currentPage+1 }">下一页</a> </span>]
+							href="queryByTypeHyPage?currentPage=${currentPage+1 }">下一页</a> </span>]
 				</c:if> [<span class="list_text"><a
-					href="queryByTypeHyPage?currentPage=${pageliu.totalPages }">末页</a> </span>]
-				&nbsp;&nbsp;</td>
-		</tr>
-	</table>
+						href="queryByTypeHyPage?currentPage=${pageliu.totalPages }">末页</a>
+				</span>] &nbsp;&nbsp;</td>
+			</tr>
+		</table>
 	</c:if>
 	<table width="99%" border="0" align="center" cellpadding="0"
 		cellspacing="0">

@@ -96,19 +96,100 @@ public class LytFanliAction extends BaseAction {
 
 
 	/**
-	 * 通过会员id,返利的类型，返利的状态，查
+	 * 通过会员id,返利的类型，返利的状态，第一次查询
 	 * @return
 	 */
 	public String queryByTypeHy() {
 		
+	System.out.println(fanliState);
+	System.out.println(hycardId);
+	System.out.println(fanliType);
+			session.put("fanliType", fanliType);
+			session.put("hycardId", hycardId);
+			session.put("fanliState", fanliState);
+			
+
+		//if(!"all".equals(hycardId)){
+
+		if(hycardId.equals("all")){
+			
+		}else {
+
+			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+			
+		}
+		
+		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,1);
+		int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
+		
+		System.out.println(lytFanlis.size());
+		pageliu.setTotalRows(count);
+		pageliu.setTotalPages(pageliu.getTotalPage(count));
+		currentPage=1;
+		return SUCCESS;
+		
+	}
+	/**
+	 * 带查询条件加上分页
+	 * @return
+	 */
+	public String queryByTypeHyPage() {
+		if (session.get("hycardId")!=null) {
+			hycardId =  (String) session.get("hycardId");
+			fanliType =  (Integer) session.get("fanliType");
+			fanliState =   (Integer) session.get("fanliState");
+		}
+			
+		if(!"all".equals(hycardId)){
+			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		}
 		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
-		lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
 		int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
 		pageliu.setTotalRows(count);
 		pageliu.setTotalPages(pageliu.getTotalPage(count));
-		if (lytHuiyuan!=null) {
-			session.put("lytHuiyuan", lytHuiyuan);
+		
+		return SUCCESS;
+		
+	}
+	
+	private String flid;
+	
+	public String getFlid() {
+		return flid;
+	}
+
+	public void setFlid(String flid) {
+		this.flid = flid;
+	}
+
+	/**
+	 * 带分页加条件去更新
+	 * @return
+	 */
+	public String queryByTypeHyPageUp() {
+		if (session.get("hycardId")!=null) {
+			hycardId =  (String) session.get("hycardId");
+			fanliType =  (Integer) session.get("fanliType");
+			fanliState =   (Integer) session.get("fanliState");
 		}
+		if(!"all".equals(hycardId)){
+			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
+		}
+		if (lytFanliService.updateState(flid)) {
+			
+			lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+			if(lytFanlis.isEmpty()){
+				if (currentPage==1) {
+					lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+				}
+				currentPage=currentPage-1;
+				lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);
+			}
+			int count = lytFanliService.queryByTotalRows(fanliType, hycardId, fanliState);
+			pageliu.setTotalRows(count);
+			pageliu.setTotalPages(pageliu.getTotalPage(count));
+		}
+		
 		return SUCCESS;
 		
 	}

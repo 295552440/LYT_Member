@@ -2,6 +2,8 @@ package com.lyt.member.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import com.lyt.member.dao.LytFanliDao;
 import com.lyt.member.dao.LytHuiyuanDao;
 import com.lyt.member.entity.LytFanli;
@@ -10,19 +12,13 @@ import com.lyt.member.util.Pageliu;
 
 public class LytFanliService {
 
+	@Resource(name="lytFanliDao")
 	private LytFanliDao lytFanliDao;
+	@Resource(name="lytHuiyuanDao")
 	private LytHuiyuanDao lytHuiyuanDao;
-
-	public LytFanliDao getLytFanliDao() {
-		return lytFanliDao;
-	}
 
 	public void setLytFanliDao(LytFanliDao lytFanliDao) {
 		this.lytFanliDao = lytFanliDao;
-	}
-	
-	public LytHuiyuanDao getLytHuiyuanDao() {
-		return lytHuiyuanDao;
 	}
 
 	public void setLytHuiyuanDao(LytHuiyuanDao lytHuiyuanDao) {

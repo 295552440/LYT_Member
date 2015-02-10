@@ -108,7 +108,7 @@ public class LytFanliAction extends BaseAction {
 			session.put("hycardId", hycardId);
 			session.put("fanliState", fanliState);
 			
-		if(hycardId!="all"){
+		if(!"all".equals(hycardId)){
 			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
 		}
 		
@@ -133,7 +133,7 @@ public class LytFanliAction extends BaseAction {
 			fanliState =   (Integer) session.get("fanliState");
 		}
 			
-		if(hycardId!="all"){
+		if(!"all".equals(hycardId)){
 			lytHuiyuan = lytHuiyuanService.queryByCardId(hycardId);
 		}
 		lytFanlis = lytFanliService.queryByTypeHy(fanliType, hycardId,fanliState,currentPage);

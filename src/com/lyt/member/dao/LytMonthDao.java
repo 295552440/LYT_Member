@@ -46,7 +46,21 @@ public class LytMonthDao extends BaseDao{
 	}
 
 
+	public List<LytMonth> queryByCardId(String cardId) {
+		String hql = "from LytMonth where tjrCardId=?";
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.setString(0, cardId);
+		return query.list();
+	}
+	
+	public void addLytMonth(LytMonth lytMonth) {
+		hibernateTemplate.save(lytMonth);
+	}
 
+	public void updateRenShu(LytMonth lytMonth) {
+		hibernateTemplate.update(lytMonth);
+	}
 
 
 }

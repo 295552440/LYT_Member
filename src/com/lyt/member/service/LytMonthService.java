@@ -9,46 +9,48 @@ import com.lyt.member.entity.LytMonth;
 import com.lyt.member.util.Page;
 
 public class LytMonthService {
-private LytMonthDao lytMonthDao;
-public static Page page;// 页面
-public LytMonthDao getLytMonthDao() {
-	return lytMonthDao;
-}
+	private LytMonthDao lytMonthDao;
+	public static Page page;// 页面
 
-public void setLytMonthDao(LytMonthDao lytMonthDao) {
-	this.lytMonthDao = lytMonthDao;
-}
-
-
-
-
-
-
-
-
-/**
- * queryByOrder
- */
-
-public List<LytMonth> queryByOrder(Page page, String pageMethod,
-		String order) {
-	// 首次加载时，设置当前页为第一页
-	int currentPage = page.getCurrentPage();
-
-	if (currentPage == 0) {
-		currentPage = 1;
+	public LytMonthDao getLytMonthDao() {
+		return lytMonthDao;
 	}
 
-	// 查询全部数据，得到数据总行数
+	public void setLytMonthDao(LytMonthDao lytMonthDao) {
+		this.lytMonthDao = lytMonthDao;
+	}
 
-	int totalRows = lytMonthDao.queryAll().size();
-	page = page.getPage(currentPage, pageMethod, totalRows);
-	List list = new ArrayList<LytHuiyuan>();
-	list = lytMonthDao.queryByOrder(order, page.getStartRow());
+	/**
+	 * queryByOrder
+	 */
 
-	this.page = page;
+	public List<LytMonth> queryByOrder(Page page, String pageMethod,
+			String order) {
+		// 首次加载时，设置当前页为第一页
+		int currentPage = page.getCurrentPage();
 
-	return list;
+		if (currentPage == 0) {
+			currentPage = 1;
+		}
 
-}
+		// 查询全部数据，得到数据总行数
+
+		int totalRows = lytMonthDao.queryAll().size();
+		page = page.getPage(currentPage, pageMethod, totalRows);
+		List list = new ArrayList<LytHuiyuan>();
+		list = lytMonthDao.queryByOrder(order, page.getStartRow());
+
+		this.page = page;
+
+		return list;
+
+	}
+	
+	public List<LytMonth> queryByCardId(String cardId) {
+		return lytMonthDao.queryByCardId(cardId);
+	}
+	
+	public void addLytMonth(LytMonth lytMonth) {
+		lytMonthDao.addLytMonth(lytMonth);
+	}
 }

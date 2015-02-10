@@ -1,7 +1,23 @@
+<%@page import="com.lyt.member.entity.Admin"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<% 
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
+
+Admin admin=(Admin)session.getAttribute("admin");
+if(admin==null){
+response.sendRedirect(basePath+"admin/gotologin.jsp");  
+}
+
+
+
+
+
+
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -84,9 +100,9 @@
 				<td width="30%"><span class="oper-bar-text"> 按返现状态查询全部：</span><span
 					class="title_bar"><select name="blog_order_list" id="list_all"
 						class="form_select" onChange="queryByOrder(this.value)">
-							<!-- <option value="" selected>排列顺序</option>
-							<option value="date_desc">推荐时间-降序</option> -->
-							<option value="date">推荐时间-升序</option>
+							<option value="" selected>选择状态</option>
+							<!-- <option value="date_desc">推荐时间-降序</option>
+							<option value="date">推荐时间-升序</option> -->
 							<option value="1">已返现</option>
 							<option value="0">未返现</option>
 							<!-- <option value="id_desc">会员卡号-降序</option>
@@ -128,11 +144,19 @@
 			</td>
 
 			<td width="20%" align="center">&nbsp;<span style="color: red"
-				id="msgkey" name="msgkey"></span> <c:if test="${empty lytHuiyuan}">
+				id="msgkey" name="msgkey"></span> 
+				<c:if test="${empty lytHuiyuan}">
 					<span style="color: red">没有这个卡号的会员！</span>
-				</c:if> <c:if test="${empty lytFanlis}">
+				</c:if> 
+				<c:if test="${empty lytFanlis}">
 					<span style="color: red">没有返利记录!</span>
 				</c:if>
+				<c:if test="${!empty lytFanlis}">
+					<span style="color: red">共查询出
+							${pageliu.totalRows }条记录！ </span>
+				</c:if>
+				
+				
 			</td>
 		</tr>
 	</table>
@@ -179,9 +203,10 @@
 				<td class="table-cell">${flset.lytHuiyuanByBtjrId.hycardId }</td>
 				<td class="table-cell">${flset.tjTime }</td>
 				<td class="table-cell"><c:if test="${flset.fanliState == 0}">
-					未返利
+				<span style="color:red">未返利</span>
+					
 					</c:if> <c:if test="${flset.fanliState == 1}">
-					返利
+					已返利
 				</c:if></td>
 				<td class="table-cell">${flset.fanliMoney }</td>
 				<td class="table-cell"><c:if test="${flset.fanliType == 0}">
@@ -197,9 +222,9 @@
 			</tr>
 			<c:if test="${st.last}">
 				<tr>
-					<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
-							${st.count }条记录！ </span>
-					</td>
+				<%-- 	<td width="20%" align="center">&nbsp;<span style="color: red">共查询出
+							${pageliu.totalRows }条记录！ </span>
+					</td> --%>
 				</tr>
 			</c:if>
 		</c:forEach>

@@ -67,6 +67,8 @@ public class LytFanliService {
 	 */
 	public List<LytFanli> queryByTypeHy(Integer type,String hycardId,Integer fanliState,Integer currentPage) {
 		currentPage = (currentPage-1)*Pageliu.PAGE_SIZE;
+		System.out.println(fanliState+"'"+type+"'"+hycardId);
+		
 		return lytFanliDao.queryByC(fanliState, type, hycardId,currentPage,Pageliu.PAGE_SIZE);
 	}
 	

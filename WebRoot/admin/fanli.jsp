@@ -81,11 +81,11 @@
 
 
 
-				<td width="30%"><span class="oper-bar-text"> 按顺序查询全部：</span><span
+				<td width="30%"><span class="oper-bar-text"> 按返现状态查询全部：</span><span
 					class="title_bar"><select name="blog_order_list" id="list_all"
 						class="form_select" onChange="queryByOrder(this.value)">
-							<option value="" selected>排列顺序</option>
-							<option value="date_desc">推荐时间-降序</option>
+							<!-- <option value="" selected>排列顺序</option>
+							<option value="date_desc">推荐时间-降序</option> -->
 							<option value="date">推荐时间-升序</option>
 							<option value="1">已返现</option>
 							<option value="0">未返现</option>

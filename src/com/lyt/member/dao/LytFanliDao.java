@@ -37,6 +37,7 @@ public class LytFanliDao extends BaseDao {
 	 * @param type
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<LytFanli> queryByType(int fanliState) {
 		return hibernateTemplate
 				.find("from LytFanli as l where l.fanliState= ? ORDER BY fanliTime desc",

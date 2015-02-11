@@ -105,7 +105,7 @@
 		</action>
 
 
-		<!-- 前台口碑奖 -->
+		<!-- 后台口碑奖 -->
 		<action name="queryByTypeHyPageUp" class="com.lyt.member.action.LytFanliAction"
 			method="queryByTypeHyPageUp">
 			<result name="error">/admin/fanli.jsp</result>
@@ -137,7 +137,9 @@
 			<result name="success">/admin/month.jsp</result>
 		</action>
 
-
+		<action name="updateMonthState" class="lytMonthAction" method="updateMonthState">
+			<result name="success">/admin/month.jsp</result>
+		</action>
 
 
 	</package>

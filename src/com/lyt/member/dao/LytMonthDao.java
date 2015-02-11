@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lyt.member.entity.LytHuiyuan;
 import com.lyt.member.entity.LytMonth;
 import com.lyt.member.util.Constant;
 
@@ -141,5 +142,18 @@ public class LytMonthDao extends BaseDao {
 		query.setString(0, cardId);
 		return query.list();
 	}
-
+	
+	public LytMonth queryById(String id) {
+		LytMonth lm = null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from LytMonth as l where l.id=?";
+		Query query = session.createQuery(hql);
+		query.setString(0, id);
+		lm = (LytMonth) query.uniqueResult();
+		return lm;
+	}
+	public boolean update(LytMonth lm) {
+		sessionFactory.getCurrentSession().update(lm);
+		return true;
+	}
 }

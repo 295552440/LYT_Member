@@ -17,13 +17,26 @@ public class LytMonth implements java.io.Serializable {
 	private Integer fanliState;
 	private Double fanLimoney;
 	private Timestamp fanliTime;
-
+	private String tjrName;
+	
+	
 	// Constructors
 
 	/** default constructor */
 	public LytMonth() {
 	}
 
+	/** full constructor */
+	public LytMonth(String tjrCardId, Timestamp tjTime, Integer tjRenshu,
+			Integer fanliState, Double fanLimoney, Timestamp fanliTime,String tjrName) {
+		this.tjrCardId = tjrCardId;
+		this.tjTime = tjTime;
+		this.tjRenshu = tjRenshu;
+		this.fanliState = fanliState;
+		this.fanLimoney = fanLimoney;
+		this.fanliTime = fanliTime;
+		this.tjrName=tjrName;
+	}
 	/** full constructor */
 	public LytMonth(String tjrCardId, Timestamp tjTime, Integer tjRenshu,
 			Integer fanliState, Double fanLimoney, Timestamp fanliTime) {
@@ -34,11 +47,18 @@ public class LytMonth implements java.io.Serializable {
 		this.fanLimoney = fanLimoney;
 		this.fanliTime = fanliTime;
 	}
-
 	// Property accessors
 
 	public String getId() {
 		return this.id;
+	}
+
+	public String getTjrName() {
+		return tjrName;
+	}
+
+	public void setTjrName(String tjrName) {
+		this.tjrName = tjrName;
 	}
 
 	public void setId(String id) {

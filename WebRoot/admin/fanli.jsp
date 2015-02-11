@@ -1,6 +1,7 @@
 <%@page import="com.lyt.member.entity.Admin"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <% 
 String path = request.getContextPath();
@@ -177,7 +178,7 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 				<td class="table-cell">${lytHuiyuan.hyname}</td>
 				<td class="table-cell">${lytHuiyuan.hycardId }</td>
 				<td class="table-cell">${lytHuiyuan.hyLevel}</td>
-				<td class="table-cell">${lytHuiyuan.applyTime}</td>
+				<td class="table-cell"><fmt:formatDate value="${lytHuiyuan.applyTime}" /></td>
 			</tr>
 
 		</table>
@@ -201,23 +202,41 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 			<tr>
 				<td class="table-cell">${flset.lytHuiyuanByTjrId.hycardId }</td>
 				<td class="table-cell">${flset.lytHuiyuanByBtjrId.hycardId }</td>
-				<td class="table-cell">${flset.tjTime }</td>
-				<td class="table-cell"><c:if test="${flset.fanliState == 0}">
+				<td class="table-cell"><fmt:formatDate value="${flset.tjTime }" /></td>
+				<td class="table-cell">
+				
+				
+				<c:if test="${flset.fanliState == 0}">
 				<span style="color:red">未返利</span>
 					
 					</c:if> <c:if test="${flset.fanliState == 1}">
 					已返利
-				</c:if></td>
+				</c:if>
+				
+				
+				</td>
 				<td class="table-cell">${flset.fanliMoney }</td>
 				<td class="table-cell"><c:if test="${flset.fanliType == 0}">
 					口碑传播奖
 				</c:if> <c:if test="${flset.fanliType == 1}">
 					月任务奖
 				</c:if></td>
-				<td class="table-cell">${flset.fanliTime }</td>
+				<td class="table-cell"><fmt:formatDate value="${flset.fanliTime }" /></td>
 
-				<td class="table-cell"><a
-					href="queryByTypeHyPageUp?currentPage=${currentPage}&flid=${flset.id}">修改返利状态</a>
+				<td class="table-cell">
+				
+				
+				
+				<c:if test="${flset.fanliState == 0}">
+				<a href="javascript:if(confirm('确认标注该条记录为“已返利”吗，注意标注后不可更改请慎重！'))location='queryByTypeHyPageUp?currentPage=${currentPage}&flid=${flset.id}'">标注为“已返利”</a>
+				<%-- <a
+					href="queryByTypeHyPageUp?currentPage=${currentPage}&flid=${flset.id}">修改返利状态</a> --%>
+				
+				</c:if>
+				<c:if test="${flset.fanliState == 1}">
+					不可操作
+				</c:if>
+				
 				</td>
 			</tr>
 			<c:if test="${st.last}">

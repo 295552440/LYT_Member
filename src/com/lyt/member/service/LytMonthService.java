@@ -2,11 +2,13 @@ package com.lyt.member.service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.lyt.member.dao.LytHuiyuanDao;
 import com.lyt.member.dao.LytMonthDao;
 import com.lyt.member.entity.LytHuiyuan;
 import com.lyt.member.entity.LytMonth;
@@ -15,7 +17,16 @@ import com.lyt.member.util.Page;
 
 public class LytMonthService {
 	private LytMonthDao lytMonthDao;
+	private LytHuiyuanDao lytHuiyuanDao;
 	public static Page page;// 页面
+
+	public LytHuiyuanDao getLytHuiyuanDao() {
+		return lytHuiyuanDao;
+	}
+
+	public void setLytHuiyuanDao(LytHuiyuanDao lytHuiyuanDao) {
+		this.lytHuiyuanDao = lytHuiyuanDao;
+	}
 
 	public LytMonthDao getLytMonthDao() {
 		return lytMonthDao;
@@ -120,6 +131,51 @@ public class LytMonthService {
 
 	public void addLytMonth(LytMonth lytMonth) {
 		lytMonthDao.addLytMonth(lytMonth);
+	}
+
+	/**
+	 * updateState
+	 */
+	public List<LytMonth> updateState(LytMonth lm) {
+
+		String id = lm.getId();
+		LytMonth hyQuery = lytMonthDao.queryById(id);
+
+		if (hyQuery.getFanliState() == 0) {
+			hyQuery.setFanliState(1);
+		} else {
+			hyQuery.setFanliState(0);
+		}
+
+		lytMonthDao.update(hyQuery);
+		return null;
+
+	}
+
+	public List<LytMonth> addNameToList(List<LytMonth> list) {
+		try {
+
+			if (list != null) {
+				List<LytMonth> listNew = new ArrayList<LytMonth>();
+
+				Iterator<LytMonth> iter = list.iterator();
+				while (iter.hasNext()) {
+					LytMonth lm = iter.next();
+					LytHuiyuan hy = lytHuiyuanDao.queryByCardId(lm
+							.getTjrCardId());
+					lm.setTjrName(hy.getHyname());
+					listNew.add(lm);
+				}
+
+				list = listNew;
+
+			}
+
+		} catch (Exception e) {
+			return list;
+		}
+
+		return list;
 	}
 
 }

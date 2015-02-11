@@ -1,5 +1,7 @@
 package com.lyt.member.dao;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -154,6 +156,7 @@ public class LytFanliDao extends BaseDao {
 			LytFanli lytFanli = hibernateTemplate.get(LytFanli.class, flid);
 			if (lytFanli.getFanliState()==0) {
 				lytFanli.setFanliState(1);
+				lytFanli.setFanliTime(new Timestamp(new Date().getTime()));
 			}else if (lytFanli.getFanliState()==1) {
 				lytFanli.setFanliState(0);
 			}

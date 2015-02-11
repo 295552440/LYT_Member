@@ -14,7 +14,7 @@ public class LytMonthAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 	private LytMonthService lytMonthService;
 	private List<LytMonth> list;
-
+	private LytMonth lytMonth;
 	private Page page;// 页面
 	private String pageMethod;// 用于接收页面传来的“上一页、下一页”等参数
 	private String queryMethod;// 用于接收查询方法
@@ -23,6 +23,16 @@ public class LytMonthAction extends BaseAction {
 	private String searchBy;// 按搜索查询
 	private String searchInput;// 接收页面传来搜索参数
 	private Integer currentPage;
+
+	
+	
+	public LytMonth getLytMonth() {
+		return lytMonth;
+	}
+
+	public void setLytMonth(LytMonth lytMonth) {
+		this.lytMonth = lytMonth;
+	}
 
 	public List<LytMonth> getList() {
 		return list;
@@ -128,7 +138,7 @@ public class LytMonthAction extends BaseAction {
 		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
 
 		list = lytMonthService.queryByOrder(page, pageMethod, order);
-
+        list=lytMonthService.addNameToList(list);
 		// 将执行完后的page作为lytHuiyuanService的静态变量再传递给blogAction,及时更新页面page
 
 		page = lytMonthService.page;
@@ -167,7 +177,7 @@ public class LytMonthAction extends BaseAction {
 		Constant.setPAGE_SIZE(Constant.PAGE_SIZE_MemberList);
 
 		list = lytMonthService.queryByState(page, pageMethod, state);
-
+		 list=lytMonthService.addNameToList(list);
 		// 将执行完后的page作为blogService的静态变量再传递给blogAction,及时更新页面page
 
 		page = lytMonthService.page;
@@ -215,7 +225,7 @@ public class LytMonthAction extends BaseAction {
 	
 		list = lytMonthService.queryBySearch(page, pageMethod, searchBy,
 				searchInput);
-
+		 list=lytMonthService.addNameToList(list);
 		// 将执行完后的page作为blogService的静态变量再传递给blogAction,及时更新页面page
 
 		page = lytMonthService.page;
@@ -231,5 +241,35 @@ public class LytMonthAction extends BaseAction {
 		return SUCCESS;
 
 	}
+//updateMonthState
+	
+	/**
+	 * updateMonthState
+	 * 
+	 * @return
+	 */
+	public String updateMonthState() throws Exception {
 
+		lytMonthService.updateState(lytMonth);
+		
+
+		pageMethod = "555";// 防止page被刷新为0
+		// 判断条件，返回原来的页面
+
+		if (session.get("order") != null) {
+			return queryMonthByOrder();
+		}
+		if (session.get("state") != null) {
+			return queryMonthByState();
+		}
+		if (session.get("searchBy") != null) {
+			return queryMonthBySearch();
+		}
+
+		return SUCCESS;
+
+	}
+	
+	
+	
 }

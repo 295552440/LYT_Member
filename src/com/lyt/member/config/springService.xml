@@ -22,8 +22,9 @@
 	<bean id="lytHuiyuanService" class="com.lyt.member.service.LytHuiyuanService">
 		<property name="lytHuiyuanDao" ref="lytHuiyuanDao" />
 	</bean>
-<bean id="lytMonthService" class="com.lyt.member.service.LytMonthService">
+	<bean id="lytMonthService" class="com.lyt.member.service.LytMonthService">
 		<property name="lytMonthDao" ref="lytMonthDao" />
+		<property name="lytHuiyuanDao" ref="lytHuiyuanDao" />
 	</bean>
 
 

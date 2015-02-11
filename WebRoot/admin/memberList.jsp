@@ -281,9 +281,14 @@
 						&nbsp;&nbsp; <s:url id="url1"
 							action="deleteHy">
 							<s:param name="lytHuiyuan.id" value="id" />
-						</s:url><a
+						</s:url>
+						<s:if test="hyState==0">
+						<a
 						href="javascript:if(confirm('确认删除该条记录？删除后将不可恢复！'))location='<s:property value="#url1"/>'">删除</a>
-
+                        </s:if>
+                        <s:if test="hyState==1">
+                      	  不可操作
+                        </s:if>
 					</td>
 				</tr>
 

@@ -190,7 +190,10 @@
 				<param name="includeProperties">message</param>
 			</result>
 		</action>
-
+		<action name="queryMonthBySearch" class="lytMonthAction"
+			method="queryMonthBySearch">
+			<result name="success">/main/month.jsp</result>
+		</action>
 	</package>
 
 

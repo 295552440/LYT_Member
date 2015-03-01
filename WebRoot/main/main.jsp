@@ -62,7 +62,7 @@
 						name="search_list" id="search_list">
 							<option value="id">会员卡号</option>
 					</select> <input name="hycardId" type="text" id="hycardId" size="21" /> </span></td>
-				<td><span class="oper-bar-text"> 类型：</span><span
+				<td><span class="oper-bar-text"> &nbsp;类型：</span><span
 					class="title_bar"><select name="fanliType" id="fanliType"
 						class="form_select">
 							<!-- <option value="" >返利的类型</option> -->
@@ -72,7 +72,7 @@
 				<span class="oper-bar-text"> 状态：</span><span
 					class="title_bar"><select name="fanliState" id="fanliState"
 						class="form_select">
-							<option value="" selected>返利的状态</option>
+							<option value="" selected>全部</option>
 							<option value="0">未返利</option>
 							<option value="1">返利</option>
 					</select> </span></td>

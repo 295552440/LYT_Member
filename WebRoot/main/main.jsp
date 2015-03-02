@@ -16,6 +16,27 @@
 <script src="../js/jquery-1.8.2.js" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/css/admin/oper_area.css"
 	rel="stylesheet" type="text/css">
+	
+		<link href="<%=request.getContextPath()%>/main/web/css/style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link
+	href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700'
+	rel='stylesheet' type='text/css'>
+<style type="text/css">
+.table_title{
+margin: 0px 0px 0px 0px;
+padding: 0px 0px 0px 0px;
+border: 0px none;
+
+}
+.header{
+margin: 0px 0px 0px 0px;
+height:75px;
+}
+.cssmenu li a {
+text-decoration:none;
+}
+</style>
 </head>
 
 <script type="text/javascript">
@@ -41,6 +62,35 @@
     </script>
 </head>
 <body>
+
+	<div class="header">
+		<div class="header-top">
+			<div class="wrap">
+				<div class="logo">
+					<a href="index.html"><img src="<%=request.getContextPath()%>/main/web/images/logo.png" alt="" />
+					</a>
+				</div>
+				<div class="cssmenu">
+					<ul id="nav">
+						<li class="current"><a href="<%=request.getContextPath()%>/main/web/index.jsp">首页</a>
+						</li>
+						<li class="current"><a
+							href="<%=request.getContextPath()%>/main/add.jsp">会员申请</a>
+						</li>
+						<li><a href="<%=request.getContextPath()%>/main/web/index.jsp" >会员制分销模式介绍</a>
+						</li>
+						<li><a href="<%=request.getContextPath()%>/main/main.jsp" >返利查询--口碑传播奖</a>
+						</li>
+						<li><a href="<%=request.getContextPath()%>/main/month.jsp" >返利查询--优秀个人奖</a>
+						</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+			
+
+	</div>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td class="title-bar">

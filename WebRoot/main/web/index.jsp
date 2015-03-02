@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
 <%-- <base href="<%=basePath%>"> --%>
@@ -18,7 +18,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<link href="./css/style.css" rel="stylesheet" type="text/css"
+<link href="<%=request.getContextPath()%>/main/web/css/style.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link
 	href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700'
@@ -40,19 +40,25 @@
 						<li class="current"><a href="#section-1">首页</a>
 						</li>
 						<li class="current"><a
-							href="<%=request.getContextPath()%>/main/add.jsp">会员申请</a>
+							href=""
+							onclick="javascript:window.location.href='<%=request.getContextPath()%>/main/add.jsp';"
+							>会员申请</a>
 						</li>
 						<li><a href="#section-2">会员制分销模式介绍</a>
 						</li>
-						<li><a href="#section-3">返利查询--口碑传播奖</a>
+						<li><a href="" onclick="javascript:window.location.href='<%=request.getContextPath()%>/main/main.jsp';">返利查询--口碑传播奖</a>
 						</li>
-						<li><a href="#section-4">返利查询--优秀个人奖</a>
+						<li><a href="" onclick="javascript:window.location.href='<%=request.getContextPath()%>/main/month.jsp';">返利查询--优秀个人奖</a>
 						</li>
 					</ul>
 				</div>
 				<div class="clear"></div>
 			</div>
 		</div>
+		
+		
+		
+		
 		<div class="header-bottom section" id="section-1">
 			<div class="wrap">
 				<div class="img-banner">
@@ -252,16 +258,16 @@
 		</div>
 
 	</div>
-	<script src="./js/jquery-1.10.2.min.js" type="text/javascript"></script>
-	<script src="./js/modernizr.custom.js" type="text/javascript"></script>
-	<script src="./js/classie.js"></script>
-	<script src="./js/cbpScroller.js"></script>
+	<script src="<%=request.getContextPath()%>/main/web/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/main/web/js/modernizr.custom.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/main/web/js/classie.js"></script>
+	<script src="<%=request.getContextPath()%>/main/web/js/cbpScroller.js"></script>
 	<script>
 		new cbpScroller(document.getElementById('cbp-so-scroller'));
 	</script>
 
-	<script src="./js/owl.carousel.js"></script>
-	<link href="./css/owl.carousel.css" rel="stylesheet">
+	<script src="<%=request.getContextPath()%>/main/web/js/owl.carousel.js"></script>
+	<link href="<%=request.getContextPath()%>/main/web/css/owl.carousel.css" rel="stylesheet">
 	<script>
 		$(document).ready(function() {
 			$("#owl-demo").owlCarousel({
@@ -274,8 +280,8 @@
 			});
 		});
 	</script>
-	<link rel="stylesheet" type="text/css" href="./css/slick.css" />
-	<script type="text/javascript" src="./js/slick.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/main/web/css/slick.css"/>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/main/web/js/slick.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.single-item').slick({
@@ -289,8 +295,8 @@
 			});
 		});
 	</script>
-	<script src="./js/jquery.scrollTo.js"></script>
-	<script src="./js/jquery.nav.js"></script>
+	<script src="<%=request.getContextPath()%>/main/web/js/jquery.scrollTo.js"></script>
+	<script src="<%=request.getContextPath()%>/main/web/js/jquery.nav.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#nav').onePageNav({

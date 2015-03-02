@@ -161,7 +161,7 @@ a:active {
 								<td><A href="admin/queryByTypeHy?hycardId=all&fanliType=0&fanliState=0" target="main">口碑传播奖</A></td>
 							</tr>
 							<tr>
-								<td><A href="<%=request.getContextPath()%>/admin/queryMonthByOrder?order=date_desc" target="main">月累积奖</A>
+								<td><A href="<%=request.getContextPath()%>/admin/queryMonthByOrder?order=date_desc" target="main">优秀个人奖</A>
 								</td>
 							</tr>
 						</table>

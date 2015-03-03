@@ -67,14 +67,14 @@ text-decoration:none;
 		<div class="header-top">
 			<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="<%=request.getContextPath()%>/main/web/images/logo.png" alt="" />
+					<a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/main/web/images/logo.png" alt="" />
 					</a>
 				</div>
 				<div class="cssmenu">
 					<ul id="nav">
-						<li class="current"><a href="<%=request.getContextPath()%>/main/web/index.jsp">首页</a>
+						<!-- <li class="current"> --><li><a href="<%=request.getContextPath()%>/main/web/index.jsp">首页</a>
 						</li>
-						<li class="current"><a
+						<!-- <li class="current"> --><li><a
 							href="<%=request.getContextPath()%>/main/add.jsp">会员申请</a>
 						</li>
 						<li><a href="<%=request.getContextPath()%>/main/web/index.jsp#section-2" >会员制分销模式介绍</a>
@@ -91,7 +91,7 @@ text-decoration:none;
 			
 
 	</div>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td class="title-bar">
 				<table width="98%" border="0" align="center" cellpadding="0"
@@ -102,10 +102,17 @@ text-decoration:none;
 					</tr>
 				</table></td>
 		</tr>
+	</table> -->
+	<table width="100%" border="0" align="center" cellpadding="0"
+		cellspacing="0" class="oper-bar">
+		<tr>
+			<td align="center" width=20%>返利查询--口碑传播奖</td>
+			<td align="left" width=80% style="color:red"></td>
+		</tr>
 	</table>
 
 	<form action="" method="post">
-		<table width="99%" border="0" align="center" cellpadding="0"
+		<table width="100%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="oper-bar">
 			<tr>
 				<td align="right"><span class="oper-bar-text">搜索查询： <select
@@ -133,7 +140,7 @@ text-decoration:none;
 	</form>
 
 
-	<table width="99%" border="0" align="center" cellpadding="0"
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="oper-bar">
 		<tr>
 
@@ -153,7 +160,7 @@ text-decoration:none;
 	</table>
 
 	<c:if test="${ not empty lytHuiyuan }">
-		<table width="99%" border="0" align="center" cellpadding="0"
+		<table width="100%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="table-frame">
 			<tr class="table_title">
 				<td class="table-titlebar">会员姓名</td>
@@ -173,7 +180,7 @@ text-decoration:none;
 
 		</table>
 	</c:if>
-	<table width="99%" border="0" align="center" cellpadding="0"
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="table-frame">
 		<tr class="table_title">
 			<td class="table-titlebar">推荐人编号</td>
@@ -237,7 +244,7 @@ text-decoration:none;
 		</tr>
 	</table>
 	</c:if>
-	<table width="99%" border="0" align="center" cellpadding="0"
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
 		<tr>
 			<td class="page_bar"></td>

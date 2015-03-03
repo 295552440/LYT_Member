@@ -111,14 +111,14 @@ text-decoration:none;
 		<div class="header-top">
 			<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="<%=request.getContextPath()%>/main/web/images/logo.png" alt="" />
+					<a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/main/web/images/logo.png" alt="" />
 					</a>
 				</div>
 				<div class="cssmenu">
 					<ul id="nav">
-						<li class="current"><a href="<%=request.getContextPath()%>/main/web/index.jsp">首页</a>
+						<!-- <li class="current"> --><li><a href="<%=request.getContextPath()%>/main/web/index.jsp">首页</a>
 						</li>
-						<li class="current"><a
+						<!-- <li class="current"> --><li><a
 							href="<%=request.getContextPath()%>/main/add.jsp">会员申请</a>
 						</li>
 						<li><a href="<%=request.getContextPath()%>/main/web/index.jsp#section-2" >会员制分销模式介绍</a>
@@ -136,7 +136,7 @@ text-decoration:none;
 
 	</div>
 
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td class="title-bar">
 				<table width="98%" border="0" align="center" cellpadding="0"
@@ -148,8 +148,8 @@ text-decoration:none;
 				</table>
 			</td>
 		</tr>
-	</table>
-	<table width="99%" border="0" align="center" cellpadding="0"
+	</table> -->
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="oper-bar">
 		<tr>
 			<td align="center" width=20%>添加会员</td>

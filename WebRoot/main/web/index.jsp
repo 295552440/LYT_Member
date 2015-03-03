@@ -32,7 +32,7 @@
 		<div class="header-top">
 			<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="./images/logo.png" alt="" />
+					<a href="#section-1"><img src="./images/logo.png" alt="" />
 					</a>
 				</div>
 				<div class="cssmenu">

@@ -67,7 +67,7 @@ text-decoration:none;
 		<div class="header-top">
 			<div class="wrap">
 				<div class="logo">
-					<a href="index.html"><img src="<%=request.getContextPath()%>/main/web/images/logo.png" alt="" />
+					<a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/main/web/images/logo.png" alt="" />
 					</a>
 				</div>
 				<div class="cssmenu">

@@ -37,9 +37,9 @@
 				</div>
 				<div class="cssmenu">
 					<ul id="nav">
-						<li class="current"><a href="#section-1">首页</a>
+						<!-- <li class="current"> --><li><a href="#section-1">首页</a>
 						</li>
-						<li class="current"><a
+						<!-- <li class="current"> --><li><a
 							href=""
 							onclick="javascript:window.location.href='<%=request.getContextPath()%>/main/add.jsp';"
 							>会员申请</a>

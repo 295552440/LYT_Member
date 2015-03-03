@@ -115,9 +115,9 @@ text-decoration:none;
 				</div>
 				<div class="cssmenu">
 					<ul id="nav">
-						<li class="current"><a href="<%=request.getContextPath()%>/main/web/index.jsp">首页</a>
+						<!-- <li class="current"> --><li><a href="<%=request.getContextPath()%>/main/web/index.jsp">首页</a>
 						</li>
-						<li class="current"><a
+						<!-- <li class="current"> --><li><a
 							href="<%=request.getContextPath()%>/main/add.jsp">会员申请</a>
 						</li>
 						<li><a href="<%=request.getContextPath()%>/main/web/index.jsp" >会员制分销模式介绍</a>
@@ -137,7 +137,7 @@ text-decoration:none;
 
 
 
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_title">
+	<!-- <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table_title">
 		<tr>
 			<td class="title-bar">
 				<table width="98%" border="0" align="center" cellpadding="0"
@@ -148,10 +148,17 @@ text-decoration:none;
 					</tr>
 				</table></td>
 		</tr>
+	</table> -->
+	<table width="100%" border="0" align="center" cellpadding="0"
+		cellspacing="0" class="oper-bar">
+		<tr>
+			<td align="center" width=20%>返利查询--优秀个人奖</td>
+			<td align="left" width=80% style="color:red"></td>
+		</tr>
 	</table>
 
 	<form action="" method="post">
-		<table width="99%" border="0" align="center" cellpadding="0"
+		<table width="100%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="oper-bar">
 
 
@@ -195,7 +202,7 @@ text-decoration:none;
 	</form>
 
 
-	<table width="99%" border="0" align="center" cellpadding="0"
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="oper-bar">
 		<tr>
 
@@ -210,7 +217,7 @@ text-decoration:none;
 	</table>
 
 
-	<table width="99%" border="0" align="center" cellpadding="0"
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0" class="table-frame">
 		<tr class="table_title">
 
@@ -255,7 +262,7 @@ text-decoration:none;
 		</s:iterator>
 	</table>
 
-	<table width="99%" border="0" align="center" cellpadding="0"
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
 		<tr>
 
@@ -280,7 +287,7 @@ text-decoration:none;
 				&nbsp;&nbsp;</td>
 		</tr>
 	</table>
-	<table width="99%" border="0" align="center" cellpadding="0"
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
 		<tr>
 			<td class="page_bar"></td>

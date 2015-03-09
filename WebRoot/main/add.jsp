@@ -123,7 +123,7 @@ text-decoration:none;
 						<!-- <li class="current"> --><li><a
 							href="<%=request.getContextPath()%>/main/add.jsp">会员申请</a>
 						</li>
-						<li><a href="<%=request.getContextPath()%>/main/web/index.jsp" >会员制分销模式介绍</a>
+						<li><a href="<%=request.getContextPath()%>/main/web/index.jsp#section-2" >会员制分销模式介绍</a>
 						</li>
 						<li><a href="<%=request.getContextPath()%>/main/main.jsp" >返利查询--口碑传播奖</a>
 						</li>

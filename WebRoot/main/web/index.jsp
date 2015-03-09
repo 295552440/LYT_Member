@@ -32,7 +32,9 @@
 		<div class="header-top">
 			<div class="wrap">
 				<div class="logo">
+
 					<a href="<%=request.getContextPath()%>/index.jsp"><img src="./images/logo.png" alt="" />
+
 					</a>
 				</div>
 				<div class="cssmenu">
@@ -258,7 +260,8 @@
 		</div>
 
 	</div>
-	<script src="<%=request.getContextPath()%>/main/web/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery-1.8.2.js" type="text/javascript"></script>
+	<%-- <script src="<%=request.getContextPath()%>/main/web/js/jquery-1.10.2.min.js" type="text/javascript"></script> --%>
 	<script src="<%=request.getContextPath()%>/main/web/js/modernizr.custom.js" type="text/javascript"></script>
 	<script src="<%=request.getContextPath()%>/main/web/js/classie.js"></script>
 	<script src="<%=request.getContextPath()%>/main/web/js/cbpScroller.js"></script>

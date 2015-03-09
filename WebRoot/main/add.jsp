@@ -37,10 +37,8 @@ text-decoration:none;
 </style>	
 	
 	
-<script src="js/jquery-1.8.2.js" type="text/javascript"></script>
-<script src="js/message.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript"
-	src="js/DatePicker/WdatePicker.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-1.8.2.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/message.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function gainHyFee(level, data) {
 		/* alert($("input[name='lytHuiyuan.hyLevel']:checked").val());*/
@@ -52,12 +50,14 @@ text-decoration:none;
 	function gainTotalFee() {
 		var data = parseFloat($.trim($("#inforFee").val()));
 		data += parseFloat($("#hyFee").val());
+		//alert($("#hyFee").val());
 		$("#totalMoney").val(data);
-		alert(parseFloat($("#hyFee").val()));
+		//alert(parseFloat($("#hyFee").val()));
 	}
 
 	function tijiao() {
 		var hyLevel = $("input[name='hyLevel']:checked").val();
+		alert(hyLevel);
 		var hyname = $.trim($("#hyname").val());
 		var hyFee = $.trim($("#hyFee").val());
 		var phoneNumber = $.trim($("#phoneNumber").val());
@@ -89,6 +89,8 @@ text-decoration:none;
 				url : "main/lytHuiyuanApply",
 				type : "post",
 				data : params,
+				contentType: false, //必须
+    			//processData: false, //必须
 				dataType : "json",
 				success : function(data) {
 					var msg = data.message;
@@ -169,7 +171,7 @@ text-decoration:none;
 					for="GC">金卡<u>990￥</u></label> <input name="hyLevel" id="SC"
 					type="radio" value="银卡" onclick="gainHyFee('银卡',198);"><label
 					for="SC">银卡<u>198￥</u></label> <input name="hyFee" id="hyFee"
-					type="hidden"></td>
+					type="hidden" value="1980"></td>
 			</tr>
 			<tr class="table_border_cell_bg">
 				<td class="table-cell">会员姓名</td>

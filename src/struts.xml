@@ -8,6 +8,16 @@
 	<!-- 前台能够调用后台的公共静态方法 -->
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
 
+
+
+	<package name="404" extends="struts-default" abstract="true">
+
+		<default-action-ref name="pagenotfound"></default-action-ref>
+		<action name="pagenotfound">
+			<result>/404.html</result>
+		</action>
+	</package>
+
 	<constant name="struts.ObjectFactory" value="spring" />
 	<package name="mydefault" extends="struts-default" abstract="true">
 		<!-- 添加拦截器 -->
@@ -34,7 +44,7 @@
 
 
 
-	<package name="admin" namespace="/admin" extends="json-default,mydefault">
+	<package name="admin" namespace="/admin" extends="json-default,mydefault,404">
 
 		<!-- admin -->
 
@@ -147,7 +157,7 @@
 
 	<!-- 会员 -->
 
-	<package name="main" namespace="/main" extends="struts-default,json-default">
+	<package name="main" namespace="/main" extends="struts-default,json-default,404">
 		<action name="queryByCardId" class="com.lyt.member.action.LytHuiyuanAction"
 			method="queryByCardId">
 			<result type="json">

@@ -174,7 +174,7 @@ response.sendRedirect(basePath+"admin/gotologin.jsp");
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="reset"
 				value="取消">
 		</p>
-		<font size="3" color="red">${msg }</font>
+		<%-- <font size="3" color="red">${msg }</font> --%>
 	</form>
 </body>
 </html>

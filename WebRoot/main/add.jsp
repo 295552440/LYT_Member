@@ -6,7 +6,7 @@
 <html>
 <head>
 
-<title>My JSP 'listUser.jsp' starting page</title>
+<title>会员申请--北京丽颜堂科贸有限公司</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">

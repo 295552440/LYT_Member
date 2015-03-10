@@ -271,7 +271,7 @@
 						</s:url> 
 						
 						<s:if test="hyState==0">
-						<a href="javascript:if(confirm('确认通过审核，使该用户成为正式会员？审核后将自动给用户发送短信通知成功！'))location='<s:property value="#url2"/>'">审核</a>
+						<a href="javascript:if(confirm('确认通过审核，使该用户成为正式会员？审核后将无法取消！'))location='<s:property value="#url2"/>'">审核</a>
 						<%-- <a href="<s:property value="#url2"/>">审核</a> --%></s:if>
 						<%-- <s:if test="hyState==1">已通过</s:if> --%>
 						
